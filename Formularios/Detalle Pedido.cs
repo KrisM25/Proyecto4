@@ -18,15 +18,46 @@ namespace Proyecto4.Formularios
             InitializeComponent();
         }
 
-        private void Detalle_Pedido_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void materialButton2_Click(object sender, EventArgs e)
         {
             Menú_Admin NewMenú = new Menú_Admin();
             NewMenú.Show();
+        }
+
+        private void txtIDDetalle_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras y espacios
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIdPedidoDetalle_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras y espacios
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras y espacios
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCodProducPedido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras y espacios
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
         }
     }
 }

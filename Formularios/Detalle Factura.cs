@@ -95,5 +95,41 @@ namespace Proyecto4.Formularios
             // Mostrar el resultado
             MessageBox.Show(resultado, "Resultado de la Actualización de Detalle Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void txtIDProducto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCantidadComprada_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIDFactura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBuscarDetalleFactura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

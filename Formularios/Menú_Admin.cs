@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using K4os.Compression.LZ4.Encoders;
 using MaterialSkin.Controls;
 using Proyecto4.GestionBD;
 
@@ -39,7 +40,11 @@ namespace Proyecto4.Formularios
             GestionPedidos GesPedidos = new GestionPedidos();
             dataGridView2Pedidos.DataSource = GesPedidos.ImprimirConsulta("Select * from pedidos Order by estado DESC");
 
+            GestionCréditos GesCredito = new GestionCréditos();
+            dataGridViewCreditos.DataSource = GesCredito.ImprimirConsulta("Select * from credito");
 
+            GestionAbonos GesAbono = new GestionAbonos();
+            dataGridViewAbonos.DataSource = GesAbono.ImprimirConsulta("Select * from abonos ");
 
         }
 
@@ -506,45 +511,172 @@ namespace Proyecto4.Formularios
 
         private void btnGuardarCliente_Click(object sender, EventArgs e)
         {
-            GestionCliente GesClientes = new GestionCliente();
-            GesClientes.RegistrarCliente(txtIDCliente.Text, txtNombre.Text, txtApellidoCliente.Text, txtTelCliente.Text, txtEmailCliente.Text);
-            dataGridViewClientes.DataSource = GesClientes.ImprimirConsulta("Select * from clientes");
+            Login login = new Login();
+            if (login.CamposVacios(new object[] { txtIDCliente, txtNombre, txtApellidoCliente, txtTelCliente, txtEmailCliente }))
+            {
+           
+            }
+            else
+            {
+                Console.WriteLine("1");
+                GestionCliente GesClientes = new GestionCliente();
+                GesClientes.RegistrarCliente(txtIDCliente.Text, txtNombre.Text, txtApellidoCliente.Text, txtTelCliente.Text, txtEmailCliente.Text);
+                dataGridViewClientes.DataSource = GesClientes.ImprimirConsulta("Select * from clientes");
+            }
+         
         }
 
         private void btBuscarCliente_Click(object sender, EventArgs e)
         {
-            GestionCliente GesClientes = new GestionCliente();
 
-            dataGridViewClientes.DataSource = GesClientes.BuscarCliente(txtBuscarCliente.Text);
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] { txtBuscarCliente }))
+            {
+                GestionCliente GesClientes = new GestionCliente();
+
+                dataGridViewClientes.DataSource = GesClientes.BuscarCliente(txtBuscarCliente.Text);
+            }
+            else
+            {
+                Console.WriteLine("1");
+            }
+
         }
 
         private void btnActualizarCliente_Click(object sender, EventArgs e)
         {
 
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] { txtIDCliente, txtNombre, txtApellidoCliente, txtTelCliente, txtEmailCliente }))
+            {
+                // Obtener los valores de los controles
+                 int IDCliente = int.Parse(txtIDCliente.Text);
+                string Nombre = txtNombre.Text;
+                string ApellidoCliente= txtApellidoCliente.Text;
+                string TelCliente = txtTelCliente.Text;
+                string CorreoCliente = txtEmailCliente.Text;
+
+
+                GestionCliente GesClientes = new GestionCliente();
+                string resultado = GesClientes.ActualizarCliente(IDCliente, Nombre, ApellidoCliente, TelCliente, CorreoCliente);
+
+                dataGridViewClientes.DataSource = GesClientes.ListaTodosClientess();
+
+                txtIDCliente.Clear();
+                txtNombre.Clear();
+                txtApellidoCliente.Clear();
+                txtEmailCliente.Clear();
+                txtTelCliente.Clear();
+
+                // Mostrar el resultado
+                MessageBox.Show(resultado, "Resultado de la Actualización del Cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else { Console.WriteLine("1"); }
         }
 
-        private void btnEliminarCliente_Click(object sender, EventArgs e)
+
+        private async void btnEliminarCliente_Click(object sender, EventArgs e)
         {
 
+
+            // Verificar si hay una fila seleccionada para eliminar
+            if (dataGridViewClientes.SelectedRows.Count > 0)
+            {
+                // Obtener el ID del cliente seleccionado
+                int idCliente = Convert.ToInt32(dataGridViewClientes.SelectedRows[0].Cells["IDCliente"].Value);
+
+                // Confirmar con el usuario antes de eliminar
+                DialogResult resultado = MessageBox.Show("¿Está seguro que desea eliminar este cliente?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    try
+                    {
+                        // Instanciar la clase para gestionar clientes
+                        GestionCliente gesClientes = new GestionCliente();
+
+                        // Llamar al método para eliminar el cliente de la base de datos
+                        gesClientes.EliminarCliente(idCliente);
+
+                        // Mostrar mensaje de éxito
+                        MessageBox.Show("Cliente Eliminado");
+
+                        // Actualizar el DataGridView con la lista actualizada de clientes
+                        dataGridViewClientes.DataSource = gesClientes.ListaTodosClientess();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error al eliminar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un cliente para eliminar.", "Cliente no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
 
         private void btnGuardarPedido_Click(object sender, EventArgs e)
         {
-            GestionPedidos GesPedidos = new GestionPedidos();
-            GesPedidos.RegistrarPedido(Convert.ToInt32(txtIDPedido.Text), txtIdPedidoCliente.Text, ComboBoxEstadoPedido.SelectedItem.ToString(), FechaPedido.Value, txtNombreCliente.Text);
-            dataGridView2Pedidos.DataSource = GesPedidos.ImprimirConsulta("Select * from pedidos");
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] {txtIDPedido, txtIdPedidoCliente, ComboBoxEstadoPedido, FechaPedido, txtNombreCliente }))
+            {
+                GestionPedidos GesPedidos = new GestionPedidos();
+                GesPedidos.RegistrarPedido(Convert.ToInt32(txtIDPedido.Text), txtIdPedidoCliente.Text, ComboBoxEstadoPedido.SelectedItem.ToString(), FechaPedido.Value, txtNombreCliente.Text);
+                dataGridView2Pedidos.DataSource = GesPedidos.ImprimirConsulta("Select * from pedidos");
+            }
+            else
+            {
+                Console.WriteLine("1");
+            }
+
         }
 
         private void btnBuscarPedido_Click(object sender, EventArgs e)
         {
-            GestionPedidos GesPedido = new GestionPedidos();
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] { txtBuscarPedido }))
+            {
+                GestionPedidos GesPedido = new GestionPedidos();
 
-            dataGridView2Pedidos.DataSource = GesPedido.BuscarPedido(txtBuscarPedido.Text);
+                dataGridView2Pedidos.DataSource = GesPedido.BuscarPedido(txtBuscarPedido.Text);
+            }
+            else
+            {
+                Console.WriteLine("1");
+            }
+
         }
 
         private void btnActualizarPedido_Click(object sender, EventArgs e)
         {
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] { txtIDPedido, txtIdPedidoCliente, ComboBoxEstadoPedido, FechaPedido, txtNombreCliente }))
+            {
+                // Obtener los valores de los controles
+                int IDPedido= int.Parse(txtIDPedido.Text);
+                int IDPedidoCliente = int.Parse(txtIdPedidoCliente.Text);
+                string NombreCliente = txtNombreCliente.Text;
+                string ComboEstadoPedi = ComboBoxEstadoPedido.Text;
+                string Fecha = FechaPedido.Text;
 
+
+                GestionPedidos GesPedido = new GestionPedidos();
+                string resultado = GesPedido.ActualizarPedido(IDPedido, IDPedidoCliente.ToString(), NombreCliente, DateTime.Now , Fecha);
+
+                dataGridView2Pedidos.DataSource = GesPedido.ListaTodosPedidos();
+
+                txtIDCliente.Clear();
+                txtNombre.Clear();
+                txtApellidoCliente.Clear();
+                txtEmailCliente.Clear();
+                txtTelCliente.Clear();
+
+                // Mostrar el resultado
+                MessageBox.Show(resultado, "Resultado de la Actualización del Pedido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else { Console.WriteLine("1"); }
         }
 
         private void btnEliminarPedido_Click(object sender, EventArgs e)
@@ -559,14 +691,44 @@ namespace Proyecto4.Formularios
 
         private void btnBuscarCredito_Click(object sender, EventArgs e)
         {
-            GestionCréditos GesCredito = new GestionCréditos();
-            dataGridViewCreditos.DataSource = GesCredito.BuscarCredito(txtBuscarCredito.Text);
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] { txtBuscarCredito }))
+            {
+                GestionCréditos GesCredito = new GestionCréditos();
+                dataGridViewCreditos.DataSource = GesCredito.BuscarCredito(txtBuscarCredito.Text);
+            }
+            else
+            {
+                Console.WriteLine("1");
+            }
+
 
         }
 
         private void btnActualizarCredito_Click(object sender, EventArgs e)
         {
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] { txtIdCredito, txtIdPedidoCred, ComboBoxEstadoCredito, FechaCredito }))
+            {
+                // Obtener los valores de los controles
+                int IDCredito = int.Parse(txtIdCredito.Text);
+                int IDPedidoCred = int.Parse(txtIdPedidoCred.Text);
+                string Estado = ComboBoxEstadoCredito.Text;
+                string Fecha = FechaCredito.Text;
 
+
+                GestionCréditos GesCredito = new GestionCréditos();
+                string resultado = GesCredito.ActualizarCredito(IDCredito, IDPedidoCred, Estado, DateTime.Now);
+
+                dataGridViewCreditos.DataSource = GesCredito.ListaTodosCreditos();
+
+                txtIdCredito.Clear();
+                txtIdPedidoCred.Clear();
+
+                // Mostrar el resultado
+                MessageBox.Show(resultado, "Resultado de la Actualización del Crédito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else { Console.WriteLine("1"); }
         }
 
         private void btnEliminarCredito_Click(object sender, EventArgs e)
@@ -576,15 +738,25 @@ namespace Proyecto4.Formularios
 
         private void btnGuardarAbono_Click(object sender, EventArgs e)
         {
-            GestionAbonos GesAbonos = new GestionAbonos();
-            GesAbonos.RegistrarAbono(Convert.ToInt32(txtIdAbono.Text), Convert.ToDouble(txtMonto.Text), ComboTipoPago.Text, txtNumComprobante.Text, Convert.ToInt32(txtIdCredito.Text), dateTimePickerAbono.Value);
-            dataGridViewAbonos.DataSource = GesAbonos.ImprimirConsulta("Select * from abonos");
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] { txtIdAbono, txtMonto, ComboTipoPago, txtNumComprobante, txtIdCredito, dateTimePickerAbono}))
+            {
+                GestionAbonos GesAbonos = new GestionAbonos();
+                GesAbonos.RegistrarAbono(Convert.ToInt32(txtIdAbono.Text), Convert.ToDouble(txtMonto.Text), ComboTipoPago.Text, txtNumComprobante.Text, Convert.ToInt32(txtIdCredito.Text), dateTimePickerAbono.Value);
+                dataGridViewAbonos.DataSource = GesAbonos.ImprimirConsulta("Select * from abonos");
+            }
+            else
+            {
+                Console.WriteLine("1");
+            }
+     
         }
 
 
 
         public static string usuario1 = "";
-        private void btnCrearUsuario_Click(object sender, EventArgs e)
+
+        private void btnCrearUsuario_Click_1(object sender, EventArgs e)
         {
             GestionUsuario dbUsuario = new GestionUsuario();
             dbUsuario.AbrirConexion(dbUsuario.EstablecerConexion());
@@ -635,8 +807,407 @@ namespace Proyecto4.Formularios
                         }
                     }
                 }
+            }
+        }
+
+        private void btnBuscarAbono_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] { txtBuscarAbono }))
+            {
+                GestionAbonos GesAbono = new GestionAbonos();
+                dataGridViewAbonos.DataSource = GesAbono.BuscarAbono(txtBuscarAbono.Text);
+            }
+            else
+            {
+                Console.WriteLine("1");
+            }
+        }
+
+        private void btnActualizarAbono_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] { txtIdAbono, txtMonto, ComboTipoPago, txtNumComprobante, txtIdCredito, dateTimePickerAbono }))
+            {
+                // Obtener los valores de los controles
+                int IdAbono = int.Parse(txtIdAbono.Text);
+                int Monto = int.Parse(txtMonto.Text);
+                string TipoPago = ComboTipoPago.Text;
+                string NumComrpobante = txtNumComprobante.Text;
+                int IdCredito = int.Parse(txtIdCredito.Text);
+                string Fecha = dateTimePickerAbono.Text;
 
 
+                GestionAbonos GesAbono = new GestionAbonos();
+                string resultado = GesAbono.ActualizarAbono(IdAbono, Monto, TipoPago, NumComrpobante,IdCredito, DateTime.Now);
+
+                dataGridViewAbonos.DataSource = GesAbono.ListaTodosAbonos();
+
+                txtIdAbono.Clear();
+                txtMonto.Clear();
+                txtNumComprobante.Clear();  
+                txtIdCredito.Clear();
+               
+            
+              
+                // Mostrar el resultado
+                MessageBox.Show(resultado, "Resultado de la Actualización del Abon o", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else { Console.WriteLine("1"); }
+        }
+
+        private void txtIDCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void txtApellidoCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras y espacios
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtEmailCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '"' || e.KeyChar == '*')
+            {
+                e.Handled = true; // Si es una comilla o asterisco, manejar el evento
+            }
+        }
+
+        private void txtNombreCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras y espacios
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNombreMarca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras y espacios
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNombreProducto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras y espacios
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNombreProveedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras y espacios
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras, números y espacios
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtTelCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBuscarCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIDPedido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIdPedidoCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBuscarPedido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void materialTextBox30_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIdPedidoCred_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBuscarCredito_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIdAbono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMonto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNumComprobante_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIdCredito_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBuscarAbono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIdMarca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBuscarMarca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIdProducto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIddeMarca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCantidadStock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIdProveedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPrecioProducto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBuscarProducto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void IDDEPROVEEDOR_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtTelefonoProveedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBuscarProveedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCedulaCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtUnidadesCompra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNumeroPedido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtDescuentoFactura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBuscarFactura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar números y teclas de control (como retroceso)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras, números y espacios
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtConfirmaContraseña_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras, números y espacios
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
             }
         }
     }

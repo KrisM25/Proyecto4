@@ -47,16 +47,16 @@
             this.txtIDProducto.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtIDProducto.Hint = "ID Producto";
             this.txtIDProducto.LeadingIcon = null;
-            this.txtIDProducto.Location = new System.Drawing.Point(114, 323);
-            this.txtIDProducto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtIDProducto.Location = new System.Drawing.Point(76, 210);
             this.txtIDProducto.MaxLength = 50;
             this.txtIDProducto.MouseState = MaterialSkin.MouseState.OUT;
             this.txtIDProducto.Multiline = false;
             this.txtIDProducto.Name = "txtIDProducto";
-            this.txtIDProducto.Size = new System.Drawing.Size(298, 50);
+            this.txtIDProducto.Size = new System.Drawing.Size(199, 50);
             this.txtIDProducto.TabIndex = 1;
             this.txtIDProducto.Text = "";
             this.txtIDProducto.TrailingIcon = null;
+            this.txtIDProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIDProducto_KeyPress);
             // 
             // txtCantidadComprada
             // 
@@ -66,16 +66,16 @@
             this.txtCantidadComprada.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtCantidadComprada.Hint = "Cantidad Comprada";
             this.txtCantidadComprada.LeadingIcon = null;
-            this.txtCantidadComprada.Location = new System.Drawing.Point(114, 409);
-            this.txtCantidadComprada.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCantidadComprada.Location = new System.Drawing.Point(76, 266);
             this.txtCantidadComprada.MaxLength = 50;
             this.txtCantidadComprada.MouseState = MaterialSkin.MouseState.OUT;
             this.txtCantidadComprada.Multiline = false;
             this.txtCantidadComprada.Name = "txtCantidadComprada";
-            this.txtCantidadComprada.Size = new System.Drawing.Size(298, 50);
+            this.txtCantidadComprada.Size = new System.Drawing.Size(199, 50);
             this.txtCantidadComprada.TabIndex = 2;
             this.txtCantidadComprada.Text = "";
             this.txtCantidadComprada.TrailingIcon = null;
+            this.txtCantidadComprada.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidadComprada_KeyPress);
             // 
             // txtIDFactura
             // 
@@ -85,16 +85,16 @@
             this.txtIDFactura.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtIDFactura.Hint = "ID Factura";
             this.txtIDFactura.LeadingIcon = null;
-            this.txtIDFactura.Location = new System.Drawing.Point(114, 496);
-            this.txtIDFactura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtIDFactura.Location = new System.Drawing.Point(76, 322);
             this.txtIDFactura.MaxLength = 50;
             this.txtIDFactura.MouseState = MaterialSkin.MouseState.OUT;
             this.txtIDFactura.Multiline = false;
             this.txtIDFactura.Name = "txtIDFactura";
-            this.txtIDFactura.Size = new System.Drawing.Size(298, 50);
+            this.txtIDFactura.Size = new System.Drawing.Size(199, 50);
             this.txtIDFactura.TabIndex = 3;
             this.txtIDFactura.Text = "";
             this.txtIDFactura.TrailingIcon = null;
+            this.txtIDFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIDFactura_KeyPress);
             // 
             // btnGuardar
             // 
@@ -104,12 +104,12 @@
             this.btnGuardar.Depth = 0;
             this.btnGuardar.HighEmphasis = true;
             this.btnGuardar.Icon = null;
-            this.btnGuardar.Location = new System.Drawing.Point(187, 616);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(6, 9, 6, 9);
+            this.btnGuardar.Location = new System.Drawing.Point(125, 400);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnGuardar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnGuardar.Size = new System.Drawing.Size(141, 55);
+            this.btnGuardar.Size = new System.Drawing.Size(94, 36);
             this.btnGuardar.TabIndex = 4;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -120,11 +120,10 @@
             // dataGridViewDetallefactura
             // 
             this.dataGridViewDetallefactura.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDetallefactura.Location = new System.Drawing.Point(543, 249);
-            this.dataGridViewDetallefactura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridViewDetallefactura.Location = new System.Drawing.Point(362, 162);
             this.dataGridViewDetallefactura.Name = "dataGridViewDetallefactura";
             this.dataGridViewDetallefactura.RowHeadersWidth = 62;
-            this.dataGridViewDetallefactura.Size = new System.Drawing.Size(639, 407);
+            this.dataGridViewDetallefactura.Size = new System.Drawing.Size(426, 265);
             this.dataGridViewDetallefactura.TabIndex = 6;
             this.dataGridViewDetallefactura.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDetallefactura_CellDoubleClick);
             // 
@@ -135,8 +134,8 @@
             this.btnBuscarDetalleFactura.Depth = 0;
             this.btnBuscarDetalleFactura.HighEmphasis = true;
             this.btnBuscarDetalleFactura.Icon = null;
-            this.btnBuscarDetalleFactura.Location = new System.Drawing.Point(993, 141);
-            this.btnBuscarDetalleFactura.Margin = new System.Windows.Forms.Padding(6, 9, 6, 9);
+            this.btnBuscarDetalleFactura.Location = new System.Drawing.Point(662, 92);
+            this.btnBuscarDetalleFactura.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnBuscarDetalleFactura.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnBuscarDetalleFactura.Name = "btnBuscarDetalleFactura";
             this.btnBuscarDetalleFactura.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -153,19 +152,19 @@
             this.txtBuscarDetalleFactura.AnimateReadOnly = false;
             this.txtBuscarDetalleFactura.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBuscarDetalleFactura.Depth = 0;
-            this.txtBuscarDetalleFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtBuscarDetalleFactura.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtBuscarDetalleFactura.Hint = "Ingrese el ID del detalle factura";
             this.txtBuscarDetalleFactura.LeadingIcon = null;
-            this.txtBuscarDetalleFactura.Location = new System.Drawing.Point(543, 127);
-            this.txtBuscarDetalleFactura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBuscarDetalleFactura.Location = new System.Drawing.Point(362, 83);
             this.txtBuscarDetalleFactura.MaxLength = 50;
             this.txtBuscarDetalleFactura.MouseState = MaterialSkin.MouseState.OUT;
             this.txtBuscarDetalleFactura.Multiline = false;
             this.txtBuscarDetalleFactura.Name = "txtBuscarDetalleFactura";
-            this.txtBuscarDetalleFactura.Size = new System.Drawing.Size(424, 50);
+            this.txtBuscarDetalleFactura.Size = new System.Drawing.Size(283, 50);
             this.txtBuscarDetalleFactura.TabIndex = 38;
             this.txtBuscarDetalleFactura.Text = "";
             this.txtBuscarDetalleFactura.TrailingIcon = null;
+            this.txtBuscarDetalleFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarDetalleFactura_KeyPress);
             // 
             // btnActualizarDetalleFactura
             // 
@@ -174,8 +173,8 @@
             this.btnActualizarDetalleFactura.Depth = 0;
             this.btnActualizarDetalleFactura.HighEmphasis = true;
             this.btnActualizarDetalleFactura.Icon = null;
-            this.btnActualizarDetalleFactura.Location = new System.Drawing.Point(783, 701);
-            this.btnActualizarDetalleFactura.Margin = new System.Windows.Forms.Padding(6, 9, 6, 9);
+            this.btnActualizarDetalleFactura.Location = new System.Drawing.Point(522, 456);
+            this.btnActualizarDetalleFactura.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnActualizarDetalleFactura.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnActualizarDetalleFactura.Name = "btnActualizarDetalleFactura";
             this.btnActualizarDetalleFactura.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -189,9 +188,9 @@
             // 
             // Detale_Factura
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1307, 793);
+            this.ClientSize = new System.Drawing.Size(871, 515);
             this.Controls.Add(this.btnActualizarDetalleFactura);
             this.Controls.Add(this.txtBuscarDetalleFactura);
             this.Controls.Add(this.btnBuscarDetalleFactura);
@@ -200,9 +199,7 @@
             this.Controls.Add(this.txtIDFactura);
             this.Controls.Add(this.txtCantidadComprada);
             this.Controls.Add(this.txtIDProducto);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Detale_Factura";
-            this.Padding = new System.Windows.Forms.Padding(4, 98, 4, 5);
             this.Text = "Detale_Factura";
             this.Load += new System.EventHandler(this.Detale_Factura_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetallefactura)).EndInit();

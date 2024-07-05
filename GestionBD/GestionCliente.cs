@@ -102,34 +102,38 @@ namespace Proyecto4.GestionBD
 
 
 
-        public void ActualizarCliente(string IdCliente, string nombre, string apellido, string telefono, string correo)
+        public string ActualizarCliente(int IdCliente, string nombre, string apellido, string telefono, string correo)
         {
             using (MySqlConnection connection = EstablecerConexion())
             {
                 try
                 {
                     AbrirConexion(connection);
-                    MySqlCommand cmd = new MySqlCommand("Actualizar_Cliente", connection);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("p_idCliente", IdCliente);
-                    cmd.Parameters.AddWithValue("p_nombre", nombre);
-                    cmd.Parameters.AddWithValue("p_apellidos", apellido);
-                    cmd.Parameters.AddWithValue("p_telefono", telefono);
-                    cmd.Parameters.AddWithValue("p_correo", correo);
-                    cmd.ExecuteNonQuery();
-                    Console.WriteLine("Cliente Actualizado");
+
+                    using (MySqlCommand cmd = new MySqlCommand("Actualizar_Cliente", connection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_idCliente", IdCliente);
+                        cmd.Parameters.AddWithValue("p_nombre", nombre);
+                        cmd.Parameters.AddWithValue("p_apellidos", apellido);
+                        cmd.Parameters.AddWithValue("p_telefono", telefono);
+                        cmd.Parameters.AddWithValue("p_correo", correo);
+
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0 ? "Cliente actualizado exitosamente" : "Error al actualizar la Marca";
+                    }
                 }
                 catch (MySqlException err)
                 {
-                    Console.WriteLine($"Ocurrio un error: {err.Message}");
+                    return $"Ocurrió un error: {err.Message}";
+                }
+                finally
+                {
+                    CerrarConexion(connection);
                 }
             }
-
-
-
-
         }
-
 
 
         public void EliminarCliente(int IdCliente)

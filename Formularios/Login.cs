@@ -47,7 +47,6 @@ namespace Proyecto4.Formularios
 
                 if (bdUsuario.Verificar_Usuario_Contra(txtUsuario.Text, txtContraseña.Text) == true)
                 {
-                    MessageBox.Show("***Ingreso Exitoso***");
                     Menú_Admin menuAdminForm = new Menú_Admin();
                     menuAdminForm.Show();
                     this.Hide();
@@ -87,6 +86,22 @@ namespace Proyecto4.Formularios
             return vacios;
         }
 
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras, números y espacios
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
 
+        private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo pueden ingresar letras, números y espacios
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

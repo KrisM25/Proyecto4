@@ -11,6 +11,41 @@ namespace Proyecto4.GestionBD
 {
     public class GestionAbonos : Conexion
     {
+
+
+        public DataTable ListaTodosAbonos()
+        {
+            DataTable tabla = new DataTable();
+
+            using (MySqlConnection con = EstablecerConexion())
+            {
+                try
+                {
+                    AbrirConexion(con);
+                    MySqlCommand cmd = new MySqlCommand("proc", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    adapter.Fill(tabla);
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Ocurrio un error: " + ex.Message);
+                }
+                finally
+                {//despues de finalizar todo, cerrar la conexion
+                    CerrarConexion(con);
+                }
+            }
+            return tabla;
+
+
+        }
+
+
+
+
+
+
         public void RegistrarAbono(int idAbonos, double monto, string tipoPago, string transaccion_comprobante, int idCredito, DateTime fechaAbono)
         {
             using (MySqlConnection connection = EstablecerConexion())
@@ -68,13 +103,12 @@ namespace Proyecto4.GestionBD
 
         }
 
-        public void ActualizarAbono(int idAbonos, double monto, string tipoPago, string transaccion_comprobante, int idCredito, DateTime fechaAbono)
+        public string ActualizarAbono(int idAbonos, double monto, string tipoPago, string transaccion_comprobante, int idCredito, DateTime fechaAbono)
         {
             using (MySqlConnection connection = EstablecerConexion())
             {
                 try
                 {
-
                     AbrirConexion(connection);
                     MySqlCommand cmd = new MySqlCommand("Actualizar_Abono", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -85,11 +119,22 @@ namespace Proyecto4.GestionBD
                     cmd.Parameters.AddWithValue("p_idCredito", idCredito);
                     cmd.Parameters.AddWithValue("p_fechaAbono", fechaAbono);
                     cmd.ExecuteNonQuery();
-                    Console.WriteLine("Abono Actualizado");
+                    Console.WriteLine("Crédito Actualizado");
+
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0 ? "Abono actualizado exitosamente" : "Error al actualizar la Marca";
                 }
+
                 catch (MySqlException err)
                 {
-                    Console.WriteLine(err.Message);
+                    return $"Ocurrió un error: {err.Message}";
+                }
+
+
+                finally
+                {
+                    CerrarConexion(connection);
                 }
             }
         }

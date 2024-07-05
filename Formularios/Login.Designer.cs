@@ -42,7 +42,7 @@
             this.txtUsuario.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtUsuario.Hint = "Usuario";
             this.txtUsuario.LeadingIcon = null;
-            this.txtUsuario.Location = new System.Drawing.Point(106, 189);
+            this.txtUsuario.Location = new System.Drawing.Point(131, 224);
             this.txtUsuario.MaxLength = 50;
             this.txtUsuario.MouseState = MaterialSkin.MouseState.OUT;
             this.txtUsuario.Multiline = false;
@@ -51,6 +51,7 @@
             this.txtUsuario.TabIndex = 1;
             this.txtUsuario.Text = "";
             this.txtUsuario.TrailingIcon = null;
+            this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsuario_KeyPress);
             // 
             // txtContraseña
             // 
@@ -60,7 +61,7 @@
             this.txtContraseña.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtContraseña.Hint = "Contraseña";
             this.txtContraseña.LeadingIcon = null;
-            this.txtContraseña.Location = new System.Drawing.Point(106, 245);
+            this.txtContraseña.Location = new System.Drawing.Point(131, 281);
             this.txtContraseña.MaxLength = 50;
             this.txtContraseña.MouseState = MaterialSkin.MouseState.OUT;
             this.txtContraseña.Multiline = false;
@@ -69,6 +70,7 @@
             this.txtContraseña.TabIndex = 2;
             this.txtContraseña.Text = "";
             this.txtContraseña.TrailingIcon = null;
+            this.txtContraseña.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContraseña_KeyPress);
             // 
             // btnIngresar
             // 
@@ -77,7 +79,7 @@
             this.btnIngresar.Depth = 0;
             this.btnIngresar.HighEmphasis = true;
             this.btnIngresar.Icon = null;
-            this.btnIngresar.Location = new System.Drawing.Point(180, 304);
+            this.btnIngresar.Location = new System.Drawing.Point(205, 340);
             this.btnIngresar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnIngresar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnIngresar.Name = "btnIngresar";
@@ -94,7 +96,7 @@
             // 
             this.panel1.BackgroundImage = global::Proyecto4.Properties.Resources.avatar;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(180, 80);
+            this.panel1.Location = new System.Drawing.Point(205, 116);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(103, 102);
             this.panel1.TabIndex = 4;
@@ -103,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(456, 395);
+            this.ClientSize = new System.Drawing.Size(514, 450);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.txtContraseña);

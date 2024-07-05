@@ -92,7 +92,7 @@
             this.btnGuardarAbono = new MaterialSkin.Controls.MaterialButton();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.materialCard4 = new MaterialSkin.Controls.MaterialCard();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.FechaCredito = new System.Windows.Forms.DateTimePicker();
             this.ComboBoxEstadoCredito = new MaterialSkin.Controls.MaterialComboBox();
             this.txtBuscarCredito = new MaterialSkin.Controls.MaterialTextBox();
             this.btnBuscarCredito = new MaterialSkin.Controls.MaterialButton();
@@ -103,7 +103,7 @@
             this.btnRegistrarCredito = new MaterialSkin.Controls.MaterialButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.materialTextBox29 = new MaterialSkin.Controls.MaterialTextBox();
+            this.txtIdPedidoCred = new MaterialSkin.Controls.MaterialTextBox();
             this.materialTextBox30 = new MaterialSkin.Controls.MaterialTextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.materialCard3 = new MaterialSkin.Controls.MaterialCard();
@@ -142,11 +142,11 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
             this.btnGuardarCredito = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.materialCard9 = new MaterialSkin.Controls.MaterialCard();
@@ -258,6 +258,7 @@
             this.txtBuscarProveedor.TabIndex = 23;
             this.txtBuscarProveedor.Text = "";
             this.txtBuscarProveedor.TrailingIcon = null;
+            this.txtBuscarProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarProveedor_KeyPress);
             // 
             // btnBuscarproveedor
             // 
@@ -386,6 +387,7 @@
             this.txtTelefonoProveedor.TabIndex = 16;
             this.txtTelefonoProveedor.Text = "";
             this.txtTelefonoProveedor.TrailingIcon = null;
+            this.txtTelefonoProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefonoProveedor_KeyPress);
             // 
             // txtNombreProveedor
             // 
@@ -404,6 +406,7 @@
             this.txtNombreProveedor.TabIndex = 15;
             this.txtNombreProveedor.Text = "";
             this.txtNombreProveedor.TrailingIcon = null;
+            this.txtNombreProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreProveedor_KeyPress);
             // 
             // IDDEPROVEEDOR
             // 
@@ -422,6 +425,7 @@
             this.IDDEPROVEEDOR.TabIndex = 14;
             this.IDDEPROVEEDOR.Text = "";
             this.IDDEPROVEEDOR.TrailingIcon = null;
+            this.IDDEPROVEEDOR.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IDDEPROVEEDOR_KeyPress);
             // 
             // label15
             // 
@@ -507,6 +511,7 @@
             this.txtBuscarProducto.TabIndex = 40;
             this.txtBuscarProducto.Text = "";
             this.txtBuscarProducto.TrailingIcon = null;
+            this.txtBuscarProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarProducto_KeyPress);
             // 
             // btnBuscarProducto
             // 
@@ -575,6 +580,7 @@
             this.txtPrecioProducto.TabIndex = 34;
             this.txtPrecioProducto.Text = "";
             this.txtPrecioProducto.TrailingIcon = null;
+            this.txtPrecioProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioProducto_KeyPress);
             // 
             // txtIdProveedor
             // 
@@ -593,6 +599,7 @@
             this.txtIdProveedor.TabIndex = 33;
             this.txtIdProveedor.Text = "";
             this.txtIdProveedor.TrailingIcon = null;
+            this.txtIdProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdProveedor_KeyPress);
             // 
             // txtCantidadStock
             // 
@@ -611,6 +618,7 @@
             this.txtCantidadStock.TabIndex = 32;
             this.txtCantidadStock.Text = "";
             this.txtCantidadStock.TrailingIcon = null;
+            this.txtCantidadStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidadStock_KeyPress);
             // 
             // txtIddeMarca
             // 
@@ -629,6 +637,7 @@
             this.txtIddeMarca.TabIndex = 31;
             this.txtIddeMarca.Text = "";
             this.txtIddeMarca.TrailingIcon = null;
+            this.txtIddeMarca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIddeMarca_KeyPress);
             // 
             // txtNombreProducto
             // 
@@ -647,6 +656,7 @@
             this.txtNombreProducto.TabIndex = 30;
             this.txtNombreProducto.Text = "";
             this.txtNombreProducto.TrailingIcon = null;
+            this.txtNombreProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreProducto_KeyPress);
             // 
             // txtIdProducto
             // 
@@ -665,6 +675,7 @@
             this.txtIdProducto.TabIndex = 29;
             this.txtIdProducto.Text = "";
             this.txtIdProducto.TrailingIcon = null;
+            this.txtIdProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdProducto_KeyPress);
             // 
             // btnEliminarProducto
             // 
@@ -788,6 +799,7 @@
             this.txtBuscarMarca.TabIndex = 19;
             this.txtBuscarMarca.Text = "";
             this.txtBuscarMarca.TrailingIcon = null;
+            this.txtBuscarMarca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarMarca_KeyPress);
             // 
             // btnBuscarMarca
             // 
@@ -865,6 +877,7 @@
             this.txtNombreMarca.TabIndex = 13;
             this.txtNombreMarca.Text = "";
             this.txtNombreMarca.TrailingIcon = null;
+            this.txtNombreMarca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreMarca_KeyPress);
             // 
             // txtIdMarca
             // 
@@ -884,6 +897,7 @@
             this.txtIdMarca.TabIndex = 12;
             this.txtIdMarca.Text = "";
             this.txtIdMarca.TrailingIcon = null;
+            this.txtIdMarca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdMarca_KeyPress);
             // 
             // btnEliminarMarca
             // 
@@ -1009,6 +1023,7 @@
             this.txtBuscarAbono.TabIndex = 28;
             this.txtBuscarAbono.Text = "";
             this.txtBuscarAbono.TrailingIcon = null;
+            this.txtBuscarAbono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarAbono_KeyPress);
             // 
             // btnBuscarAbono
             // 
@@ -1028,6 +1043,7 @@
             this.btnBuscarAbono.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnBuscarAbono.UseAccentColor = false;
             this.btnBuscarAbono.UseVisualStyleBackColor = true;
+            this.btnBuscarAbono.Click += new System.EventHandler(this.btnBuscarAbono_Click);
             // 
             // label9
             // 
@@ -1096,9 +1112,11 @@
             this.btnActualizarAbono.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnActualizarAbono.UseAccentColor = false;
             this.btnActualizarAbono.UseVisualStyleBackColor = true;
+            this.btnActualizarAbono.Click += new System.EventHandler(this.btnActualizarAbono_Click);
             // 
             // dataGridViewAbonos
             // 
+            this.dataGridViewAbonos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewAbonos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAbonos.Location = new System.Drawing.Point(427, 113);
             this.dataGridViewAbonos.Name = "dataGridViewAbonos";
@@ -1150,6 +1168,7 @@
             this.txtIdCredito.TabIndex = 18;
             this.txtIdCredito.Text = "";
             this.txtIdCredito.TrailingIcon = null;
+            this.txtIdCredito.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdCredito_KeyPress);
             // 
             // txtNumComprobante
             // 
@@ -1168,6 +1187,7 @@
             this.txtNumComprobante.TabIndex = 17;
             this.txtNumComprobante.Text = "";
             this.txtNumComprobante.TrailingIcon = null;
+            this.txtNumComprobante.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumComprobante_KeyPress);
             // 
             // txtMonto
             // 
@@ -1186,6 +1206,7 @@
             this.txtMonto.TabIndex = 16;
             this.txtMonto.Text = "";
             this.txtMonto.TrailingIcon = null;
+            this.txtMonto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonto_KeyPress);
             // 
             // txtIdAbono
             // 
@@ -1204,6 +1225,7 @@
             this.txtIdAbono.TabIndex = 15;
             this.txtIdAbono.Text = "";
             this.txtIdAbono.TrailingIcon = null;
+            this.txtIdAbono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdAbono_KeyPress);
             // 
             // btnGuardarAbono
             // 
@@ -1240,7 +1262,7 @@
             // materialCard4
             // 
             this.materialCard4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialCard4.Controls.Add(this.dateTimePicker2);
+            this.materialCard4.Controls.Add(this.FechaCredito);
             this.materialCard4.Controls.Add(this.ComboBoxEstadoCredito);
             this.materialCard4.Controls.Add(this.txtBuscarCredito);
             this.materialCard4.Controls.Add(this.btnBuscarCredito);
@@ -1251,7 +1273,7 @@
             this.materialCard4.Controls.Add(this.btnRegistrarCredito);
             this.materialCard4.Controls.Add(this.label7);
             this.materialCard4.Controls.Add(this.label8);
-            this.materialCard4.Controls.Add(this.materialTextBox29);
+            this.materialCard4.Controls.Add(this.txtIdPedidoCred);
             this.materialCard4.Controls.Add(this.materialTextBox30);
             this.materialCard4.Depth = 0;
             this.materialCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -1263,12 +1285,12 @@
             this.materialCard4.Size = new System.Drawing.Size(1133, 573);
             this.materialCard4.TabIndex = 0;
             // 
-            // dateTimePicker2
+            // FechaCredito
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(123, 386);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(217, 20);
-            this.dateTimePicker2.TabIndex = 25;
+            this.FechaCredito.Location = new System.Drawing.Point(123, 386);
+            this.FechaCredito.Name = "FechaCredito";
+            this.FechaCredito.Size = new System.Drawing.Size(217, 20);
+            this.FechaCredito.TabIndex = 25;
             // 
             // ComboBoxEstadoCredito
             // 
@@ -1311,6 +1333,7 @@
             this.txtBuscarCredito.TabIndex = 23;
             this.txtBuscarCredito.Text = "";
             this.txtBuscarCredito.TrailingIcon = null;
+            this.txtBuscarCredito.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarCredito_KeyPress);
             // 
             // btnBuscarCredito
             // 
@@ -1384,6 +1407,7 @@
             // 
             // dataGridViewCreditos
             // 
+            this.dataGridViewCreditos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewCreditos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCreditos.Location = new System.Drawing.Point(450, 93);
             this.dataGridViewCreditos.Name = "dataGridViewCreditos";
@@ -1432,23 +1456,24 @@
             this.label8.TabIndex = 15;
             this.label8.Text = "Créditos";
             // 
-            // materialTextBox29
+            // txtIdPedidoCred
             // 
-            this.materialTextBox29.AnimateReadOnly = false;
-            this.materialTextBox29.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialTextBox29.Depth = 0;
-            this.materialTextBox29.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTextBox29.Hint = "ID Pedido";
-            this.materialTextBox29.LeadingIcon = null;
-            this.materialTextBox29.Location = new System.Drawing.Point(123, 260);
-            this.materialTextBox29.MaxLength = 50;
-            this.materialTextBox29.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox29.Multiline = false;
-            this.materialTextBox29.Name = "materialTextBox29";
-            this.materialTextBox29.Size = new System.Drawing.Size(217, 50);
-            this.materialTextBox29.TabIndex = 12;
-            this.materialTextBox29.Text = "";
-            this.materialTextBox29.TrailingIcon = null;
+            this.txtIdPedidoCred.AnimateReadOnly = false;
+            this.txtIdPedidoCred.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtIdPedidoCred.Depth = 0;
+            this.txtIdPedidoCred.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtIdPedidoCred.Hint = "ID Pedido";
+            this.txtIdPedidoCred.LeadingIcon = null;
+            this.txtIdPedidoCred.Location = new System.Drawing.Point(123, 260);
+            this.txtIdPedidoCred.MaxLength = 50;
+            this.txtIdPedidoCred.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtIdPedidoCred.Multiline = false;
+            this.txtIdPedidoCred.Name = "txtIdPedidoCred";
+            this.txtIdPedidoCred.Size = new System.Drawing.Size(217, 50);
+            this.txtIdPedidoCred.TabIndex = 12;
+            this.txtIdPedidoCred.Text = "";
+            this.txtIdPedidoCred.TrailingIcon = null;
+            this.txtIdPedidoCred.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdPedidoCred_KeyPress);
             // 
             // materialTextBox30
             // 
@@ -1467,6 +1492,7 @@
             this.materialTextBox30.TabIndex = 11;
             this.materialTextBox30.Text = "";
             this.materialTextBox30.TrailingIcon = null;
+            this.materialTextBox30.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.materialTextBox30_KeyPress);
             // 
             // tabPage5
             // 
@@ -1531,7 +1557,7 @@
             this.ComboBoxEstadoPedido.ItemHeight = 43;
             this.ComboBoxEstadoPedido.Items.AddRange(new object[] {
             "pendiente",
-            "cancelado"});
+            "entregado"});
             this.ComboBoxEstadoPedido.Location = new System.Drawing.Point(102, 364);
             this.ComboBoxEstadoPedido.MaxDropDownItems = 4;
             this.ComboBoxEstadoPedido.MouseState = MaterialSkin.MouseState.OUT;
@@ -1556,6 +1582,7 @@
             this.txtBuscarPedido.TabIndex = 27;
             this.txtBuscarPedido.Text = "";
             this.txtBuscarPedido.TrailingIcon = null;
+            this.txtBuscarPedido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarPedido_KeyPress);
             // 
             // btnBuscarPedido
             // 
@@ -1678,6 +1705,7 @@
             // 
             // dataGridView2Pedidos
             // 
+            this.dataGridView2Pedidos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2Pedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2Pedidos.Location = new System.Drawing.Point(392, 101);
             this.dataGridView2Pedidos.Name = "dataGridView2Pedidos";
@@ -1723,6 +1751,7 @@
             this.txtNombreCliente.TabIndex = 14;
             this.txtNombreCliente.Text = "";
             this.txtNombreCliente.TrailingIcon = null;
+            this.txtNombreCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreCliente_KeyPress);
             // 
             // txtIdPedidoCliente
             // 
@@ -1741,6 +1770,7 @@
             this.txtIdPedidoCliente.TabIndex = 13;
             this.txtIdPedidoCliente.Text = "";
             this.txtIdPedidoCliente.TrailingIcon = null;
+            this.txtIdPedidoCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdPedidoCliente_KeyPress);
             // 
             // txtIDPedido
             // 
@@ -1759,6 +1789,7 @@
             this.txtIDPedido.TabIndex = 12;
             this.txtIDPedido.Text = "";
             this.txtIDPedido.TrailingIcon = null;
+            this.txtIDPedido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIDPedido_KeyPress);
             // 
             // tabPage2
             // 
@@ -1814,6 +1845,7 @@
             this.txtBuscarCliente.TabIndex = 27;
             this.txtBuscarCliente.Text = "";
             this.txtBuscarCliente.TrailingIcon = null;
+            this.txtBuscarCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarCliente_KeyPress);
             // 
             // btBuscarCliente
             // 
@@ -1923,6 +1955,7 @@
             this.txtEmailCliente.TabIndex = 16;
             this.txtEmailCliente.Text = "";
             this.txtEmailCliente.TrailingIcon = null;
+            this.txtEmailCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmailCliente_KeyPress);
             // 
             // btnGuardarCliente
             // 
@@ -1947,6 +1980,7 @@
             // 
             // dataGridViewClientes
             // 
+            this.dataGridViewClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewClientes.Location = new System.Drawing.Point(350, 78);
             this.dataGridViewClientes.Name = "dataGridViewClientes";
@@ -1971,6 +2005,7 @@
             this.txtTelCliente.TabIndex = 15;
             this.txtTelCliente.Text = "";
             this.txtTelCliente.TrailingIcon = null;
+            this.txtTelCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelCliente_KeyPress);
             // 
             // txtIDCliente
             // 
@@ -1989,6 +2024,7 @@
             this.txtIDCliente.TabIndex = 18;
             this.txtIDCliente.Text = "";
             this.txtIDCliente.TrailingIcon = null;
+            this.txtIDCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIDCliente_KeyPress);
             // 
             // txtNombre
             // 
@@ -2007,6 +2043,7 @@
             this.txtNombre.TabIndex = 19;
             this.txtNombre.Text = "";
             this.txtNombre.TrailingIcon = null;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsuario_KeyPress);
             // 
             // txtApellidoCliente
             // 
@@ -2025,6 +2062,7 @@
             this.txtApellidoCliente.TabIndex = 17;
             this.txtApellidoCliente.Text = "";
             this.txtApellidoCliente.TrailingIcon = null;
+            this.txtApellidoCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidoCliente_KeyPress);
             // 
             // tabPage1
             // 
@@ -2053,22 +2091,31 @@
             // 
             // panel12
             // 
-            this.panel12.BackColor = System.Drawing.Color.Black;
+            this.panel12.BackColor = System.Drawing.Color.Transparent;
+            this.panel12.Controls.Add(this.panel11);
             this.panel12.Controls.Add(this.label6);
             this.panel12.Controls.Add(this.panel14);
             this.panel12.Controls.Add(this.label5);
             this.panel12.Controls.Add(this.panel13);
-            this.panel12.Controls.Add(this.panel11);
+            this.panel12.ForeColor = System.Drawing.Color.White;
             this.panel12.Location = new System.Drawing.Point(-45, 43);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(1165, 573);
             this.panel12.TabIndex = 1;
             // 
+            // panel11
+            // 
+            this.panel11.BackgroundImage = global::Proyecto4.Properties.Resources.marys_mk;
+            this.panel11.Location = new System.Drawing.Point(330, 58);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(515, 374);
+            this.panel11.TabIndex = 5;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(1012, 437);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(76, 16);
@@ -2088,7 +2135,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(1012, 481);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(117, 16);
@@ -2104,16 +2151,6 @@
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(45, 42);
             this.panel13.TabIndex = 1;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.White;
-            this.panel11.BackgroundImage = global::Proyecto4.Properties.Resources._448438943_437029809129267_2956868542604541859_n;
-            this.panel11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel11.Location = new System.Drawing.Point(369, 30);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(447, 438);
-            this.panel11.TabIndex = 0;
             // 
             // btnGuardarCredito
             // 
@@ -2218,6 +2255,7 @@
             this.txtBuscarFactura.TabIndex = 37;
             this.txtBuscarFactura.Text = "";
             this.txtBuscarFactura.TrailingIcon = null;
+            this.txtBuscarFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarFactura_KeyPress);
             // 
             // btnBuscarFactura
             // 
@@ -2350,6 +2388,7 @@
             this.txtDescuentoFactura.TabIndex = 21;
             this.txtDescuentoFactura.Text = "";
             this.txtDescuentoFactura.TrailingIcon = null;
+            this.txtDescuentoFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuentoFactura_KeyPress);
             // 
             // txtNumeroPedido
             // 
@@ -2368,6 +2407,7 @@
             this.txtNumeroPedido.TabIndex = 20;
             this.txtNumeroPedido.Text = "";
             this.txtNumeroPedido.TrailingIcon = null;
+            this.txtNumeroPedido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeroPedido_KeyPress);
             // 
             // txtUnidadesCompra
             // 
@@ -2386,6 +2426,7 @@
             this.txtUnidadesCompra.TabIndex = 19;
             this.txtUnidadesCompra.Text = "";
             this.txtUnidadesCompra.TrailingIcon = null;
+            this.txtUnidadesCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUnidadesCompra_KeyPress);
             // 
             // txtCod_Produc
             // 
@@ -2422,6 +2463,7 @@
             this.txtCedulaCliente.TabIndex = 17;
             this.txtCedulaCliente.Text = "";
             this.txtCedulaCliente.TrailingIcon = null;
+            this.txtCedulaCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCedulaCliente_KeyPress);
             // 
             // tabPage10
             // 
@@ -2460,14 +2502,13 @@
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(111, 101);
             this.panel16.TabIndex = 9;
-            this.panel16.Paint += new System.Windows.Forms.PaintEventHandler(this.panel16_Paint);
             // 
             // txtConfirmaContraseña
             // 
             this.txtConfirmaContraseña.AnimateReadOnly = false;
             this.txtConfirmaContraseña.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtConfirmaContraseña.Depth = 0;
-            this.txtConfirmaContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtConfirmaContraseña.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtConfirmaContraseña.Hint = " Confirmar Contraseña";
             this.txtConfirmaContraseña.LeadingIcon = null;
             this.txtConfirmaContraseña.Location = new System.Drawing.Point(469, 320);
@@ -2479,13 +2520,14 @@
             this.txtConfirmaContraseña.TabIndex = 8;
             this.txtConfirmaContraseña.Text = "";
             this.txtConfirmaContraseña.TrailingIcon = null;
+            this.txtConfirmaContraseña.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConfirmaContraseña_KeyPress);
             // 
             // txtContraseña
             // 
             this.txtContraseña.AnimateReadOnly = false;
             this.txtContraseña.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtContraseña.Depth = 0;
-            this.txtContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtContraseña.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtContraseña.Hint = " Contraseña";
             this.txtContraseña.LeadingIcon = null;
             this.txtContraseña.Location = new System.Drawing.Point(469, 264);
@@ -2497,13 +2539,14 @@
             this.txtContraseña.TabIndex = 7;
             this.txtContraseña.Text = "";
             this.txtContraseña.TrailingIcon = null;
+            this.txtContraseña.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContraseña_KeyPress);
             // 
             // txtUsuario
             // 
             this.txtUsuario.AnimateReadOnly = false;
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUsuario.Depth = 0;
-            this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtUsuario.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtUsuario.Hint = "Usuario";
             this.txtUsuario.LeadingIcon = null;
             this.txtUsuario.Location = new System.Drawing.Point(469, 208);
@@ -2515,6 +2558,7 @@
             this.txtUsuario.TabIndex = 6;
             this.txtUsuario.Text = "";
             this.txtUsuario.TrailingIcon = null;
+            this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsuario_KeyPress);
             // 
             // btnCrearUsuario
             // 
@@ -2646,7 +2690,7 @@
         private MaterialSkin.Controls.MaterialButton btnRegistrarCredito;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox29;
+        private MaterialSkin.Controls.MaterialTextBox txtIdPedidoCred;
         private MaterialSkin.Controls.MaterialTextBox materialTextBox30;
         private MaterialSkin.Controls.MaterialButton btnEliminarPedido;
         private MaterialSkin.Controls.MaterialButton btnActualizarPedido;
@@ -2699,7 +2743,6 @@
         private MaterialSkin.Controls.MaterialButton btnGuardarProducto;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel14;
@@ -2728,7 +2771,7 @@
         private MaterialSkin.Controls.MaterialTextBox txtIdMarca;
         private System.Windows.Forms.DateTimePicker FechaPedido;
         private System.Windows.Forms.DateTimePicker dateTimePickerAbono;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker FechaCredito;
         private System.Windows.Forms.TabPage tabPage10;
         private MaterialSkin.Controls.MaterialCard materialCard10;
         private System.Windows.Forms.Panel panel16;
@@ -2736,5 +2779,6 @@
         private MaterialSkin.Controls.MaterialTextBox txtContraseña;
         private MaterialSkin.Controls.MaterialTextBox txtUsuario;
         private MaterialSkin.Controls.MaterialButton btnCrearUsuario;
+        private System.Windows.Forms.Panel panel11;
     }
 }

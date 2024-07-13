@@ -1093,6 +1093,7 @@
             this.btnEliminarAbono.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnEliminarAbono.UseAccentColor = false;
             this.btnEliminarAbono.UseVisualStyleBackColor = true;
+            this.btnEliminarAbono.Click += new System.EventHandler(this.btnEliminarAbono_Click);
             // 
             // btnActualizarAbono
             // 

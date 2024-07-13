@@ -98,7 +98,30 @@ namespace Proyecto4.GestionBD
 
         }
 
+        public void EliminarCredito(int idCredito)
+        {
+            using (MySqlConnection connection = EstablecerConexion())
+            {
+                try
+                {
+                    AbrirConexion(connection);
 
+                    MySqlCommand cmd = new MySqlCommand("Eliminar_Credito", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_idCredito", idCredito);
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (MySqlException err)
+                {
+                    Console.WriteLine($"Ocurrió un error: {err.Message}");
+                }
+                finally
+                {
+                    CerrarConexion(connection);
+                }
+            }
+        }
         public string ActualizarCredito(int idCredito, int idPedido, string estado, DateTime fechaRegistroCredito)
         {
             using (MySqlConnection connection = EstablecerConexion())

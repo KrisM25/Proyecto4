@@ -22,7 +22,7 @@ namespace Proyecto4.GestionBD
                 try
                 {
                     AbrirConexion(con);
-                    MySqlCommand cmd = new MySqlCommand("proc", con);
+                    MySqlCommand cmd = new MySqlCommand("Listar_Credito", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     adapter.Fill(tabla);
@@ -46,24 +46,26 @@ namespace Proyecto4.GestionBD
 
 
 
-        public void RegistrarCredito(int creditoId, int pedidId, string estado, int fecha)
+        public string RegistrarCredito(int idCredito, int idPedidoCredito, string estado, DateTime fecha)
         {
-            using (MySqlConnection connection = EstablecerConexion())
+            try
             {
-                try
+                using (MySqlConnection con = EstablecerConexion())
                 {
-
-                    AbrirConexion(connection);
-                    MySqlCommand cmd = new MySqlCommand("Registrar_", connection);
+                    AbrirConexion(con);
+                    MySqlCommand cmd = new MySqlCommand("Registrar_Credito", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("new_author_name", creditoId);
+                    cmd.Parameters.AddWithValue("p_idCredito", idCredito);
+                    cmd.Parameters.AddWithValue("p_idPedido", idPedidoCredito);
+                    cmd.Parameters.AddWithValue("p_estado", estado);
+                    cmd.Parameters.AddWithValue("p_fechaRegistro", fecha);  // Asegúrate de que el nombre del parámetro coincida
                     cmd.ExecuteNonQuery();
-                    Console.WriteLine("Crédito Guardado");
+                    return "Crédito registrado exitosamente.";
                 }
-                catch (MySqlException err)
-                {
-                    Console.WriteLine(err.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                return $"Ocurrió un error: {ex.Message}";
             }
         }
 
@@ -98,63 +100,51 @@ namespace Proyecto4.GestionBD
 
         }
 
-        public void EliminarCredito(int idCredito)
+        public string EliminarCredito(int idCredito)
         {
-            using (MySqlConnection connection = EstablecerConexion())
+            try
             {
-                try
+                using (MySqlConnection con = EstablecerConexion())
                 {
-                    AbrirConexion(connection);
-
-                    MySqlCommand cmd = new MySqlCommand("Eliminar_Credito", connection);
+                    AbrirConexion(con);
+                    MySqlCommand cmd = new MySqlCommand("Eliminar_Credito", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("p_idCredito", idCredito);
-
                     cmd.ExecuteNonQuery();
-                }
-                catch (MySqlException err)
-                {
-                    Console.WriteLine($"Ocurrió un error: {err.Message}");
-                }
-                finally
-                {
-                    CerrarConexion(connection);
+                    return "Crédito eliminado exitosamente.";
                 }
             }
-        }
-        public string ActualizarCredito(int idCredito, int idPedido, string estado, DateTime fechaRegistroCredito)
-        {
-            using (MySqlConnection connection = EstablecerConexion())
+            catch (Exception ex)
             {
-                try
+                return $"Ocurrió un error: {ex.Message}";
+            }
+        }
+
+        public string ActualizarCredito(int idCredito, int idPedidoCredito, string estado, DateTime fecha)
+        {
+            try
+            {
+                using (MySqlConnection con = EstablecerConexion())
                 {
-                    AbrirConexion(connection);
-                    MySqlCommand cmd = new MySqlCommand("Actualizar_Credito", connection);
+                    AbrirConexion(con);
+                    MySqlCommand cmd = new MySqlCommand("Actualizar_Credito", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("p_idCredito", idCredito);
-                    cmd.Parameters.AddWithValue("p_idPedido", idPedido);
+                    cmd.Parameters.AddWithValue("p_idPedido", idPedidoCredito);
                     cmd.Parameters.AddWithValue("p_estado", estado);
-                    cmd.Parameters.AddWithValue("p_fechaRegistroCredito", fechaRegistroCredito);
+                    cmd.Parameters.AddWithValue("p_fechaRegistro", fecha);  // Asegúrate de que el nombre del parámetro coincida
                     cmd.ExecuteNonQuery();
-                    Console.WriteLine("Crédito Actualizado");
-
-
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0 ? "Credito actualizado exitosamente" : "Error al actualizar la Marca";
-                }
-
-                catch (MySqlException err)
-                {
-                    return $"Ocurrió un error: {err.Message}";
-                }
-
-
-                finally
-                {
-                    CerrarConexion(connection);
+                    return "Crédito actualizado exitosamente.";
                 }
             }
+            catch (Exception ex)
+            {
+                return $"Ocurrió un error: {ex.Message}";
+            }
         }
+
+
+
     }
 }
 

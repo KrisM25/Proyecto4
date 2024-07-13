@@ -14,7 +14,7 @@ namespace Proyecto4.GestionBD
 
 
 
-        public DataTable ListaTodosPedidos()
+        public DataTable ListarPedidos()
         {
             DataTable tabla = new DataTable();
 
@@ -23,7 +23,7 @@ namespace Proyecto4.GestionBD
                 try
                 {
                     AbrirConexion(con);
-                    MySqlCommand cmd = new MySqlCommand("proc", con);
+                    MySqlCommand cmd = new MySqlCommand("Listar_Pedidos", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     adapter.Fill(tabla);
@@ -103,7 +103,7 @@ namespace Proyecto4.GestionBD
         }
 
 
-        public void EliminarPedido(int idPedido)
+        public string ActualizarPedido(int idPedido, string cedulaClientePide, string nombreCliente, string estadoPedido, DateTime fecha)
         {
             using (MySqlConnection connection = EstablecerConexion())
             {
@@ -111,45 +111,16 @@ namespace Proyecto4.GestionBD
                 {
                     AbrirConexion(connection);
 
-                    MySqlCommand cmd = new MySqlCommand("Eliminar_Pedido", connection);
+                    MySqlCommand cmd = new MySqlCommand("Actualizar_Pedido", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("p_idPedido", idPedido);
+                    cmd.Parameters.AddWithValue("p_cedulaClientePide", cedulaClientePide);
+                    cmd.Parameters.AddWithValue("p_nombreCliente", nombreCliente);
+                    cmd.Parameters.AddWithValue("p_estado", estadoPedido);
+                    cmd.Parameters.AddWithValue("p_fecha", fecha);
 
-                    cmd.ExecuteNonQuery();
-                }
-                catch (MySqlException err)
-                {
-                    Console.WriteLine($"Ocurrió un error: {err.Message}");
-                }
-                finally
-                {
-                    CerrarConexion(connection);
-                }
-            }
-        }
-
-        public string ActualizarPedido(int IdPedido, string cedulaClientePide, string estado, DateTime fechaPedido, string nombreCliente)
-        {
-            using (MySqlConnection connection = EstablecerConexion())
-            {
-
-                try
-                {
-                    AbrirConexion(connection);
-
-                    using (MySqlCommand cmd = new MySqlCommand("Actualizar_Pedido", connection))
-                    {
-                        cmd.Parameters.AddWithValue("p_idPedido", IdPedido);
-                        cmd.Parameters.AddWithValue("p_cedulaClientePide", cedulaClientePide);
-                        cmd.Parameters.AddWithValue("p_estado", estado);
-                        cmd.Parameters.AddWithValue("p_fechaPedido", fechaPedido);
-                        cmd.Parameters.AddWithValue("p_nombreCliente", nombreCliente);
-                        cmd.ExecuteNonQuery();
-                        Console.WriteLine("Pedido Actualizado");
-
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0 ? "Pedido actualizado exitosamente" : "Error al actualizar la Marca";
-                    }
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0 ? "Pedido actualizado exitosamente" : "Error al actualizar el pedido";
                 }
                 catch (MySqlException err)
                 {
@@ -161,6 +132,34 @@ namespace Proyecto4.GestionBD
                 }
             }
         }
+
+        // Método para eliminar un pedido
+        public string EliminarPedido(int idPedido)
+        {
+            using (MySqlConnection connection = EstablecerConexion())
+            {
+                try
+                {
+                    AbrirConexion(connection);
+
+                    MySqlCommand cmd = new MySqlCommand("Eliminar_Pedido", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_idPedido", idPedido);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0 ? "Pedido eliminado exitosamente" : "Error al eliminar el pedido";
+                }
+                catch (MySqlException err)
+                {
+                    return $"Ocurrió un error: {err.Message}";
+                }
+                finally
+                {
+                    CerrarConexion(connection);
+                }
+            }
+        }
+
     }
 }
 

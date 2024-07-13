@@ -42,7 +42,33 @@ namespace Proyecto4.GestionBD
 
 
 
-        public DataTable ListaTodosClientess()
+        public string EliminarCliente(string idCliente)
+        {
+            using (MySqlConnection connection = EstablecerConexion())
+            {
+                try
+                {
+                    AbrirConexion(connection);
+
+                    MySqlCommand cmd = new MySqlCommand("Eliminar_Cliente", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_idCliente", idCliente);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0 ? "Cliente eliminado exitosamente" : "No se encontró el cliente para eliminar";
+                }
+                catch (MySqlException err)
+                {
+                    return $"Ocurrió un error: {err.Message}";
+                }
+                finally
+                {
+                    CerrarConexion(connection);
+                }
+            }
+        }
+
+        public DataTable ListarClientes()
         {
             DataTable tabla = new DataTable();
 
@@ -51,24 +77,26 @@ namespace Proyecto4.GestionBD
                 try
                 {
                     AbrirConexion(con);
-                    MySqlCommand cmd = new MySqlCommand("proc", con);
+                    MySqlCommand cmd = new MySqlCommand("Listar_Clientes", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     adapter.Fill(tabla);
                 }
                 catch (MySqlException ex)
                 {
-                    Console.WriteLine($"Ocurrio un error: " + ex.Message);
+                    Console.WriteLine($"Ocurrió un error: {ex.Message}");
                 }
                 finally
-                {//despues de finalizar todo, cerrar la conexion
+                {
                     CerrarConexion(con);
                 }
             }
+            Console.WriteLine($"Número de filas retornadas: {tabla.Rows.Count}");
             return tabla;
-
-
         }
+
+
+
 
 
         public DataTable BuscarCliente(string IdCliente)
@@ -102,7 +130,7 @@ namespace Proyecto4.GestionBD
 
 
 
-        public string ActualizarCliente(int IdCliente, string nombre, string apellido, string telefono, string correo)
+        public string ActualizarCliente(string idCliente, string nombre, string apellidos, string telefono, string correo)
         {
             using (MySqlConnection connection = EstablecerConexion())
             {
@@ -110,19 +138,16 @@ namespace Proyecto4.GestionBD
                 {
                     AbrirConexion(connection);
 
-                    using (MySqlCommand cmd = new MySqlCommand("Actualizar_Cliente", connection))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("p_idCliente", IdCliente);
-                        cmd.Parameters.AddWithValue("p_nombre", nombre);
-                        cmd.Parameters.AddWithValue("p_apellidos", apellido);
-                        cmd.Parameters.AddWithValue("p_telefono", telefono);
-                        cmd.Parameters.AddWithValue("p_correo", correo);
+                    MySqlCommand cmd = new MySqlCommand("Actualizar_Cliente", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_idCliente", idCliente);
+                    cmd.Parameters.AddWithValue("p_nombre", nombre);
+                    cmd.Parameters.AddWithValue("p_apellidos", apellidos);
+                    cmd.Parameters.AddWithValue("p_telefono", telefono);
+                    cmd.Parameters.AddWithValue("p_correo", correo);
 
-
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0 ? "Cliente actualizado exitosamente" : "Error al actualizar la Marca";
-                    }
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0 ? "Cliente actualizado exitosamente" : "Error al actualizar el cliente";
                 }
                 catch (MySqlException err)
                 {
@@ -135,31 +160,6 @@ namespace Proyecto4.GestionBD
             }
         }
 
-
-        public void EliminarCliente(int IdCliente)
-        {
-            using (MySqlConnection con = EstablecerConexion())
-            {
-                try
-                {
-                    AbrirConexion(con);
-
-                    MySqlCommand cmd = new MySqlCommand("Eliminar_Cliente", con);
-                    cmd.Parameters.AddWithValue(" p_idCliente", IdCliente);
-
-                    int rowsAffected = cmd.ExecuteNonQuery();
-
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                finally
-                {
-                    CerrarConexion(con);
-                }
-            }
-        }
     }
 }
 

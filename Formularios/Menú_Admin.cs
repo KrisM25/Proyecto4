@@ -43,8 +43,16 @@ namespace Proyecto4.Formularios
             GestionCréditos GesCredito = new GestionCréditos();
             dataGridViewCreditos.DataSource = GesCredito.ImprimirConsulta("Select * from credito");
 
+            // Después de llenar el DataGridView con datos
             GestionAbonos GesAbono = new GestionAbonos();
-            dataGridViewAbonos.DataSource = GesAbono.ImprimirConsulta("Select * from abonos ");
+            dataGridViewAbonos.DataSource = GesAbono.ImprimirConsulta("SELECT * FROM abonos");
+
+            // Imprimir nombres de columnas para depuración
+            foreach (DataGridViewColumn column in dataGridViewAbonos.Columns)
+            {
+                Console.WriteLine(column.Name);
+            }
+
 
         }
 
@@ -514,7 +522,7 @@ namespace Proyecto4.Formularios
             Login login = new Login();
             if (login.CamposVacios(new object[] { txtIDCliente, txtNombre, txtApellidoCliente, txtTelCliente, txtEmailCliente }))
             {
-           
+
             }
             else
             {
@@ -523,7 +531,7 @@ namespace Proyecto4.Formularios
                 GesClientes.RegistrarCliente(txtIDCliente.Text, txtNombre.Text, txtApellidoCliente.Text, txtTelCliente.Text, txtEmailCliente.Text);
                 dataGridViewClientes.DataSource = GesClientes.ImprimirConsulta("Select * from clientes");
             }
-         
+
         }
 
         private void btBuscarCliente_Click(object sender, EventArgs e)
@@ -545,12 +553,11 @@ namespace Proyecto4.Formularios
 
         private void btnActualizarCliente_Click(object sender, EventArgs e)
         {
-            // Verificar si los campos están vacíos
             Login login = new Login();
             if (!login.CamposVacios(new object[] { txtIDCliente, txtNombre, txtApellidoCliente, txtTelCliente, txtEmailCliente }))
             {
                 // Obtener los valores de los controles
-                int IDCliente = int.Parse(txtIDCliente.Text);
+                string IDCliente = txtIDCliente.Text;
                 string Nombre = txtNombre.Text;
                 string ApellidoCliente = txtApellidoCliente.Text;
                 string TelCliente = txtTelCliente.Text;
@@ -563,7 +570,9 @@ namespace Proyecto4.Formularios
                 string resultado = GesClientes.ActualizarCliente(IDCliente, Nombre, ApellidoCliente, TelCliente, CorreoCliente);
 
                 // Actualizar el DataGridView con la lista actualizada de clientes
-                dataGridViewClientes.DataSource = GesClientes.ListaTodosClientess();
+                DataTable dt = GesClientes.ListarClientes();
+                Console.WriteLine($"Número de filas obtenidas para mostrar: {dt.Rows.Count}");
+                dataGridViewClientes.DataSource = dt;
 
                 // Limpiar los campos de texto
                 txtIDCliente.Clear();
@@ -581,13 +590,14 @@ namespace Proyecto4.Formularios
             }
         }
 
-        private async void btnEliminarCliente_Click(object sender, EventArgs e)
+
+        private void btnEliminarCliente_Click(object sender, EventArgs e)
         {
             // Verificar si hay una fila seleccionada para eliminar
             if (dataGridViewClientes.SelectedRows.Count > 0)
             {
                 // Obtener el ID del cliente seleccionado
-                int idCliente = Convert.ToInt32(dataGridViewClientes.SelectedRows[0].Cells["IDCliente"].Value);
+                string idCliente = dataGridViewClientes.SelectedRows[0].Cells["idCliente"].Value.ToString();
 
                 // Confirmar con el usuario antes de eliminar
                 DialogResult resultado = MessageBox.Show("¿Está seguro que desea eliminar este cliente?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -600,13 +610,15 @@ namespace Proyecto4.Formularios
                         GestionCliente gesClientes = new GestionCliente();
 
                         // Llamar al método para eliminar el cliente de la base de datos
-                        gesClientes.EliminarCliente(idCliente);
+                        string mensaje = gesClientes.EliminarCliente(idCliente);
 
                         // Mostrar mensaje de éxito
-                        MessageBox.Show("Cliente Eliminado");
+                        MessageBox.Show(mensaje, "Eliminar Cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         // Actualizar el DataGridView con la lista actualizada de clientes
-                        dataGridViewClientes.DataSource = gesClientes.ListaTodosClientess();
+                        DataTable dt = gesClientes.ListarClientes();
+                        Console.WriteLine($"Número de filas obtenidas para mostrar: {dt.Rows.Count}");
+                        dataGridViewClientes.DataSource = dt;
                     }
                     catch (Exception ex)
                     {
@@ -622,10 +634,14 @@ namespace Proyecto4.Formularios
 
 
 
+
+
+
+
         private void btnGuardarPedido_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            if (!login.CamposVacios(new object[] {txtIDPedido, txtIdPedidoCliente, ComboBoxEstadoPedido, FechaPedido, txtNombreCliente }))
+            if (!login.CamposVacios(new object[] { txtIDPedido, txtIdPedidoCliente, ComboBoxEstadoPedido, FechaPedido, txtNombreCliente }))
             {
                 GestionPedidos GesPedidos = new GestionPedidos();
                 GesPedidos.RegistrarPedido(Convert.ToInt32(txtIDPedido.Text), txtIdPedidoCliente.Text, ComboBoxEstadoPedido.SelectedItem.ToString(), FechaPedido.Value, txtNombreCliente.Text);
@@ -662,19 +678,21 @@ namespace Proyecto4.Formularios
             {
                 // Obtener los valores de los controles
                 int IDPedido = int.Parse(txtIDPedido.Text);
-                int IDPedidoCliente = int.Parse(txtIdPedidoCliente.Text);
+                string CedulaClientePide = txtIdPedidoCliente.Text;
                 string NombreCliente = txtNombreCliente.Text;
                 string ComboEstadoPedi = ComboBoxEstadoPedido.Text;
-                DateTime Fecha = DateTime.Parse(FechaPedido.Text);
+                DateTime Fecha = FechaPedido.Value; // Utiliza el valor del DateTimePicker
 
                 // Instanciar la clase para gestionar pedidos
                 GestionPedidos GesPedido = new GestionPedidos();
 
                 // Actualizar el pedido y obtener el resultado
-                string resultado = GesPedido.ActualizarPedido(IDPedido, IDPedidoCliente.ToString(), NombreCliente, ComboEstadoPedi, Fecha);
+                string resultado = GesPedido.ActualizarPedido(IDPedido, CedulaClientePide, NombreCliente, ComboEstadoPedi, Fecha);
 
                 // Actualizar el DataGridView con la lista actualizada de pedidos
-                dataGridView2Pedidos.DataSource = GesPedido.ListaTodosPedidos();
+                DataTable dt = GesPedido.ListarPedidos();
+                Console.WriteLine($"Número de filas obtenidas para mostrar: {dt.Rows.Count}");
+                dataGridView2Pedidos.DataSource = dt;
 
                 // Limpiar los campos de texto
                 txtIDPedido.Clear();
@@ -693,13 +711,14 @@ namespace Proyecto4.Formularios
         }
 
 
+
         private void btnEliminarPedido_Click(object sender, EventArgs e)
         {
             // Verificar si hay una fila seleccionada para eliminar
             if (dataGridView2Pedidos.SelectedRows.Count > 0)
             {
                 // Obtener el ID del pedido seleccionado
-                int idPedido = Convert.ToInt32(dataGridView2Pedidos.SelectedRows[0].Cells["IDPedido"].Value);
+                int idPedido = Convert.ToInt32(dataGridView2Pedidos.SelectedRows[0].Cells["idPedido"].Value);
 
                 // Confirmar con el usuario antes de eliminar
                 DialogResult resultado = MessageBox.Show("¿Está seguro que desea eliminar este pedido?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -712,13 +731,15 @@ namespace Proyecto4.Formularios
                         GestionPedidos gesPedidos = new GestionPedidos();
 
                         // Llamar al método para eliminar el pedido de la base de datos
-                        gesPedidos.EliminarPedido(idPedido);
+                        string mensaje = gesPedidos.EliminarPedido(idPedido);
 
                         // Mostrar mensaje de éxito
-                        MessageBox.Show("Pedido Eliminado");
+                        MessageBox.Show(mensaje, "Eliminar Pedido", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         // Actualizar el DataGridView con la lista actualizada de pedidos
-                        dataGridView2Pedidos.DataSource = gesPedidos.ListaTodosPedidos();
+                        DataTable dt = gesPedidos.ListarPedidos();
+                        Console.WriteLine($"Número de filas obtenidas para mostrar: {dt.Rows.Count}");
+                        dataGridView2Pedidos.DataSource = dt;
                     }
                     catch (Exception ex)
                     {
@@ -733,10 +754,56 @@ namespace Proyecto4.Formularios
         }
 
 
+
+
+
+
+
+
+
         private void btnRegistrarCredito_Click(object sender, EventArgs e)
         {
+            // Mensaje de depuración para verificar el valor del campo de texto
+            Console.WriteLine($"Valor de idcredito: '{idcredito.Text}'");
+            Console.WriteLine($"Valor de txtIdPedidoCred: '{txtIdPedidoCred.Text}'");
+            Console.WriteLine($"Valor de ComboBoxEstadoCredito: '{ComboBoxEstadoCredito.SelectedItem?.ToString()}'");
+            Console.WriteLine($"Valor de FechaCredito: '{FechaCredito.Value}'");
 
+            if (!string.IsNullOrWhiteSpace(idcredito.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdPedidoCred.Text) &&
+                ComboBoxEstadoCredito.SelectedItem != null &&
+                FechaCredito.Value != null)
+            {
+                try
+                {
+                    int IdCredito = Convert.ToInt32(idcredito.Text);
+                    int IdPedidoCred = Convert.ToInt32(txtIdPedidoCred.Text);
+                    string Estado = ComboBoxEstadoCredito.SelectedItem.ToString();
+                    DateTime Fecha = FechaCredito.Value;
+
+                    GestionCréditos GesCreditos = new GestionCréditos();
+                    string resultado = GesCreditos.RegistrarCredito(IdCredito, IdPedidoCred, Estado, Fecha);
+
+                    MessageBox.Show(resultado, "Resultado de la Actualización del Crédito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    dataGridViewCreditos.DataSource = GesCreditos.ListaTodosCreditos();
+
+                    idcredito.Clear();
+                    txtIdPedidoCred.Clear();
+                    ComboBoxEstadoCredito.SelectedIndex = -1;
+                    FechaCredito.Value = DateTime.Now;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, complete todos los campos.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
 
         private void btnBuscarCredito_Click(object sender, EventArgs e)
         {
@@ -756,48 +823,77 @@ namespace Proyecto4.Formularios
 
         private void btnActualizarCredito_Click(object sender, EventArgs e)
         {
-            // Verificar si los campos están vacíos
-            Login login = new Login();
-            if (!login.CamposVacios(new object[] { txtIdCredito, txtIdPedidoCred, ComboBoxEstadoCredito, FechaCredito }))
+            Console.WriteLine("Iniciando validación de campos...");
+            Console.WriteLine($"Valor de idcredito: '{idcredito.Text}'");
+            Console.WriteLine($"Valor de txtIdPedidoCred: '{txtIdPedidoCred.Text}'");
+            Console.WriteLine($"Valor de ComboBoxEstadoCredito: '{ComboBoxEstadoCredito.SelectedItem?.ToString()}'");
+            Console.WriteLine($"Valor de FechaCredito: '{FechaCredito.Value}'");
+
+            if (!string.IsNullOrWhiteSpace(idcredito.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdPedidoCred.Text) &&
+                ComboBoxEstadoCredito.SelectedItem != null &&
+                FechaCredito.Value != null)
             {
-                // Obtener los valores de los controles
-                int IDCredito = int.Parse(txtIdCredito.Text);
-                int IDPedidoCred = int.Parse(txtIdPedidoCred.Text);
-                string Estado = ComboBoxEstadoCredito.Text;
-                DateTime Fecha = DateTime.Parse(FechaCredito.Text);
+                try
+                {
+                    int IdCredito = Convert.ToInt32(idcredito.Text);
+                    int IdPedidoCred = Convert.ToInt32(txtIdPedidoCred.Text);
+                    string Estado = ComboBoxEstadoCredito.SelectedItem.ToString();
+                    DateTime Fecha = FechaCredito.Value;
 
-                // Instanciar la clase para gestionar créditos
-                GestionCréditos GesCredito = new GestionCréditos();
+                    GestionCréditos GesCredito = new GestionCréditos();
+                    string resultado = GesCredito.ActualizarCredito(IdCredito, IdPedidoCred, Estado, Fecha);
 
-                // Actualizar el crédito y obtener el resultado
-                string resultado = GesCredito.ActualizarCredito(IDCredito, IDPedidoCred, Estado, Fecha);
+                    Console.WriteLine($"Resultado de la actualización: {resultado}");
 
-                // Actualizar el DataGridView con la lista actualizada de créditos
-                dataGridViewCreditos.DataSource = GesCredito.ListaTodosCreditos();
+                    dataGridViewCreditos.DataSource = GesCredito.ListaTodosCreditos();
 
-                // Limpiar los campos de texto
-                txtIdCredito.Clear();
-                txtIdPedidoCred.Clear();
-                ComboBoxEstadoCredito.SelectedIndex = -1; // Desseleccionar el combobox
-                FechaCredito.Value = DateTime.Now; // Resetear la fecha
+                    idcredito.Clear();
+                    txtIdPedidoCred.Clear();
+                    ComboBoxEstadoCredito.SelectedIndex = -1;
+                    FechaCredito.Value = DateTime.Now;
 
-                // Mostrar el resultado
-                MessageBox.Show(resultado, "Resultado de la Actualización del Crédito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(resultado, "Resultado de la Actualización del Crédito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                Console.WriteLine("Campos vacíos.");
+                MessageBox.Show("Por favor, complete todos los campos.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
 
-        private void btnEliminarCredito_Click(object sender, EventArgs e)
+
+        private void btnGuardarCredito_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] { txtIdCredito, txtIdPedidoCred, ComboBoxEstadoCredito, FechaCredito }))
+            {
+                GestionCréditos GesCreditos = new GestionCréditos();
+                GesCreditos.RegistrarCredito(Convert.ToInt32(txtIdCredito.Text), Convert.ToInt32(txtIdPedidoCred.Text), ComboBoxEstadoCredito.SelectedItem.ToString(), FechaCredito.Value);
+                dataGridViewCreditos.DataSource = GesCreditos.ImprimirConsulta("SELECT * FROM credito");
+            }
+            else
+            {
+                Console.WriteLine("Campos vacíos.");
+                MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+    
+
+
+    private void btnEliminarCredito_Click(object sender, EventArgs e)
         {
             // Verificar si hay una fila seleccionada para eliminar
             if (dataGridViewCreditos.SelectedRows.Count > 0)
             {
                 // Obtener el ID del crédito seleccionado
-                int idCredito = Convert.ToInt32(dataGridViewCreditos.SelectedRows[0].Cells["IDCredito"].Value);
+                int idCredito = Convert.ToInt32(dataGridViewCreditos.SelectedRows[0].Cells["idCredito"].Value);
 
                 // Confirmar con el usuario antes de eliminar
                 DialogResult resultado = MessageBox.Show("¿Está seguro que desea eliminar este crédito?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -810,13 +906,15 @@ namespace Proyecto4.Formularios
                         GestionCréditos gesCreditos = new GestionCréditos();
 
                         // Llamar al método para eliminar el crédito de la base de datos
-                        gesCreditos.EliminarCredito(idCredito);
+                        string mensaje = gesCreditos.EliminarCredito(idCredito);
 
                         // Mostrar mensaje de éxito
-                        MessageBox.Show("Crédito Eliminado");
+                        MessageBox.Show(mensaje, "Eliminar Crédito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         // Actualizar el DataGridView con la lista actualizada de créditos
-                        dataGridViewCreditos.DataSource = gesCreditos.ListaTodosCreditos();
+                        DataTable dt = gesCreditos.ListaTodosCreditos();
+                        Console.WriteLine($"Número de filas obtenidas para mostrar: {dt.Rows.Count}");
+                        dataGridViewCreditos.DataSource = dt;
                     }
                     catch (Exception ex)
                     {
@@ -831,10 +929,11 @@ namespace Proyecto4.Formularios
         }
 
 
+
         private void btnGuardarAbono_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            if (!login.CamposVacios(new object[] { txtIdAbono, txtMonto, ComboTipoPago, txtNumComprobante, txtIdCredito, dateTimePickerAbono}))
+            if (!login.CamposVacios(new object[] { txtIdAbono, txtMonto, ComboTipoPago, txtNumComprobante, txtIdCredito, dateTimePickerAbono }))
             {
                 GestionAbonos GesAbonos = new GestionAbonos();
                 GesAbonos.RegistrarAbono(Convert.ToInt32(txtIdAbono.Text), Convert.ToDouble(txtMonto.Text), ComboTipoPago.Text, txtNumComprobante.Text, Convert.ToInt32(txtIdCredito.Text), dateTimePickerAbono.Value);
@@ -844,7 +943,7 @@ namespace Proyecto4.Formularios
             {
                 Console.WriteLine("1");
             }
-     
+
         }
 
 
@@ -1320,8 +1419,14 @@ namespace Proyecto4.Formularios
             // Verificar si hay una fila seleccionada para eliminar
             if (dataGridViewAbonos.SelectedRows.Count > 0)
             {
-                // Obtener el ID del abono seleccionado
-                int idAbono = Convert.ToInt32(dataGridViewAbonos.SelectedRows[0].Cells["IdAbono"].Value);
+                // Imprimir nombres de columnas para depuración
+                foreach (DataGridViewColumn column in dataGridViewAbonos.Columns)
+                {
+                    Console.WriteLine(column.Name);
+                }
+
+                // Usar el nombre correcto de la columna
+                int idAbono = Convert.ToInt32(dataGridViewAbonos.SelectedRows[0].Cells["idAbonos"].Value); // Cambia "IdAbono" por el nombre exacto de la columna si es diferente
 
                 // Confirmar con el usuario antes de eliminar
                 DialogResult resultado = MessageBox.Show("¿Está seguro que desea eliminar este abono?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1334,13 +1439,15 @@ namespace Proyecto4.Formularios
                         GestionAbonos gesAbonos = new GestionAbonos();
 
                         // Llamar al método para eliminar el abono de la base de datos
-                        gesAbonos.EliminarAbono(idAbono);
+                        string mensaje = gesAbonos.EliminarAbono(idAbono);
 
                         // Mostrar mensaje de éxito
-                        MessageBox.Show("Abono Eliminado");
+                        MessageBox.Show(mensaje, "Eliminar Abono", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         // Actualizar el DataGridView con la lista actualizada de abonos
-                        dataGridViewAbonos.DataSource = gesAbonos.ListaTodosAbonos();
+                        DataTable dt = gesAbonos.ListaTodosAbonos();
+                        Console.WriteLine($"Número de filas obtenidas para mostrar: {dt.Rows.Count}");
+                        dataGridViewAbonos.DataSource = dt;
                     }
                     catch (Exception ex)
                     {
@@ -1354,5 +1461,14 @@ namespace Proyecto4.Formularios
             }
         }
 
+        private void txtIdPedidoCred_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void idcredito_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

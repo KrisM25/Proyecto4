@@ -104,7 +104,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtIdPedidoCred = new MaterialSkin.Controls.MaterialTextBox();
-            this.materialTextBox30 = new MaterialSkin.Controls.MaterialTextBox();
+            this.idcredito = new MaterialSkin.Controls.MaterialTextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.materialCard3 = new MaterialSkin.Controls.MaterialCard();
             this.FechaPedido = new System.Windows.Forms.DateTimePicker();
@@ -1275,7 +1275,7 @@
             this.materialCard4.Controls.Add(this.label7);
             this.materialCard4.Controls.Add(this.label8);
             this.materialCard4.Controls.Add(this.txtIdPedidoCred);
-            this.materialCard4.Controls.Add(this.materialTextBox30);
+            this.materialCard4.Controls.Add(this.idcredito);
             this.materialCard4.Depth = 0;
             this.materialCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialCard4.Location = new System.Drawing.Point(-18, -11);
@@ -1474,26 +1474,28 @@
             this.txtIdPedidoCred.TabIndex = 12;
             this.txtIdPedidoCred.Text = "";
             this.txtIdPedidoCred.TrailingIcon = null;
+            this.txtIdPedidoCred.TextChanged += new System.EventHandler(this.txtIdPedidoCred_TextChanged);
             this.txtIdPedidoCred.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdPedidoCred_KeyPress);
             // 
-            // materialTextBox30
+            // idcredito
             // 
-            this.materialTextBox30.AnimateReadOnly = false;
-            this.materialTextBox30.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialTextBox30.Depth = 0;
-            this.materialTextBox30.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTextBox30.Hint = "ID Crédito";
-            this.materialTextBox30.LeadingIcon = null;
-            this.materialTextBox30.Location = new System.Drawing.Point(123, 204);
-            this.materialTextBox30.MaxLength = 50;
-            this.materialTextBox30.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox30.Multiline = false;
-            this.materialTextBox30.Name = "materialTextBox30";
-            this.materialTextBox30.Size = new System.Drawing.Size(217, 50);
-            this.materialTextBox30.TabIndex = 11;
-            this.materialTextBox30.Text = "";
-            this.materialTextBox30.TrailingIcon = null;
-            this.materialTextBox30.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.materialTextBox30_KeyPress);
+            this.idcredito.AnimateReadOnly = false;
+            this.idcredito.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.idcredito.Depth = 0;
+            this.idcredito.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.idcredito.Hint = "ID Crédito";
+            this.idcredito.LeadingIcon = null;
+            this.idcredito.Location = new System.Drawing.Point(123, 204);
+            this.idcredito.MaxLength = 50;
+            this.idcredito.MouseState = MaterialSkin.MouseState.OUT;
+            this.idcredito.Multiline = false;
+            this.idcredito.Name = "idcredito";
+            this.idcredito.Size = new System.Drawing.Size(217, 50);
+            this.idcredito.TabIndex = 11;
+            this.idcredito.Text = "";
+            this.idcredito.TrailingIcon = null;
+            this.idcredito.TextChanged += new System.EventHandler(this.idcredito_TextChanged);
+            this.idcredito.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.materialTextBox30_KeyPress);
             // 
             // tabPage5
             // 
@@ -2692,7 +2694,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private MaterialSkin.Controls.MaterialTextBox txtIdPedidoCred;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox30;
+        private MaterialSkin.Controls.MaterialTextBox idcredito;
         private MaterialSkin.Controls.MaterialButton btnEliminarPedido;
         private MaterialSkin.Controls.MaterialButton btnActualizarPedido;
         private System.Windows.Forms.Panel panel2;

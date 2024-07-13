@@ -22,7 +22,7 @@ namespace Proyecto4.GestionBD
                 try
                 {
                     AbrirConexion(con);
-                    MySqlCommand cmd = new MySqlCommand("proc", con);
+                    MySqlCommand cmd = new MySqlCommand("Listar_Abonos", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     adapter.Fill(tabla);
@@ -42,7 +42,7 @@ namespace Proyecto4.GestionBD
         }
 
 
-        public void EliminarAbono(int idAbono)
+        public string EliminarAbono(int idAbono)
         {
             using (MySqlConnection connection = EstablecerConexion())
             {
@@ -54,11 +54,12 @@ namespace Proyecto4.GestionBD
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("p_idAbono", idAbono);
 
-                    cmd.ExecuteNonQuery();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0 ? "Abono eliminado exitosamente" : "Error al eliminar el abono";
                 }
                 catch (MySqlException err)
                 {
-                    Console.WriteLine($"Ocurrió un error: {err.Message}");
+                    return $"Ocurrió un error: {err.Message}";
                 }
                 finally
                 {

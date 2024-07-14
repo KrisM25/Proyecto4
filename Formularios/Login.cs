@@ -163,5 +163,12 @@ namespace Proyecto4.Formularios
                 e.Handled = true;
             }
         }
+
+     
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Apii apii = new Apii();
+            apii.Show();
+        }
     }
 }

@@ -111,6 +111,12 @@
     <Compile Include="Clases\Productos.cs" />
     <Compile Include="Clases\Proveedor.cs" />
     <Compile Include="Clases\UsuarioLogin.cs" />
+    <Compile Include="Formularios\Apii.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Apii.Designer.cs">
+      <DependentUpon>Apii.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Detalle Factura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     <Compile Include="GestionBD\Gestion_DetallePedido.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\Apii.resx">
+      <DependentUpon>Apii.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Detalle Factura.resx">
       <DependentUpon>Detalle Factura.cs</DependentUpon>
     </EmbeddedResource>

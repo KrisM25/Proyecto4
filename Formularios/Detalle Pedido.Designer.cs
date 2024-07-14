@@ -136,6 +136,7 @@
             this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton1.UseAccentColor = false;
             this.materialButton1.UseVisualStyleBackColor = true;
+            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
             // 
             // dataGridViewDetallePedido
             // 
@@ -164,6 +165,7 @@
             this.btnBuscarDetallePedido.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnBuscarDetallePedido.UseAccentColor = false;
             this.btnBuscarDetallePedido.UseVisualStyleBackColor = true;
+            this.btnBuscarDetallePedido.Click += new System.EventHandler(this.btnBuscarDetallePedido_Click);
             // 
             // txtBuscarDetallePedido
             // 
@@ -201,6 +203,7 @@
             this.btnEliminar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnEliminar.UseAccentColor = false;
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnActualizar
             // 
@@ -221,6 +224,7 @@
             this.btnActualizar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnActualizar.UseAccentColor = false;
             this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // Detalle_Pedido
             // 
@@ -239,6 +243,7 @@
             this.Controls.Add(this.txtIDDetalle);
             this.Name = "Detalle_Pedido";
             this.Text = "Detalle_Pedido";
+            this.Load += new System.EventHandler(this.Detalle_Pedido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetallePedido)).EndInit();
             this.ResumeLayout(false);
 

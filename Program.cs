@@ -1,4 +1,5 @@
 ﻿using Proyecto4.Formularios;
+using Proyecto4.Reportes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Proyecto4
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new ReporteFacturacion());
         }
     }
 }

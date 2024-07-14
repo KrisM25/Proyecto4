@@ -104,7 +104,8 @@ namespace Proyecto4.GestionBD
                 {
                     AbrirConexion(connection);
 
-                    MySqlCommand cmd = new MySqlCommand("Actualizar_Pedido", connection);
+                    MySqlCommand cmd = new MySqlCommand("Actualizar_DetallePedido", connection); 
+                    cmd.CommandType=CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("p_idDetalle", idDetalle);
                     cmd.Parameters.AddWithValue("p_idPedidoDetalle", idPedidoDetalle);
                     cmd.Parameters.AddWithValue("p_codProducto", codProducto);

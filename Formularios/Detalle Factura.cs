@@ -51,6 +51,12 @@ namespace Proyecto4.Formularios
                 GestionDetallefactura gestiondetallefactura = new GestionDetallefactura();
                 dataGridViewDetallefactura.DataSource = gestiondetallefactura.ListaTodasDetallesFactura();
 
+
+                txtIdDetalleFactura.Clear();
+                txtIDProducto.Clear();
+                txtCantidadComprada();
+                txtIDFactura();
+
                 // Mostrar el resultado
                 MessageBox.Show(resultado, "Resultado del Detalle Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -73,6 +79,9 @@ namespace Proyecto4.Formularios
 
                 // Mostrar el resultado en un DataGridView
                 dataGridViewDetallefactura.DataSource = resultado;
+
+                txtBuscarDetalleFactura.Clear();
+
             }
             else { Console.WriteLine("1"); }
         }
@@ -108,6 +117,10 @@ namespace Proyecto4.Formularios
                 GestionDetallefactura gestionDetalleFactura = new GestionDetallefactura();
                 string resultado = gestionDetalleFactura.ActualizarDetalleFactura(IdDetalle,idProducto, CantidadComprada, idFactura);
 
+                txtIdDetalleFactura.Clear();
+                txtIDProducto.Clear();
+                txtCantidadComprada();
+                txtIDFactura();
                 // Mostrar el resultado
                 MessageBox.Show(resultado, "Resultado de la Actualización de Detalle Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

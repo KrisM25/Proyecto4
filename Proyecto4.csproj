@@ -295,5 +295,10 @@
   <ItemGroup>
     <None Include="Resources\marys mk1.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="usuario.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

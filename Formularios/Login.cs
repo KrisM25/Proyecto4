@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using static System.Collections.Specialized.BitVector32;
+using System.IO;
 
 namespace Proyecto4.Formularios
 {
@@ -46,6 +47,15 @@ namespace Proyecto4.Formularios
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            if (materialCheckbox1.Checked)
+            {
+                File.WriteAllText("usuario.txt", txtUsuario.Text);
+            }
+            else
+            {
+                File.WriteAllText("usuario.txt", "");
+            }
+
             GestionUsuario bdUsuario = new GestionUsuario();
             bdUsuario.AbrirConexion(bdUsuario.EstablecerConexion());
 
@@ -169,6 +179,19 @@ namespace Proyecto4.Formularios
         {
             Apii apii = new Apii();
             apii.Show();
+        }
+
+        private void materialCheckbox1_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+           
+            String usuario = File.ReadAllText("usuario.txt" );
+            txtUsuario.Text = usuario;
+
         }
     }
 }

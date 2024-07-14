@@ -33,7 +33,8 @@
             this.btnIngresar = new MaterialSkin.Controls.MaterialButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.RecordadUsuario = new System.Windows.Forms.Label();
+            this.materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
             this.SuspendLayout();
             // 
             // txtUsuario
@@ -115,23 +116,41 @@
             this.materialLabel1.TabIndex = 5;
             this.materialLabel1.Text = "materialLabel1";
             // 
-            // label1
+            // RecordadUsuario
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(344, 375);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Olvide mi Contraseña";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.RecordadUsuario.AutoSize = true;
+            this.RecordadUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecordadUsuario.Location = new System.Drawing.Point(340, 396);
+            this.RecordadUsuario.Name = "RecordadUsuario";
+            this.RecordadUsuario.Size = new System.Drawing.Size(107, 13);
+            this.RecordadUsuario.TabIndex = 7;
+            this.RecordadUsuario.Text = "Olvide mi Contraseña";
+            this.RecordadUsuario.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // materialCheckbox1
+            // 
+            this.materialCheckbox1.Depth = 0;
+            this.materialCheckbox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.materialCheckbox1.Location = new System.Drawing.Point(310, 341);
+            this.materialCheckbox1.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckbox1.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckbox1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckbox1.Name = "materialCheckbox1";
+            this.materialCheckbox1.ReadOnly = false;
+            this.materialCheckbox1.Ripple = true;
+            this.materialCheckbox1.Size = new System.Drawing.Size(167, 35);
+            this.materialCheckbox1.TabIndex = 9;
+            this.materialCheckbox1.Text = "Recordar Usuario";
+            this.materialCheckbox1.UseVisualStyleBackColor = true;
+            this.materialCheckbox1.CheckedChanged += new System.EventHandler(this.materialCheckbox1_CheckedChanged);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(514, 450);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.materialCheckbox1);
+            this.Controls.Add(this.RecordadUsuario);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnIngresar);
@@ -139,6 +158,7 @@
             this.Controls.Add(this.txtUsuario);
             this.Name = "Login";
             this.Text = "Login Mary\'s Makeup";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,6 +170,7 @@
         private MaterialSkin.Controls.MaterialButton btnIngresar;
         private System.Windows.Forms.Panel panel1;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label RecordadUsuario;
+        private MaterialSkin.Controls.MaterialCheckbox materialCheckbox1;
     }
 }

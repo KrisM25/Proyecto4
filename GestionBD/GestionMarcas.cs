@@ -21,8 +21,8 @@ namespace Proyecto4.GestionBD
 
                     using (MySqlCommand cmd = new MySqlCommand("Registrar_Marca", connection))
                     {
-                        
-                        cmd.Parameters.AddWithValue("nombre_marca", NombreMarca);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_nombre_marca", NombreMarca);
                         
 
 

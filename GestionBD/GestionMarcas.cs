@@ -49,6 +49,7 @@ namespace Proyecto4.GestionBD
                 try
                 {
                     AbrirConexion(con);
+                    
                     MySqlCommand cmd = new MySqlCommand("SELECT * FROM marcas", con);
                     MySqlDataAdapter adacter = new MySqlDataAdapter(cmd);
                     adacter.Fill(dt);
@@ -75,7 +76,8 @@ namespace Proyecto4.GestionBD
 
                     using (MySqlCommand cmd = new MySqlCommand("Buscar_Marca", connection))
                     {
-                        cmd.Parameters.AddWithValue("id", idMarca);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_id", idMarca);
 
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                         adapter.Fill(dataTable);
@@ -103,8 +105,9 @@ namespace Proyecto4.GestionBD
 
                     using (MySqlCommand cmd = new MySqlCommand("Actualizar_Marca", connection))
                     {
-                        cmd.Parameters.AddWithValue("id", idMarca);
-                        cmd.Parameters.AddWithValue("nombre_marca", NombreMarca);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_id", idMarca);
+                        cmd.Parameters.AddWithValue("p_nombre_marca", NombreMarca);
                         
 
 
@@ -133,7 +136,8 @@ namespace Proyecto4.GestionBD
 
                     
                     MySqlCommand cmd = new MySqlCommand("Eliminar_Marca", connection);
-                    cmd.Parameters.AddWithValue("id", idMarca);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_id", idMarca);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0 ? "Marca eliminada exitosamente" : "Error al eliminar la Marca";

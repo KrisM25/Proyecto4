@@ -21,12 +21,13 @@ namespace Proyecto4.GestionBD
 
                     using (MySqlCommand cmd = new MySqlCommand("Registrar_Producto", connection))
                     {
-                        cmd.Parameters.AddWithValue("id", IdProducto);
-                        cmd.Parameters.AddWithValue("nombreProducto", NombreProducto);
-                        cmd.Parameters.AddWithValue("marca", IdMarca);
-                        cmd.Parameters.AddWithValue("stock", CantidadStock);
-                        cmd.Parameters.AddWithValue("proveedor", IdProveedor);
-                        cmd.Parameters.AddWithValue("PrecioProducto", PrecioProducto);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_id", IdProducto);
+                        cmd.Parameters.AddWithValue("p_nombreProducto", NombreProducto);
+                        cmd.Parameters.AddWithValue("p_marca", IdMarca);
+                        cmd.Parameters.AddWithValue("p_stock", CantidadStock);
+                        cmd.Parameters.AddWithValue("p_proveedor", IdProveedor);
+                        cmd.Parameters.AddWithValue("p_PrecioProducto", PrecioProducto);
 
 
                         int rowsAffected = cmd.ExecuteNonQuery();
@@ -55,7 +56,8 @@ namespace Proyecto4.GestionBD
 
                     using (MySqlCommand cmd = new MySqlCommand("Buscar_Producto", connection))
                     {
-                        cmd.Parameters.AddWithValue("id", idProducto);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_id", idProducto);
 
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                         adapter.Fill(dataTable);
@@ -80,6 +82,7 @@ namespace Proyecto4.GestionBD
                 try
                 {
                     AbrirConexion(con);
+                    
                     MySqlCommand cmd = new MySqlCommand("SELECT * FROM productos", con);
                     MySqlDataAdapter adacter = new MySqlDataAdapter(cmd);
                     adacter.Fill(dt);
@@ -105,12 +108,13 @@ namespace Proyecto4.GestionBD
 
                     using (MySqlCommand cmd = new MySqlCommand("Actualizar_Producto", connection))
                     {
-                        cmd.Parameters.AddWithValue("id", IdProducto);
-                        cmd.Parameters.AddWithValue("nombreProducto", NombreProducto);
-                        cmd.Parameters.AddWithValue("marca", IdMarca);
-                        cmd.Parameters.AddWithValue("stock", CantidadStock);
-                        cmd.Parameters.AddWithValue("proveedor", IdProveedor);
-                        cmd.Parameters.AddWithValue("PrecioProducto", PrecioProducto);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_id", IdProducto);
+                        cmd.Parameters.AddWithValue("p_nombreProducto", NombreProducto);
+                        cmd.Parameters.AddWithValue("p_marca", IdMarca);
+                        cmd.Parameters.AddWithValue("p_stock", CantidadStock);
+                        cmd.Parameters.AddWithValue("p_proveedor", IdProveedor);
+                        cmd.Parameters.AddWithValue("p_PrecioProducto", PrecioProducto);
 
 
 
@@ -139,7 +143,8 @@ namespace Proyecto4.GestionBD
 
 
                     MySqlCommand cmd = new MySqlCommand("Eliminar_Producto", connection);
-                    cmd.Parameters.AddWithValue("id", idProducto);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_id", idProducto);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0 ? "Producto eliminado exitosamente" : "Error al eliminar el Producto";

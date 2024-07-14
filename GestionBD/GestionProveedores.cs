@@ -20,11 +20,11 @@ namespace Proyecto4.GestionBD
 
                     using (MySqlCommand cmd = new MySqlCommand("Registrar_Proveedor", connection))
                     {
-
-                        cmd.Parameters.AddWithValue("idProveedor", IdProveedor);
-                        cmd.Parameters.AddWithValue("nombre_proveedor", NombreProveedor);
-                        cmd.Parameters.AddWithValue("telefono", TelefonoProveedor);
-                        cmd.Parameters.AddWithValue("correo", CorreoProveedor);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_idProveedor", IdProveedor);
+                        cmd.Parameters.AddWithValue("p_nombre_proveedor", NombreProveedor);
+                        cmd.Parameters.AddWithValue("p_telefono", TelefonoProveedor);
+                        cmd.Parameters.AddWithValue("p_correo", CorreoProveedor);
 
 
 
@@ -51,6 +51,7 @@ namespace Proyecto4.GestionBD
                 try
                 {
                     AbrirConexion(con);
+                   
                     MySqlCommand cmd = new MySqlCommand("SELECT * FROM proveedor", con);
                     MySqlDataAdapter adacter = new MySqlDataAdapter(cmd);
                     adacter.Fill(dt);
@@ -77,7 +78,8 @@ namespace Proyecto4.GestionBD
 
                     using (MySqlCommand cmd = new MySqlCommand("Buscar_Proveedor", connection))
                     {
-                        cmd.Parameters.AddWithValue("idProveedor", idProveedorr);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_idProveedor", idProveedorr);
 
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                         adapter.Fill(dataTable);
@@ -105,10 +107,11 @@ namespace Proyecto4.GestionBD
 
                     using (MySqlCommand cmd = new MySqlCommand("Actualizar_Proveedor", connection))
                     {
-                        cmd.Parameters.AddWithValue("idProveedor", IdProveedor);
-                        cmd.Parameters.AddWithValue("nombre_proveedor", NombreProveedor);
-                        cmd.Parameters.AddWithValue("telefono", TelefonoProveedor);
-                        cmd.Parameters.AddWithValue("correo", CorreoProveedor);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_idProveedor", IdProveedor);
+                        cmd.Parameters.AddWithValue("p_nombre_proveedor", NombreProveedor);
+                        cmd.Parameters.AddWithValue("p_telefono", TelefonoProveedor);
+                        cmd.Parameters.AddWithValue("P_correo", CorreoProveedor);
 
 
 
@@ -137,7 +140,8 @@ namespace Proyecto4.GestionBD
 
 
                     MySqlCommand cmd = new MySqlCommand("Eliminar_Proveedor", connection);
-                    cmd.Parameters.AddWithValue("idProveedor", idProveedor);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_idProveedor", idProveedor);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0 ? "Proveedor eliminado exitosamente" : "Error al eliminar el Proveedor";

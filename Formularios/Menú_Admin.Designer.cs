@@ -150,6 +150,7 @@
             this.btnGuardarCredito = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.materialCard9 = new MaterialSkin.Controls.MaterialCard();
+            this.btnVerReportFactura = new MaterialSkin.Controls.MaterialButton();
             this.ComboBoxNuevo = new MaterialSkin.Controls.MaterialComboBox();
             this.txtBuscarFactura = new MaterialSkin.Controls.MaterialTextBox();
             this.btnBuscarFactura = new MaterialSkin.Controls.MaterialButton();
@@ -173,7 +174,6 @@
             this.txtContraseña = new MaterialSkin.Controls.MaterialTextBox();
             this.txtUsuario = new MaterialSkin.Controls.MaterialTextBox();
             this.btnCrearUsuario = new MaterialSkin.Controls.MaterialButton();
-            this.btnVerReportFactura = new MaterialSkin.Controls.MaterialButton();
             this.tabPage3.SuspendLayout();
             this.materialCard8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProveedores)).BeginInit();
@@ -2302,6 +2302,26 @@
             this.materialCard9.Size = new System.Drawing.Size(1827, 997);
             this.materialCard9.TabIndex = 0;
             // 
+            // btnVerReportFactura
+            // 
+            this.btnVerReportFactura.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnVerReportFactura.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnVerReportFactura.Depth = 0;
+            this.btnVerReportFactura.HighEmphasis = true;
+            this.btnVerReportFactura.Icon = null;
+            this.btnVerReportFactura.Location = new System.Drawing.Point(1105, 783);
+            this.btnVerReportFactura.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnVerReportFactura.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnVerReportFactura.Name = "btnVerReportFactura";
+            this.btnVerReportFactura.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnVerReportFactura.Size = new System.Drawing.Size(116, 36);
+            this.btnVerReportFactura.TabIndex = 39;
+            this.btnVerReportFactura.Text = "VER REPORTE";
+            this.btnVerReportFactura.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnVerReportFactura.UseAccentColor = false;
+            this.btnVerReportFactura.UseVisualStyleBackColor = true;
+            this.btnVerReportFactura.Click += new System.EventHandler(this.btnVerReportFactura_Click);
+            // 
             // ComboBoxNuevo
             // 
             this.ComboBoxNuevo.AutoResize = false;
@@ -2688,26 +2708,6 @@
             this.btnCrearUsuario.UseVisualStyleBackColor = true;
             this.btnCrearUsuario.Click += new System.EventHandler(this.btnCrearUsuario_Click_1);
             // 
-            // btnVerReportFactura
-            // 
-            this.btnVerReportFactura.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnVerReportFactura.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnVerReportFactura.Depth = 0;
-            this.btnVerReportFactura.HighEmphasis = true;
-            this.btnVerReportFactura.Icon = null;
-            this.btnVerReportFactura.Location = new System.Drawing.Point(1105, 783);
-            this.btnVerReportFactura.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnVerReportFactura.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnVerReportFactura.Name = "btnVerReportFactura";
-            this.btnVerReportFactura.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnVerReportFactura.Size = new System.Drawing.Size(116, 36);
-            this.btnVerReportFactura.TabIndex = 39;
-            this.btnVerReportFactura.Text = "VER REPORTE";
-            this.btnVerReportFactura.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnVerReportFactura.UseAccentColor = false;
-            this.btnVerReportFactura.UseVisualStyleBackColor = true;
-            this.btnVerReportFactura.Click += new System.EventHandler(this.btnVerReportFactura_Click);
-            // 
             // Menú_Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -2718,7 +2718,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Menú_Admin";
             this.Padding = new System.Windows.Forms.Padding(4, 98, 4, 5);
-            this.Text = "Menú_Admin";
+            this.Text = "Menú Administrador";
             this.Load += new System.EventHandler(this.Menú_Admin_Load);
             this.tabPage3.ResumeLayout(false);
             this.materialCard8.ResumeLayout(false);

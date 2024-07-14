@@ -32,38 +32,49 @@ namespace Proyecto4.Formularios
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Obtener los valores de los controles
-            int IdProducto = int.Parse(txtIDProducto.Text);
-            double CantidadComprada = double.Parse(txtCantidadComprada.Text);
-            int IdFactura = int.Parse(txtIDFactura.Text);
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] { txtIDProducto,txtCantidadComprada,txtIDFactura }))
+            {
+                // Obtener los valores de los controles
+                
+                    int IdProducto = int.Parse(txtIDProducto.Text);
+                double CantidadComprada = double.Parse(txtCantidadComprada.Text);
+                int IdFactura = int.Parse(txtIDFactura.Text);
             
 
 
-            // Crear una instancia de GestionDetalleFactura y llamar al método RegistrarDetalleFactura
-            GestionDetallefactura gestionDetalleFactura = new GestionDetallefactura();
-            string resultado = gestionDetalleFactura.RegistrarDetalleFactura(IdProducto,CantidadComprada,IdFactura);
+                // Crear una instancia de GestionDetalleFactura y llamar al método RegistrarDetalleFactura
+                GestionDetallefactura gestionDetalleFactura = new GestionDetallefactura();
+                string resultado = gestionDetalleFactura.RegistrarDetalleFactura(IdProducto,CantidadComprada,IdFactura);
 
-            //Refrescamos la lista
-            GestionDetallefactura gestiondetallefactura = new GestionDetallefactura();
-            dataGridViewDetallefactura.DataSource = gestiondetallefactura.ListaTodasDetallesFactura();
+                //Refrescamos la lista
+                GestionDetallefactura gestiondetallefactura = new GestionDetallefactura();
+                dataGridViewDetallefactura.DataSource = gestiondetallefactura.ListaTodasDetallesFactura();
 
-            // Mostrar el resultado
-            MessageBox.Show(resultado, "Resultado del Detalle Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Mostrar el resultado
+                MessageBox.Show(resultado, "Resultado del Detalle Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else { Console.WriteLine("1"); }
         }
 
         
 
         private void btnBuscarDetalleFactura_Click(object sender, EventArgs e)
         {
-            // Obtener el ID de la factura
-            int idDetallefactura = int.Parse(txtBuscarDetalleFactura.Text);
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] { txtBuscarDetalleFactura }))
+            {
+                    // Obtener el ID de la factura
+                    int idDetallefactura = int.Parse(txtBuscarDetalleFactura.Text);
 
-            // Crear una instancia de GestionDetalleFactura y llamar al método BuscarDetalleFactura
-            GestionDetallefactura gestionfactura = new GestionDetallefactura();
-            DataTable resultado = gestionfactura.BuscarDetalleFactura(idDetallefactura);
+                // Crear una instancia de GestionDetalleFactura y llamar al método BuscarDetalleFactura
+                GestionDetallefactura gestionfactura = new GestionDetallefactura();
+                DataTable resultado = gestionfactura.BuscarDetalleFactura(idDetallefactura);
 
-            // Mostrar el resultado en un DataGridView
-            dataGridViewDetallefactura.DataSource = resultado;
+                // Mostrar el resultado en un DataGridView
+                dataGridViewDetallefactura.DataSource = resultado;
+            }
+            else { Console.WriteLine("1"); }
         }
 
         private void dataGridViewDetallefactura_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -72,6 +83,7 @@ namespace Proyecto4.Formularios
             {
                 DataGridViewRow row = dataGridViewDetallefactura.Rows[e.RowIndex];
 
+                txtIdDetalleFactura.Text = row.Cells["Id_Detalle"].Value.ToString();
                 txtIDProducto.Text = row.Cells["Producto"].Value.ToString();
                 txtCantidadComprada.Text = row.Cells["Cantidad_Comprada"].Value.ToString();
                 txtIDFactura.Text = row.Cells["Factura_Id"].Value.ToString();
@@ -82,18 +94,24 @@ namespace Proyecto4.Formularios
 
         private void btnActualizarDetalleFactura_Click(object sender, EventArgs e)
         {
-            // Obtener los valores de los controles
-            int idProducto = int.Parse(txtIDProducto.Text);
-            double CantidadComprada = int.Parse(txtCantidadComprada.Text);
-            int idFactura = int.Parse(txtIDFactura.Text);
+            Login login = new Login();
+            if (!login.CamposVacios(new object[] { txtIdDetalleFactura,txtIDProducto, txtCantidadComprada, txtIDFactura }))
+            {
+                // Obtener los valores de los controles
+                int IdDetalle = int.Parse(txtIdDetalleFactura.Text);
+                int idProducto = int.Parse(txtIDProducto.Text);
+                double CantidadComprada = int.Parse(txtCantidadComprada.Text);
+                int idFactura = int.Parse(txtIDFactura.Text);
            
 
-            // Crear una instancia de GestionDetalleFactura y llamar al método ActualizarDetalleFactura
-            GestionDetallefactura gestionDetalleFactura = new GestionDetallefactura();
-            string resultado = gestionDetalleFactura.ActualizarDetalleFactura(idProducto, CantidadComprada, idFactura);
+                // Crear una instancia de GestionDetalleFactura y llamar al método ActualizarDetalleFactura
+                GestionDetallefactura gestionDetalleFactura = new GestionDetallefactura();
+                string resultado = gestionDetalleFactura.ActualizarDetalleFactura(IdDetalle,idProducto, CantidadComprada, idFactura);
 
-            // Mostrar el resultado
-            MessageBox.Show(resultado, "Resultado de la Actualización de Detalle Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Mostrar el resultado
+                MessageBox.Show(resultado, "Resultado de la Actualización de Detalle Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else { Console.WriteLine("1"); }
         }
 
         private void txtIDProducto_KeyPress(object sender, KeyPressEventArgs e)

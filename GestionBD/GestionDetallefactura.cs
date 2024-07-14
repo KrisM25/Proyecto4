@@ -21,11 +21,12 @@ namespace Proyecto4.GestionBD
                 {
                     AbrirConexion(connection);
 
-                    using (MySqlCommand cmd = new MySqlCommand("SP_facturacion", connection))
+                    using (MySqlCommand cmd = new MySqlCommand("Registrar_DetalleFactura", connection))
                     {
-                        cmd.Parameters.AddWithValue("Producto", IdProducto);
-                        cmd.Parameters.AddWithValue("Cantidad_Comprada", CantidadComprada);
-                        cmd.Parameters.AddWithValue("Factura_Id", IdFactura);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_Producto", IdProducto);
+                        cmd.Parameters.AddWithValue("p_Cantidad_Comprada", CantidadComprada);
+                        cmd.Parameters.AddWithValue("p_Factura_Id", IdFactura);
                        
 
 
@@ -52,6 +53,7 @@ namespace Proyecto4.GestionBD
                 try
                 {
                     AbrirConexion(con);
+                    
                     MySqlCommand cmd = new MySqlCommand("SELECT * FROM Detalle_Factura", con);
                     MySqlDataAdapter adacter = new MySqlDataAdapter(cmd);
                     adacter.Fill(dt);
@@ -78,7 +80,8 @@ namespace Proyecto4.GestionBD
 
                     using (MySqlCommand cmd = new MySqlCommand("Buscar_DetalleFactura", connection))
                     {
-                        cmd.Parameters.AddWithValue("Id_Detalle", idDetalleFactura);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_Id_Detalle", idDetalleFactura);
 
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                         adapter.Fill(dataTable);
@@ -96,7 +99,7 @@ namespace Proyecto4.GestionBD
             }
         }
 
-        public string ActualizarDetalleFactura(int idProducto, double CantidadComprada, int IdFactura)
+        public string ActualizarDetalleFactura(int IdDetalleFact,int idProducto, double CantidadComprada, int IdFactura)
         {
             using (MySqlConnection connection = EstablecerConexion())
             {
@@ -106,9 +109,11 @@ namespace Proyecto4.GestionBD
 
                     using (MySqlCommand cmd = new MySqlCommand("Actualizar_DetalleFactura", connection))
                     {
-                        cmd.Parameters.AddWithValue("Producto", idProducto);
-                        cmd.Parameters.AddWithValue("Cantidad_Comprada ", CantidadComprada);
-                        cmd.Parameters.AddWithValue("Factura_Id", IdFactura);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_Id_Detalle", IdDetalleFact);
+                        cmd.Parameters.AddWithValue("p_Producto", idProducto);
+                        cmd.Parameters.AddWithValue("p_Cantidad_Comprada ", CantidadComprada);
+                        cmd.Parameters.AddWithValue("p_Factura_Id", IdFactura);
                        
 
                         int rowsAffected = cmd.ExecuteNonQuery();

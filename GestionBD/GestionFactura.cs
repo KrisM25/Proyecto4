@@ -23,6 +23,7 @@ namespace Proyecto4.GestionBD
 
                     using (MySqlCommand cmd = new MySqlCommand("SP_facturacion", connection))
                     {
+                        cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("cedula_cliente", CedulaCliente);
                         cmd.Parameters.AddWithValue("cod_prod", CodProduc);
                         cmd.Parameters.AddWithValue("unidades_compra", UnidadesCompradas);
@@ -59,6 +60,7 @@ namespace Proyecto4.GestionBD
 
                     using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM facturacion WHERE idFactura = @idFactura", connection))
                     {
+                        cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@idFactura", idFactura);
 
                         MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -84,6 +86,7 @@ namespace Proyecto4.GestionBD
                 try
                 {
                     AbrirConexion(con);
+                    
                     MySqlCommand cmd = new MySqlCommand("SELECT * FROM facturacion", con);
                     MySqlDataAdapter adacter = new MySqlDataAdapter(cmd);
                     adacter.Fill(dt);

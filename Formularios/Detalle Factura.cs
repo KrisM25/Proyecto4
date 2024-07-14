@@ -54,8 +54,8 @@ namespace Proyecto4.Formularios
 
                 txtIdDetalleFactura.Clear();
                 txtIDProducto.Clear();
-                txtCantidadComprada();
-                txtIDFactura();
+                txtCantidadComprada.Clear();
+                txtIDFactura.Clear();
 
                 // Mostrar el resultado
                 MessageBox.Show(resultado, "Resultado del Detalle Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -119,8 +119,8 @@ namespace Proyecto4.Formularios
 
                 txtIdDetalleFactura.Clear();
                 txtIDProducto.Clear();
-                txtCantidadComprada();
-                txtIDFactura();
+                txtCantidadComprada.Clear();
+                txtIDFactura.Clear();
                 // Mostrar el resultado
                 MessageBox.Show(resultado, "Resultado de la Actualización de Detalle Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

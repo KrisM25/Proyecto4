@@ -18,7 +18,7 @@ namespace Proyecto4
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ReporteFacturacion());
+            Application.Run(new Login());
         }
     }
 }

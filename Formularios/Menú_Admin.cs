@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using K4os.Compression.LZ4.Encoders;
 using MaterialSkin.Controls;
 using Proyecto4.GestionBD;
+using Proyecto4.Reportes;
 
 namespace Proyecto4.Formularios
 {
@@ -1469,6 +1470,12 @@ namespace Proyecto4.Formularios
         private void idcredito_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnVerReportFactura_Click(object sender, EventArgs e)
+        {
+            ReporteFacturacion reporteFacturacion = new ReporteFacturacion();
+            reporteFacturacion.Show();
         }
     }
 }

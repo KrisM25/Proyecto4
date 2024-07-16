@@ -182,6 +182,18 @@ namespace Proyecto4.Formularios
             }
         }
 
+        private void btnVerReportFactura_Click(object sender, EventArgs e)
+        {
+            ReporteFacturacion reporteFacturacion = new ReporteFacturacion();
+            reporteFacturacion.Show();
+        }
+
+        private void btnRefrescarFacturas_Click(object sender, EventArgs e)
+        {
+            GestionFactura gestionFacturacion = new GestionFactura();
+            dataGridViewFacturacion.DataSource = gestionFacturacion.ListaTodasFacturas();
+        }
+
 
 
 
@@ -301,6 +313,12 @@ namespace Proyecto4.Formularios
 
 
             }
+        }
+
+        private void btnRefrescarMarcas_Click(object sender, EventArgs e)
+        {
+            GestionMarcas gestionmarcas = new GestionMarcas();
+            dataGridViewMarcas.DataSource = gestionmarcas.ListaTodasMarcas();
         }
 
         private void btnGuardarProducto_Click(object sender, EventArgs e)
@@ -448,6 +466,12 @@ namespace Proyecto4.Formularios
             }
         }
 
+        private void btnRefrescarProductos_Click(object sender, EventArgs e)
+        {
+            GestionProductos gestionproductos = new GestionProductos();
+            dataGridViewMarcas.DataSource = gestionproductos.ListaTodasProductos();
+        }
+
         private void btnGuardarProveedor_Click(object sender, EventArgs e)
         {
             Login login = new Login();
@@ -572,6 +596,12 @@ namespace Proyecto4.Formularios
                 txtCorreoProveedor.Text = row.Cells["correo"].Value.ToString();
 
             }
+        }
+
+        private void btnRefrescarProveedores_Click(object sender, EventArgs e)
+        {
+            GestionProveedores gestionproveedores = new GestionProveedores();
+            dataGridViewProveedores.DataSource = gestionproveedores.ListaTodasProveedor();
         }
 
         private void btnGuardarCliente_Click(object sender, EventArgs e)
@@ -1528,10 +1558,6 @@ namespace Proyecto4.Formularios
 
         }
 
-        private void btnVerReportFactura_Click(object sender, EventArgs e)
-        {
-            ReporteFacturacion reporteFacturacion = new ReporteFacturacion();
-            reporteFacturacion.Show();
-        }
+        
     }
 }

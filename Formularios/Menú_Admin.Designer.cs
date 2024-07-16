@@ -45,6 +45,8 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.materialCard7 = new MaterialSkin.Controls.MaterialCard();
+            this.CBBXIDMarca = new MaterialSkin.Controls.MaterialComboBox();
+            this.CBBXIDProveedor = new MaterialSkin.Controls.MaterialComboBox();
             this.txtBuscarProducto = new MaterialSkin.Controls.MaterialTextBox();
             this.btnBuscarProducto = new MaterialSkin.Controls.MaterialButton();
             this.label13 = new System.Windows.Forms.Label();
@@ -60,6 +62,7 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.materialCard6 = new MaterialSkin.Controls.MaterialCard();
+            this.txtIdMarca = new MaterialSkin.Controls.MaterialTextBox();
             this.txtBuscarMarca = new MaterialSkin.Controls.MaterialTextBox();
             this.btnBuscarMarca = new MaterialSkin.Controls.MaterialButton();
             this.label11 = new System.Windows.Forms.Label();
@@ -147,6 +150,11 @@
             this.btnGuardarCredito = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.materialCard9 = new MaterialSkin.Controls.MaterialCard();
+            this.CBBXCedulaClientes = new MaterialSkin.Controls.MaterialComboBox();
+            this.CBBXNumeroPedido = new MaterialSkin.Controls.MaterialComboBox();
+            this.CBBXCod_Producto = new MaterialSkin.Controls.MaterialComboBox();
+            this.txtCostEnvio = new MaterialSkin.Controls.MaterialTextBox();
+            this.CBBXEstadoFactura = new MaterialSkin.Controls.MaterialComboBox();
             this.btnVerReportFactura = new MaterialSkin.Controls.MaterialButton();
             this.ComboBoxNuevo = new MaterialSkin.Controls.MaterialComboBox();
             this.txtBuscarFactura = new MaterialSkin.Controls.MaterialTextBox();
@@ -168,14 +176,10 @@
             this.txtContraseña = new MaterialSkin.Controls.MaterialTextBox();
             this.txtUsuario = new MaterialSkin.Controls.MaterialTextBox();
             this.btnCrearUsuario = new MaterialSkin.Controls.MaterialButton();
-            this.CBBXEstadoFactura = new MaterialSkin.Controls.MaterialComboBox();
-            this.txtCostEnvio = new MaterialSkin.Controls.MaterialTextBox();
-            this.CBBXCod_Producto = new MaterialSkin.Controls.MaterialComboBox();
-            this.CBBXNumeroPedido = new MaterialSkin.Controls.MaterialComboBox();
-            this.CBBXCedulaClientes = new MaterialSkin.Controls.MaterialComboBox();
-            this.CBBXIDProveedor = new MaterialSkin.Controls.MaterialComboBox();
-            this.CBBXIDMarca = new MaterialSkin.Controls.MaterialComboBox();
-            this.txtIdMarca = new MaterialSkin.Controls.MaterialTextBox();
+            this.btnRefrescarFacturas = new MaterialSkin.Controls.MaterialButton();
+            this.btnRefrescarProveedores = new MaterialSkin.Controls.MaterialButton();
+            this.btnRefrescarProductos = new MaterialSkin.Controls.MaterialButton();
+            this.btnRefrescarMarcas = new MaterialSkin.Controls.MaterialButton();
             this.tabPage3.SuspendLayout();
             this.materialCard8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProveedores)).BeginInit();
@@ -223,6 +227,7 @@
             // materialCard8
             // 
             this.materialCard8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard8.Controls.Add(this.btnRefrescarProveedores);
             this.materialCard8.Controls.Add(this.txtBuscarProveedor);
             this.materialCard8.Controls.Add(this.btnBuscarproveedor);
             this.materialCard8.Controls.Add(this.dataGridViewProveedores);
@@ -484,6 +489,7 @@
             // materialCard7
             // 
             this.materialCard7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard7.Controls.Add(this.btnRefrescarProductos);
             this.materialCard7.Controls.Add(this.CBBXIDMarca);
             this.materialCard7.Controls.Add(this.CBBXIDProveedor);
             this.materialCard7.Controls.Add(this.txtBuscarProducto);
@@ -508,6 +514,52 @@
             this.materialCard7.Padding = new System.Windows.Forms.Padding(21, 22, 21, 22);
             this.materialCard7.Size = new System.Drawing.Size(1756, 937);
             this.materialCard7.TabIndex = 0;
+            // 
+            // CBBXIDMarca
+            // 
+            this.CBBXIDMarca.AutoResize = false;
+            this.CBBXIDMarca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CBBXIDMarca.Depth = 0;
+            this.CBBXIDMarca.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CBBXIDMarca.DropDownHeight = 174;
+            this.CBBXIDMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBBXIDMarca.DropDownWidth = 121;
+            this.CBBXIDMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CBBXIDMarca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CBBXIDMarca.FormattingEnabled = true;
+            this.CBBXIDMarca.Hint = "Marca";
+            this.CBBXIDMarca.IntegralHeight = false;
+            this.CBBXIDMarca.ItemHeight = 43;
+            this.CBBXIDMarca.Location = new System.Drawing.Point(177, 589);
+            this.CBBXIDMarca.MaxDropDownItems = 4;
+            this.CBBXIDMarca.MouseState = MaterialSkin.MouseState.OUT;
+            this.CBBXIDMarca.Name = "CBBXIDMarca";
+            this.CBBXIDMarca.Size = new System.Drawing.Size(294, 49);
+            this.CBBXIDMarca.StartIndex = 0;
+            this.CBBXIDMarca.TabIndex = 42;
+            // 
+            // CBBXIDProveedor
+            // 
+            this.CBBXIDProveedor.AutoResize = false;
+            this.CBBXIDProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CBBXIDProveedor.Depth = 0;
+            this.CBBXIDProveedor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CBBXIDProveedor.DropDownHeight = 174;
+            this.CBBXIDProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBBXIDProveedor.DropDownWidth = 121;
+            this.CBBXIDProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CBBXIDProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CBBXIDProveedor.FormattingEnabled = true;
+            this.CBBXIDProveedor.Hint = "Proveedor";
+            this.CBBXIDProveedor.IntegralHeight = false;
+            this.CBBXIDProveedor.ItemHeight = 43;
+            this.CBBXIDProveedor.Location = new System.Drawing.Point(177, 411);
+            this.CBBXIDProveedor.MaxDropDownItems = 4;
+            this.CBBXIDProveedor.MouseState = MaterialSkin.MouseState.OUT;
+            this.CBBXIDProveedor.Name = "CBBXIDProveedor";
+            this.CBBXIDProveedor.Size = new System.Drawing.Size(294, 49);
+            this.CBBXIDProveedor.StartIndex = 0;
+            this.CBBXIDProveedor.TabIndex = 41;
             // 
             // txtBuscarProducto
             // 
@@ -748,6 +800,7 @@
             // materialCard6
             // 
             this.materialCard6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard6.Controls.Add(this.btnRefrescarMarcas);
             this.materialCard6.Controls.Add(this.txtIdMarca);
             this.materialCard6.Controls.Add(this.txtBuscarMarca);
             this.materialCard6.Controls.Add(this.btnBuscarMarca);
@@ -768,6 +821,23 @@
             this.materialCard6.Padding = new System.Windows.Forms.Padding(21, 22, 21, 22);
             this.materialCard6.Size = new System.Drawing.Size(2218, 1018);
             this.materialCard6.TabIndex = 0;
+            // 
+            // txtIdMarca
+            // 
+            this.txtIdMarca.AnimateReadOnly = false;
+            this.txtIdMarca.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtIdMarca.Depth = 0;
+            this.txtIdMarca.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtIdMarca.LeadingIcon = null;
+            this.txtIdMarca.Location = new System.Drawing.Point(428, 489);
+            this.txtIdMarca.MaxLength = 50;
+            this.txtIdMarca.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtIdMarca.Multiline = false;
+            this.txtIdMarca.Name = "txtIdMarca";
+            this.txtIdMarca.Size = new System.Drawing.Size(310, 50);
+            this.txtIdMarca.TabIndex = 20;
+            this.txtIdMarca.Text = "";
+            this.txtIdMarca.TrailingIcon = null;
             // 
             // txtBuscarMarca
             // 
@@ -2216,6 +2286,7 @@
             // materialCard9
             // 
             this.materialCard9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard9.Controls.Add(this.btnRefrescarFacturas);
             this.materialCard9.Controls.Add(this.CBBXCedulaClientes);
             this.materialCard9.Controls.Add(this.CBBXNumeroPedido);
             this.materialCard9.Controls.Add(this.CBBXCod_Producto);
@@ -2245,6 +2316,119 @@
             this.materialCard9.Size = new System.Drawing.Size(1827, 997);
             this.materialCard9.TabIndex = 0;
             // 
+            // CBBXCedulaClientes
+            // 
+            this.CBBXCedulaClientes.AutoResize = false;
+            this.CBBXCedulaClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CBBXCedulaClientes.Depth = 0;
+            this.CBBXCedulaClientes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CBBXCedulaClientes.DropDownHeight = 174;
+            this.CBBXCedulaClientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBBXCedulaClientes.DropDownWidth = 121;
+            this.CBBXCedulaClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CBBXCedulaClientes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CBBXCedulaClientes.FormattingEnabled = true;
+            this.CBBXCedulaClientes.Hint = "Cedula Cliente";
+            this.CBBXCedulaClientes.IntegralHeight = false;
+            this.CBBXCedulaClientes.ItemHeight = 43;
+            this.CBBXCedulaClientes.Location = new System.Drawing.Point(43, 271);
+            this.CBBXCedulaClientes.MaxDropDownItems = 4;
+            this.CBBXCedulaClientes.MouseState = MaterialSkin.MouseState.OUT;
+            this.CBBXCedulaClientes.Name = "CBBXCedulaClientes";
+            this.CBBXCedulaClientes.Size = new System.Drawing.Size(285, 49);
+            this.CBBXCedulaClientes.StartIndex = 0;
+            this.CBBXCedulaClientes.TabIndex = 44;
+            // 
+            // CBBXNumeroPedido
+            // 
+            this.CBBXNumeroPedido.AutoResize = false;
+            this.CBBXNumeroPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CBBXNumeroPedido.Depth = 0;
+            this.CBBXNumeroPedido.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CBBXNumeroPedido.DropDownHeight = 174;
+            this.CBBXNumeroPedido.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBBXNumeroPedido.DropDownWidth = 121;
+            this.CBBXNumeroPedido.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CBBXNumeroPedido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CBBXNumeroPedido.FormattingEnabled = true;
+            this.CBBXNumeroPedido.Hint = "Número pedido";
+            this.CBBXNumeroPedido.IntegralHeight = false;
+            this.CBBXNumeroPedido.ItemHeight = 43;
+            this.CBBXNumeroPedido.Location = new System.Drawing.Point(351, 431);
+            this.CBBXNumeroPedido.MaxDropDownItems = 4;
+            this.CBBXNumeroPedido.MouseState = MaterialSkin.MouseState.OUT;
+            this.CBBXNumeroPedido.Name = "CBBXNumeroPedido";
+            this.CBBXNumeroPedido.Size = new System.Drawing.Size(284, 49);
+            this.CBBXNumeroPedido.StartIndex = 0;
+            this.CBBXNumeroPedido.TabIndex = 43;
+            // 
+            // CBBXCod_Producto
+            // 
+            this.CBBXCod_Producto.AutoResize = false;
+            this.CBBXCod_Producto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CBBXCod_Producto.Depth = 0;
+            this.CBBXCod_Producto.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CBBXCod_Producto.DropDownHeight = 174;
+            this.CBBXCod_Producto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBBXCod_Producto.DropDownWidth = 121;
+            this.CBBXCod_Producto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CBBXCod_Producto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CBBXCod_Producto.FormattingEnabled = true;
+            this.CBBXCod_Producto.Hint = "Nombre Producto";
+            this.CBBXCod_Producto.IntegralHeight = false;
+            this.CBBXCod_Producto.ItemHeight = 43;
+            this.CBBXCod_Producto.Location = new System.Drawing.Point(351, 271);
+            this.CBBXCod_Producto.MaxDropDownItems = 4;
+            this.CBBXCod_Producto.MouseState = MaterialSkin.MouseState.OUT;
+            this.CBBXCod_Producto.Name = "CBBXCod_Producto";
+            this.CBBXCod_Producto.Size = new System.Drawing.Size(284, 49);
+            this.CBBXCod_Producto.StartIndex = 0;
+            this.CBBXCod_Producto.TabIndex = 42;
+            // 
+            // txtCostEnvio
+            // 
+            this.txtCostEnvio.AnimateReadOnly = false;
+            this.txtCostEnvio.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCostEnvio.Depth = 0;
+            this.txtCostEnvio.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtCostEnvio.Hint = "Costo Envío";
+            this.txtCostEnvio.LeadingIcon = null;
+            this.txtCostEnvio.Location = new System.Drawing.Point(351, 517);
+            this.txtCostEnvio.MaxLength = 50;
+            this.txtCostEnvio.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtCostEnvio.Multiline = false;
+            this.txtCostEnvio.Name = "txtCostEnvio";
+            this.txtCostEnvio.Size = new System.Drawing.Size(284, 50);
+            this.txtCostEnvio.TabIndex = 41;
+            this.txtCostEnvio.Text = "";
+            this.txtCostEnvio.TrailingIcon = null;
+            // 
+            // CBBXEstadoFactura
+            // 
+            this.CBBXEstadoFactura.AutoResize = false;
+            this.CBBXEstadoFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CBBXEstadoFactura.Depth = 0;
+            this.CBBXEstadoFactura.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CBBXEstadoFactura.DropDownHeight = 174;
+            this.CBBXEstadoFactura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBBXEstadoFactura.DropDownWidth = 121;
+            this.CBBXEstadoFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CBBXEstadoFactura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CBBXEstadoFactura.FormattingEnabled = true;
+            this.CBBXEstadoFactura.Hint = "Estado Factura";
+            this.CBBXEstadoFactura.IntegralHeight = false;
+            this.CBBXEstadoFactura.ItemHeight = 43;
+            this.CBBXEstadoFactura.Items.AddRange(new object[] {
+            "pendiente",
+            "cancelado"});
+            this.CBBXEstadoFactura.Location = new System.Drawing.Point(351, 349);
+            this.CBBXEstadoFactura.MaxDropDownItems = 4;
+            this.CBBXEstadoFactura.MouseState = MaterialSkin.MouseState.OUT;
+            this.CBBXEstadoFactura.Name = "CBBXEstadoFactura";
+            this.CBBXEstadoFactura.Size = new System.Drawing.Size(284, 49);
+            this.CBBXEstadoFactura.StartIndex = 0;
+            this.CBBXEstadoFactura.TabIndex = 40;
+            // 
             // btnVerReportFactura
             // 
             this.btnVerReportFactura.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -2252,7 +2436,7 @@
             this.btnVerReportFactura.Depth = 0;
             this.btnVerReportFactura.HighEmphasis = true;
             this.btnVerReportFactura.Icon = null;
-            this.btnVerReportFactura.Location = new System.Drawing.Point(1105, 783);
+            this.btnVerReportFactura.Location = new System.Drawing.Point(1072, 783);
             this.btnVerReportFactura.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnVerReportFactura.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnVerReportFactura.Name = "btnVerReportFactura";
@@ -2398,7 +2582,7 @@
             this.btnDetalleFactura.Depth = 0;
             this.btnDetalleFactura.HighEmphasis = true;
             this.btnDetalleFactura.Icon = null;
-            this.btnDetalleFactura.Location = new System.Drawing.Point(1299, 783);
+            this.btnDetalleFactura.Location = new System.Drawing.Point(1266, 783);
             this.btnDetalleFactura.Margin = new System.Windows.Forms.Padding(6, 9, 6, 9);
             this.btnDetalleFactura.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnDetalleFactura.Name = "btnDetalleFactura";
@@ -2592,181 +2776,85 @@
             this.btnCrearUsuario.UseVisualStyleBackColor = true;
             this.btnCrearUsuario.Click += new System.EventHandler(this.btnCrearUsuario_Click_1);
             // 
-            // CBBXEstadoFactura
+            // btnRefrescarFacturas
             // 
-            this.CBBXEstadoFactura.AutoResize = false;
-            this.CBBXEstadoFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.CBBXEstadoFactura.Depth = 0;
-            this.CBBXEstadoFactura.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.CBBXEstadoFactura.DropDownHeight = 174;
-            this.CBBXEstadoFactura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CBBXEstadoFactura.DropDownWidth = 121;
-            this.CBBXEstadoFactura.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.CBBXEstadoFactura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CBBXEstadoFactura.FormattingEnabled = true;
-            this.CBBXEstadoFactura.Hint = "Estado Factura";
-            this.CBBXEstadoFactura.IntegralHeight = false;
-            this.CBBXEstadoFactura.ItemHeight = 43;
-            this.CBBXEstadoFactura.Items.AddRange(new object[] {
-            "pendiente",
-            "cancelado"});
-            this.CBBXEstadoFactura.Location = new System.Drawing.Point(351, 349);
-            this.CBBXEstadoFactura.MaxDropDownItems = 4;
-            this.CBBXEstadoFactura.MouseState = MaterialSkin.MouseState.OUT;
-            this.CBBXEstadoFactura.Name = "CBBXEstadoFactura";
-            this.CBBXEstadoFactura.Size = new System.Drawing.Size(284, 49);
-            this.CBBXEstadoFactura.StartIndex = 0;
-            this.CBBXEstadoFactura.TabIndex = 40;
+            this.btnRefrescarFacturas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnRefrescarFacturas.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnRefrescarFacturas.Depth = 0;
+            this.btnRefrescarFacturas.HighEmphasis = true;
+            this.btnRefrescarFacturas.Icon = null;
+            this.btnRefrescarFacturas.Location = new System.Drawing.Point(891, 783);
+            this.btnRefrescarFacturas.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnRefrescarFacturas.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnRefrescarFacturas.Name = "btnRefrescarFacturas";
+            this.btnRefrescarFacturas.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnRefrescarFacturas.Size = new System.Drawing.Size(102, 36);
+            this.btnRefrescarFacturas.TabIndex = 45;
+            this.btnRefrescarFacturas.Text = "Refrescar";
+            this.btnRefrescarFacturas.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnRefrescarFacturas.UseAccentColor = false;
+            this.btnRefrescarFacturas.UseVisualStyleBackColor = true;
+            this.btnRefrescarFacturas.Click += new System.EventHandler(this.btnRefrescarFacturas_Click);
             // 
-            // txtCostEnvio
+            // btnRefrescarProveedores
             // 
-            this.txtCostEnvio.AnimateReadOnly = false;
-            this.txtCostEnvio.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCostEnvio.Depth = 0;
-            this.txtCostEnvio.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtCostEnvio.Hint = "Costo Envío";
-            this.txtCostEnvio.LeadingIcon = null;
-            this.txtCostEnvio.Location = new System.Drawing.Point(351, 517);
-            this.txtCostEnvio.MaxLength = 50;
-            this.txtCostEnvio.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtCostEnvio.Multiline = false;
-            this.txtCostEnvio.Name = "txtCostEnvio";
-            this.txtCostEnvio.Size = new System.Drawing.Size(284, 50);
-            this.txtCostEnvio.TabIndex = 41;
-            this.txtCostEnvio.Text = "";
-            this.txtCostEnvio.TrailingIcon = null;
+            this.btnRefrescarProveedores.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnRefrescarProveedores.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnRefrescarProveedores.Depth = 0;
+            this.btnRefrescarProveedores.HighEmphasis = true;
+            this.btnRefrescarProveedores.Icon = null;
+            this.btnRefrescarProveedores.Location = new System.Drawing.Point(886, 750);
+            this.btnRefrescarProveedores.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnRefrescarProveedores.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnRefrescarProveedores.Name = "btnRefrescarProveedores";
+            this.btnRefrescarProveedores.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnRefrescarProveedores.Size = new System.Drawing.Size(158, 36);
+            this.btnRefrescarProveedores.TabIndex = 24;
+            this.btnRefrescarProveedores.Text = "Refrescar";
+            this.btnRefrescarProveedores.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnRefrescarProveedores.UseAccentColor = false;
+            this.btnRefrescarProveedores.UseVisualStyleBackColor = true;
+            this.btnRefrescarProveedores.Click += new System.EventHandler(this.btnRefrescarProveedores_Click);
             // 
-            // CBBXCod_Producto
+            // btnRefrescarProductos
             // 
-            this.CBBXCod_Producto.AutoResize = false;
-            this.CBBXCod_Producto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.CBBXCod_Producto.Depth = 0;
-            this.CBBXCod_Producto.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.CBBXCod_Producto.DropDownHeight = 174;
-            this.CBBXCod_Producto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CBBXCod_Producto.DropDownWidth = 121;
-            this.CBBXCod_Producto.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.CBBXCod_Producto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CBBXCod_Producto.FormattingEnabled = true;
-            this.CBBXCod_Producto.Hint = "Nombre Producto";
-            this.CBBXCod_Producto.IntegralHeight = false;
-            this.CBBXCod_Producto.ItemHeight = 43;
-            this.CBBXCod_Producto.Location = new System.Drawing.Point(351, 271);
-            this.CBBXCod_Producto.MaxDropDownItems = 4;
-            this.CBBXCod_Producto.MouseState = MaterialSkin.MouseState.OUT;
-            this.CBBXCod_Producto.Name = "CBBXCod_Producto";
-            this.CBBXCod_Producto.Size = new System.Drawing.Size(284, 49);
-            this.CBBXCod_Producto.StartIndex = 0;
-            this.CBBXCod_Producto.TabIndex = 42;
+            this.btnRefrescarProductos.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnRefrescarProductos.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnRefrescarProductos.Depth = 0;
+            this.btnRefrescarProductos.HighEmphasis = true;
+            this.btnRefrescarProductos.Icon = null;
+            this.btnRefrescarProductos.Location = new System.Drawing.Point(937, 780);
+            this.btnRefrescarProductos.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnRefrescarProductos.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnRefrescarProductos.Name = "btnRefrescarProductos";
+            this.btnRefrescarProductos.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnRefrescarProductos.Size = new System.Drawing.Size(158, 36);
+            this.btnRefrescarProductos.TabIndex = 43;
+            this.btnRefrescarProductos.Text = "Refrescar";
+            this.btnRefrescarProductos.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnRefrescarProductos.UseAccentColor = false;
+            this.btnRefrescarProductos.UseVisualStyleBackColor = true;
+            this.btnRefrescarProductos.Click += new System.EventHandler(this.btnRefrescarProductos_Click);
             // 
-            // CBBXNumeroPedido
+            // btnRefrescarMarcas
             // 
-            this.CBBXNumeroPedido.AutoResize = false;
-            this.CBBXNumeroPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.CBBXNumeroPedido.Depth = 0;
-            this.CBBXNumeroPedido.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.CBBXNumeroPedido.DropDownHeight = 174;
-            this.CBBXNumeroPedido.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CBBXNumeroPedido.DropDownWidth = 121;
-            this.CBBXNumeroPedido.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.CBBXNumeroPedido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CBBXNumeroPedido.FormattingEnabled = true;
-            this.CBBXNumeroPedido.Hint = "Número pedido";
-            this.CBBXNumeroPedido.IntegralHeight = false;
-            this.CBBXNumeroPedido.ItemHeight = 43;
-            this.CBBXNumeroPedido.Location = new System.Drawing.Point(351, 431);
-            this.CBBXNumeroPedido.MaxDropDownItems = 4;
-            this.CBBXNumeroPedido.MouseState = MaterialSkin.MouseState.OUT;
-            this.CBBXNumeroPedido.Name = "CBBXNumeroPedido";
-            this.CBBXNumeroPedido.Size = new System.Drawing.Size(284, 49);
-            this.CBBXNumeroPedido.StartIndex = 0;
-            this.CBBXNumeroPedido.TabIndex = 43;
-            // 
-            // CBBXCedulaClientes
-            // 
-            this.CBBXCedulaClientes.AutoResize = false;
-            this.CBBXCedulaClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.CBBXCedulaClientes.Depth = 0;
-            this.CBBXCedulaClientes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.CBBXCedulaClientes.DropDownHeight = 174;
-            this.CBBXCedulaClientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CBBXCedulaClientes.DropDownWidth = 121;
-            this.CBBXCedulaClientes.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.CBBXCedulaClientes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CBBXCedulaClientes.FormattingEnabled = true;
-            this.CBBXCedulaClientes.Hint = "Cedula Cliente";
-            this.CBBXCedulaClientes.IntegralHeight = false;
-            this.CBBXCedulaClientes.ItemHeight = 43;
-            this.CBBXCedulaClientes.Location = new System.Drawing.Point(43, 271);
-            this.CBBXCedulaClientes.MaxDropDownItems = 4;
-            this.CBBXCedulaClientes.MouseState = MaterialSkin.MouseState.OUT;
-            this.CBBXCedulaClientes.Name = "CBBXCedulaClientes";
-            this.CBBXCedulaClientes.Size = new System.Drawing.Size(285, 49);
-            this.CBBXCedulaClientes.StartIndex = 0;
-            this.CBBXCedulaClientes.TabIndex = 44;
-            // 
-            // CBBXIDProveedor
-            // 
-            this.CBBXIDProveedor.AutoResize = false;
-            this.CBBXIDProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.CBBXIDProveedor.Depth = 0;
-            this.CBBXIDProveedor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.CBBXIDProveedor.DropDownHeight = 174;
-            this.CBBXIDProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CBBXIDProveedor.DropDownWidth = 121;
-            this.CBBXIDProveedor.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.CBBXIDProveedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CBBXIDProveedor.FormattingEnabled = true;
-            this.CBBXIDProveedor.Hint = "Proveedor";
-            this.CBBXIDProveedor.IntegralHeight = false;
-            this.CBBXIDProveedor.ItemHeight = 43;
-            this.CBBXIDProveedor.Location = new System.Drawing.Point(177, 411);
-            this.CBBXIDProveedor.MaxDropDownItems = 4;
-            this.CBBXIDProveedor.MouseState = MaterialSkin.MouseState.OUT;
-            this.CBBXIDProveedor.Name = "CBBXIDProveedor";
-            this.CBBXIDProveedor.Size = new System.Drawing.Size(294, 49);
-            this.CBBXIDProveedor.StartIndex = 0;
-            this.CBBXIDProveedor.TabIndex = 41;
-            // 
-            // CBBXIDMarca
-            // 
-            this.CBBXIDMarca.AutoResize = false;
-            this.CBBXIDMarca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.CBBXIDMarca.Depth = 0;
-            this.CBBXIDMarca.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.CBBXIDMarca.DropDownHeight = 174;
-            this.CBBXIDMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CBBXIDMarca.DropDownWidth = 121;
-            this.CBBXIDMarca.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.CBBXIDMarca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CBBXIDMarca.FormattingEnabled = true;
-            this.CBBXIDMarca.Hint = "Marca";
-            this.CBBXIDMarca.IntegralHeight = false;
-            this.CBBXIDMarca.ItemHeight = 43;
-            this.CBBXIDMarca.Location = new System.Drawing.Point(177, 589);
-            this.CBBXIDMarca.MaxDropDownItems = 4;
-            this.CBBXIDMarca.MouseState = MaterialSkin.MouseState.OUT;
-            this.CBBXIDMarca.Name = "CBBXIDMarca";
-            this.CBBXIDMarca.Size = new System.Drawing.Size(294, 49);
-            this.CBBXIDMarca.StartIndex = 0;
-            this.CBBXIDMarca.TabIndex = 42;
-            // 
-            // txtIdMarca
-            // 
-            this.txtIdMarca.AnimateReadOnly = false;
-            this.txtIdMarca.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIdMarca.Depth = 0;
-            this.txtIdMarca.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtIdMarca.LeadingIcon = null;
-            this.txtIdMarca.Location = new System.Drawing.Point(428, 489);
-            this.txtIdMarca.MaxLength = 50;
-            this.txtIdMarca.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtIdMarca.Multiline = false;
-            this.txtIdMarca.Name = "txtIdMarca";
-            this.txtIdMarca.Size = new System.Drawing.Size(310, 50);
-            this.txtIdMarca.TabIndex = 20;
-            this.txtIdMarca.Text = "";
-            this.txtIdMarca.TrailingIcon = null;
+            this.btnRefrescarMarcas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnRefrescarMarcas.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnRefrescarMarcas.Depth = 0;
+            this.btnRefrescarMarcas.HighEmphasis = true;
+            this.btnRefrescarMarcas.Icon = null;
+            this.btnRefrescarMarcas.Location = new System.Drawing.Point(923, 785);
+            this.btnRefrescarMarcas.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnRefrescarMarcas.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnRefrescarMarcas.Name = "btnRefrescarMarcas";
+            this.btnRefrescarMarcas.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnRefrescarMarcas.Size = new System.Drawing.Size(158, 36);
+            this.btnRefrescarMarcas.TabIndex = 21;
+            this.btnRefrescarMarcas.Text = "Refrescar";
+            this.btnRefrescarMarcas.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnRefrescarMarcas.UseAccentColor = false;
+            this.btnRefrescarMarcas.UseVisualStyleBackColor = true;
+            this.btnRefrescarMarcas.Click += new System.EventHandler(this.btnRefrescarMarcas_Click);
             // 
             // Menú_Admin
             // 
@@ -2972,5 +3060,9 @@
         private MaterialSkin.Controls.MaterialComboBox CBBXIDMarca;
         private MaterialSkin.Controls.MaterialComboBox CBBXIDProveedor;
         private MaterialSkin.Controls.MaterialTextBox txtIdMarca;
+        private MaterialSkin.Controls.MaterialButton btnRefrescarFacturas;
+        private MaterialSkin.Controls.MaterialButton btnRefrescarProveedores;
+        private MaterialSkin.Controls.MaterialButton btnRefrescarProductos;
+        private MaterialSkin.Controls.MaterialButton btnRefrescarMarcas;
     }
 }

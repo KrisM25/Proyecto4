@@ -279,7 +279,7 @@ namespace Proyecto4.Reportes {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class DataTable1DataTable : global::System.Data.TypedTableBase<DataTable1Row> {
             
-            private global::System.Data.DataColumn columnIdFactura;
+            private global::System.Data.DataColumn columnidFactura;
             
             private global::System.Data.DataColumn columnidCliente;
             
@@ -342,9 +342,9 @@ namespace Proyecto4.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IdFacturaColumn {
+            public global::System.Data.DataColumn idFacturaColumn {
                 get {
-                    return this.columnIdFactura;
+                    return this.columnidFactura;
                 }
             }
             
@@ -489,10 +489,10 @@ namespace Proyecto4.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string IdFactura, string idCliente, string nombre, string apellidos, string telefono, string correo, string Producto, string Cantidad_Comprada, string subTotal, string IVA, string descuento, string total, string fechaGeneracionFactura, string estado_factura) {
+            public DataTable1Row AddDataTable1Row(string idFactura, string idCliente, string nombre, string apellidos, string telefono, string correo, string Producto, string Cantidad_Comprada, string subTotal, string IVA, string descuento, string total, string fechaGeneracionFactura, string estado_factura) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        IdFactura,
+                        idFactura,
                         idCliente,
                         nombre,
                         apellidos,
@@ -528,7 +528,7 @@ namespace Proyecto4.Reportes {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnIdFactura = base.Columns["IdFactura"];
+                this.columnidFactura = base.Columns["idFactura"];
                 this.columnidCliente = base.Columns["idCliente"];
                 this.columnnombre = base.Columns["nombre"];
                 this.columnapellidos = base.Columns["apellidos"];
@@ -547,8 +547,8 @@ namespace Proyecto4.Reportes {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnIdFactura = new global::System.Data.DataColumn("IdFactura", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdFactura);
+                this.columnidFactura = new global::System.Data.DataColumn("idFactura", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnidFactura);
                 this.columnidCliente = new global::System.Data.DataColumn("idCliente", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnidCliente);
                 this.columnnombre = new global::System.Data.DataColumn("nombre", typeof(string), null, global::System.Data.MappingType.Element);
@@ -717,17 +717,17 @@ namespace Proyecto4.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string IdFactura {
+            public string idFactura {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.IdFacturaColumn]));
+                        return ((string)(this[this.tableDataTable1.idFacturaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IdFactura\' de la tabla \'DataTable1\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'idFactura\' de la tabla \'DataTable1\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.IdFacturaColumn] = value;
+                    this[this.tableDataTable1.idFacturaColumn] = value;
                 }
             }
             
@@ -942,14 +942,14 @@ namespace Proyecto4.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsIdFacturaNull() {
-                return this.IsNull(this.tableDataTable1.IdFacturaColumn);
+            public bool IsidFacturaNull() {
+                return this.IsNull(this.tableDataTable1.idFacturaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetIdFacturaNull() {
-                this[this.tableDataTable1.IdFacturaColumn] = global::System.Convert.DBNull;
+            public void SetidFacturaNull() {
+                this[this.tableDataTable1.idFacturaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

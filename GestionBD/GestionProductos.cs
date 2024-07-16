@@ -18,8 +18,7 @@ namespace Proyecto4.GestionBD
                 try
                 {
                     AbrirConexion(connection);
-
-                    using (MySqlCommand cmd = new MySqlCommand("Registrar_Producto", connection))
+                    using (MySqlCommand cmd= new MySqlCommand("Registrar_Productos",connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("p_id", IdProducto);

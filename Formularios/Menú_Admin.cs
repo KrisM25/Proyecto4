@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using K4os.Compression.LZ4.Encoders;
 using MaterialSkin.Controls;
+using Proyecto4.Clases;
 using Proyecto4.GestionBD;
 using Proyecto4.Reportes;
 
@@ -23,6 +24,12 @@ namespace Proyecto4.Formularios
 
         private void Menú_Admin_Load(object sender, EventArgs e)
         {
+               Conexion conexion = new Conexion();
+            dataGridViewBitacora.DataSource = conexion.ImprimirConsulta("Select * From BitacoraMovimiento");
+
+
+
+
             GestionFactura gestionFactura = new GestionFactura();
             dataGridViewFacturacion.DataSource = gestionFactura.ListaTodasFacturas();
 
@@ -1558,6 +1565,9 @@ namespace Proyecto4.Formularios
 
         }
 
-        
+        private void tabPage11_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

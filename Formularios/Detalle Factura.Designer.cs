@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.txtCantidadComprada = new MaterialSkin.Controls.MaterialTextBox();
-            this.btnGuardar = new MaterialSkin.Controls.MaterialButton();
             this.dataGridViewDetallefactura = new System.Windows.Forms.DataGridView();
             this.btnBuscarDetalleFactura = new MaterialSkin.Controls.MaterialButton();
             this.txtBuscarDetalleFactura = new MaterialSkin.Controls.MaterialTextBox();
@@ -60,27 +59,6 @@
             this.txtCantidadComprada.Text = "";
             this.txtCantidadComprada.TrailingIcon = null;
             this.txtCantidadComprada.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidadComprada_KeyPress);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.AutoSize = false;
-            this.btnGuardar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnGuardar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnGuardar.Depth = 0;
-            this.btnGuardar.HighEmphasis = true;
-            this.btnGuardar.Icon = null;
-            this.btnGuardar.Location = new System.Drawing.Point(188, 615);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(6, 9, 6, 9);
-            this.btnGuardar.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnGuardar.Size = new System.Drawing.Size(141, 55);
-            this.btnGuardar.TabIndex = 4;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnGuardar.UseAccentColor = false;
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // dataGridViewDetallefactura
             // 
@@ -168,7 +146,7 @@
             this.CBBXIDDetalleFactura.Hint = "ID Datalle Factura";
             this.CBBXIDDetalleFactura.IntegralHeight = false;
             this.CBBXIDDetalleFactura.ItemHeight = 43;
-            this.CBBXIDDetalleFactura.Location = new System.Drawing.Point(114, 235);
+            this.CBBXIDDetalleFactura.Location = new System.Drawing.Point(114, 249);
             this.CBBXIDDetalleFactura.MaxDropDownItems = 4;
             this.CBBXIDDetalleFactura.MouseState = MaterialSkin.MouseState.OUT;
             this.CBBXIDDetalleFactura.Name = "CBBXIDDetalleFactura";
@@ -234,7 +212,7 @@
             this.btnRefrescarDetallefactura.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnRefrescarDetallefactura.Name = "btnRefrescarDetallefactura";
             this.btnRefrescarDetallefactura.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnRefrescarDetallefactura.Size = new System.Drawing.Size(158, 36);
+            this.btnRefrescarDetallefactura.Size = new System.Drawing.Size(102, 36);
             this.btnRefrescarDetallefactura.TabIndex = 44;
             this.btnRefrescarDetallefactura.Text = "Refrescar";
             this.btnRefrescarDetallefactura.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -255,7 +233,6 @@
             this.Controls.Add(this.txtBuscarDetalleFactura);
             this.Controls.Add(this.btnBuscarDetalleFactura);
             this.Controls.Add(this.dataGridViewDetallefactura);
-            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.txtCantidadComprada);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Detale_Factura";
@@ -270,7 +247,6 @@
 
         #endregion
         private MaterialSkin.Controls.MaterialTextBox txtCantidadComprada;
-        private MaterialSkin.Controls.MaterialButton btnGuardar;
         private System.Windows.Forms.DataGridView dataGridViewDetallefactura;
         private MaterialSkin.Controls.MaterialButton btnBuscarDetalleFactura;
         private MaterialSkin.Controls.MaterialTextBox txtBuscarDetalleFactura;

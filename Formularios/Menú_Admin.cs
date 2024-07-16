@@ -494,7 +494,7 @@ namespace Proyecto4.Formularios
         private void btnRefrescarProductos_Click(object sender, EventArgs e)
         {
             GestionProductos gestionproductos = new GestionProductos();
-            dataGridViewMarcas.DataSource = gestionproductos.ListaTodasProductos();
+            dataGridViewProductos.DataSource = gestionproductos.ListaTodasProductos();
         }
 
         private void btnGuardarProveedor_Click(object sender, EventArgs e)

@@ -43,47 +43,7 @@ namespace Proyecto4.Formularios
             CBBXIDFactura.ValueMember = "idFactura";
         }
 
-        
-
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            Login login = new Login();
-            if (!login.CamposVacios(new object[] { CBBXIDDetalleFactura,CBBXIDProducto,txtCantidadComprada,CBBXIDFactura }))
-            {
-                // Obtener los valores de los controles
-
-                int IDDetalleFactura = int.Parse(CBBXIDDetalleFactura.SelectedValue.ToString());
-                int IdProducto = int.Parse(CBBXIDProducto.SelectedValue.ToString());
-                double CantidadComprada = double.Parse(txtCantidadComprada.Text);
-                int IdFactura = int.Parse(CBBXIDFactura.SelectedValue.ToString());
-            
-
-
-                // Crear una instancia de GestionDetalleFactura y llamar al método RegistrarDetalleFactura
-                GestionDetallefactura gestionDetalleFactura = new GestionDetallefactura();
-                string resultado = gestionDetalleFactura.RegistrarDetalleFactura(IDDetalleFactura,IdProducto,CantidadComprada,IdFactura);
-
-                //Refrescamos la lista
-                GestionDetallefactura gestiondetallefactura = new GestionDetallefactura();
-                dataGridViewDetallefactura.DataSource = gestiondetallefactura.ListaTodasDetallesFactura();
-
-
-                CBBXIDDetalleFactura.SelectedItem = null;
-                CBBXIDDetalleFactura.Refresh();
-
-                CBBXIDProducto.SelectedItem = null;
-                CBBXIDProducto.Refresh();
-
-                txtCantidadComprada.Clear();
-
-                CBBXIDFactura.SelectedItem = null;
-                CBBXIDFactura.Refresh();
-
-                // Mostrar el resultado
-                MessageBox.Show(resultado, "Resultado del Detalle Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else { Console.WriteLine("1"); }
-        }
+       
 
         
 

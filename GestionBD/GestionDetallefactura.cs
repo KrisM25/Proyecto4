@@ -102,34 +102,36 @@ namespace Proyecto4.GestionBD
 
         public string ActualizarDetalleFactura(int IdDetalleFact,int idProducto, double CantidadComprada, int IdFactura)
         {
+            string Res = "";
             using (MySqlConnection connection = EstablecerConexion())
             {
                 try
                 {
                     AbrirConexion(connection);
 
-                    using (MySqlCommand cmd = new MySqlCommand("Actualizar_DetalleFactura", connection))
-                    {
+                    MySqlCommand cmd = new MySqlCommand("Actualizar_DetalleFactura", connection);
+                    
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("p_Id_Detalle", IdDetalleFact);
                         cmd.Parameters.AddWithValue("p_Producto", idProducto);
                         cmd.Parameters.AddWithValue("p_Cantidad_Comprada ", CantidadComprada);
                         cmd.Parameters.AddWithValue("p_Factura_Id", IdFactura);
-                       
+
 
                         int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0 ? "Detalle Factura actualizada exitosamente" : "Error al actualizar el Detalle factura";
-                    }
+                        Res = rowsAffected > 0 ? "Detalle Factura actualizada exitosamente" : "Error al actualizar el Detalle factura";
+                    
                 }
                 catch (MySqlException err)
                 {
-                    return $"Ocurrió un error: {err.Message}";
+                    Res = $"Ocurrió un error: {err.Message}";
                 }
                 finally
                 {
                     CerrarConexion(connection);
                 }
             }
+            return Res;
         }
 
 

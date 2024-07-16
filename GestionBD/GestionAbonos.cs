@@ -44,28 +44,29 @@ namespace Proyecto4.GestionBD
 
         public string EliminarAbono(int idAbono)
         {
+            var res = "";
             using (MySqlConnection connection = EstablecerConexion())
             {
                 try
                 {
                     AbrirConexion(connection);
 
-                    MySqlCommand cmd = new MySqlCommand("Eliminar_Abono", connection);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("p_idAbono", idAbono);
+                    MySqlCommand cmd = new MySqlCommand(" DELETE FROM abonos  WHERE idAbonos = @idAbono ;", connection);
+                    //cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idAbono", idAbono);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0 ? "Abono eliminado exitosamente" : "Error al eliminar el abono";
+                    res = rowsAffected > 0 ? "Abono eliminado exitosamente" : "Error al eliminar el abono";
                 }
                 catch (MySqlException err)
                 {
-                    return $"Ocurrió un error: {err.Message}";
+                    res = $"Ocurrió un error: {err.Message}";
                 }
                 finally
                 {
                     CerrarConexion(connection);
                 }
-            }
+            }   return res;
         }
 
 

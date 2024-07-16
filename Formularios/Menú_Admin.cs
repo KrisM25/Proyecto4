@@ -30,6 +30,8 @@ namespace Proyecto4.Formularios
 
 
 
+
+
             GestionFactura gestionFactura = new GestionFactura();
             dataGridViewFacturacion.DataSource = gestionFactura.ListaTodasFacturas();
 
@@ -65,6 +67,12 @@ namespace Proyecto4.Formularios
             CBBXCedulaClientes.DisplayMember = "idCliente";
             CBBXCedulaClientes.ValueMember = "idCliente";
 
+            
+            
+            cbxIdCliente.DataSource = Clientes;
+            cbxIdCliente.DisplayMember = "nombre";
+            cbxIdCliente.ValueMember = "idCliente";
+
 
 
 
@@ -75,11 +83,21 @@ namespace Proyecto4.Formularios
             CBBXNumeroPedido.DisplayMember = "idPedido";
             CBBXNumeroPedido.ValueMember = "idPedido";
 
+            cbxIdPedido.DataSource = Pedidos;
+            cbxIdPedido.DisplayMember = "Nombre_Cliente";
+            cbxIdPedido.ValueMember = "idPedido";
 
+          
 
 
             GestionCréditos GesCredito = new GestionCréditos();
+            var Creditos = GesCredito.ImprimirConsulta("Select * from credito WHERE estado = 'pendiente'");
+            cbxIdCredito.DataSource = Creditos;
+            cbxIdCredito.DisplayMember = "idCredito";
+            cbxIdCredito.ValueMember = "idCredito";
             dataGridViewCreditos.DataSource = GesCredito.ImprimirConsulta("Select * from credito");
+
+
 
 
 
@@ -735,10 +753,10 @@ namespace Proyecto4.Formularios
         private void btnGuardarPedido_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            if (!login.CamposVacios(new object[] { txtIDPedido, txtIdPedidoCliente, ComboBoxEstadoPedido, FechaPedido, txtNombreCliente }))
+            if (!login.CamposVacios(new object[] { txtIDPedido, cbxIdPedido, ComboBoxEstadoPedido, FechaPedido, txtNombreCliente }))
             {
                 GestionPedidos GesPedidos = new GestionPedidos();
-                GesPedidos.RegistrarPedido(Convert.ToInt32(txtIDPedido.Text), txtIdPedidoCliente.Text, ComboBoxEstadoPedido.SelectedItem.ToString(), FechaPedido.Value, txtNombreCliente.Text);
+                GesPedidos.RegistrarPedido(Convert.ToInt32(txtIDPedido.Text), cbxIdPedido.SelectedValue.ToString(), ComboBoxEstadoPedido.SelectedItem.ToString(), FechaPedido.Value, txtNombreCliente.Text);
                 dataGridView2Pedidos.DataSource = GesPedidos.ImprimirConsulta("Select * from pedidos");
             }
             else
@@ -768,11 +786,11 @@ namespace Proyecto4.Formularios
         {
             // Verificar si los campos están vacíos
             Login login = new Login();
-            if (!login.CamposVacios(new object[] { txtIDPedido, txtIdPedidoCliente, ComboBoxEstadoPedido, FechaPedido, txtNombreCliente }))
+            if (!login.CamposVacios(new object[] { txtIDPedido, cbxIdCliente, ComboBoxEstadoPedido, FechaPedido, txtNombreCliente }))
             {
                 // Obtener los valores de los controles
                 int IDPedido = int.Parse(txtIDPedido.Text);
-                string CedulaClientePide = txtIdPedidoCliente.Text;
+                string CedulaClientePide = (string)cbxIdCliente.SelectedValue;
                 string NombreCliente = txtNombreCliente.Text;
                 string ComboEstadoPedi = ComboBoxEstadoPedido.Text;
                 DateTime Fecha = FechaPedido.Value; // Utiliza el valor del DateTimePicker
@@ -790,7 +808,6 @@ namespace Proyecto4.Formularios
 
                 // Limpiar los campos de texto
                 txtIDPedido.Clear();
-                txtIdPedidoCliente.Clear();
                 txtNombreCliente.Clear();
                 ComboBoxEstadoPedido.SelectedIndex = -1; // Desseleccionar el combobox
                 FechaPedido.Value = DateTime.Now; // Resetear la fecha
@@ -859,19 +876,19 @@ namespace Proyecto4.Formularios
         {
             // Mensaje de depuración para verificar el valor del campo de texto
             Console.WriteLine($"Valor de idcredito: '{idcredito.Text}'");
-            Console.WriteLine($"Valor de txtIdPedidoCred: '{txtIdPedidoCred.Text}'");
+            Console.WriteLine($"Valor de txtIdPedidoCred: '{cbxIdPedido.SelectedValue}'");
             Console.WriteLine($"Valor de ComboBoxEstadoCredito: '{ComboBoxEstadoCredito.SelectedItem?.ToString()}'");
             Console.WriteLine($"Valor de FechaCredito: '{FechaCredito.Value}'");
 
             if (!string.IsNullOrWhiteSpace(idcredito.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdPedidoCred.Text) &&
+                !string.IsNullOrWhiteSpace(cbxIdPedido. SelectedValue.ToString()) &&
                 ComboBoxEstadoCredito.SelectedItem != null &&
                 FechaCredito.Value != null)
             {
                 try
                 {
                     int IdCredito = Convert.ToInt32(idcredito.Text);
-                    int IdPedidoCred = Convert.ToInt32(txtIdPedidoCred.Text);
+                    int IdPedidoCred = Convert.ToInt32(cbxIdPedido.SelectedValue);
                     string Estado = ComboBoxEstadoCredito.SelectedItem.ToString();
                     DateTime Fecha = FechaCredito.Value;
 
@@ -883,7 +900,7 @@ namespace Proyecto4.Formularios
                     dataGridViewCreditos.DataSource = GesCreditos.ListaTodosCreditos();
 
                     idcredito.Clear();
-                    txtIdPedidoCred.Clear();
+                    cbxIdPedido.SelectedIndex = -1;
                     ComboBoxEstadoCredito.SelectedIndex = -1;
                     FechaCredito.Value = DateTime.Now;
                 }
@@ -919,19 +936,19 @@ namespace Proyecto4.Formularios
         {
             Console.WriteLine("Iniciando validación de campos...");
             Console.WriteLine($"Valor de idcredito: '{idcredito.Text}'");
-            Console.WriteLine($"Valor de txtIdPedidoCred: '{txtIdPedidoCred.Text}'");
+            Console.WriteLine($"Valor de txtIdPedidoCred: '{cbxIdPedido.SelectedValue}'");
             Console.WriteLine($"Valor de ComboBoxEstadoCredito: '{ComboBoxEstadoCredito.SelectedItem?.ToString()}'");
             Console.WriteLine($"Valor de FechaCredito: '{FechaCredito.Value}'");
 
             if (!string.IsNullOrWhiteSpace(idcredito.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdPedidoCred.Text) &&
+                !string.IsNullOrWhiteSpace(cbxIdPedido.SelectedValue.ToString()) &&
                 ComboBoxEstadoCredito.SelectedItem != null &&
                 FechaCredito.Value != null)
             {
                 try
                 {
                     int IdCredito = Convert.ToInt32(idcredito.Text);
-                    int IdPedidoCred = Convert.ToInt32(txtIdPedidoCred.Text);
+                    int IdPedidoCred = Convert.ToInt32(cbxIdPedido.SelectedValue);
                     string Estado = ComboBoxEstadoCredito.SelectedItem.ToString();
                     DateTime Fecha = FechaCredito.Value;
 
@@ -943,7 +960,7 @@ namespace Proyecto4.Formularios
                     dataGridViewCreditos.DataSource = GesCredito.ListaTodosCreditos();
 
                     idcredito.Clear();
-                    txtIdPedidoCred.Clear();
+                    cbxIdPedido.SelectedIndex = -1;
                     ComboBoxEstadoCredito.SelectedIndex = -1;
                     FechaCredito.Value = DateTime.Now;
 
@@ -965,10 +982,10 @@ namespace Proyecto4.Formularios
         private void btnGuardarCredito_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            if (!login.CamposVacios(new object[] { txtIdCredito, txtIdPedidoCred, ComboBoxEstadoCredito, FechaCredito }))
+            if (!login.CamposVacios(new object[] { cbxIdCredito, cbxIdPedido, ComboBoxEstadoCredito, FechaCredito }))
             {
                 GestionCréditos GesCreditos = new GestionCréditos();
-                GesCreditos.RegistrarCredito(Convert.ToInt32(txtIdCredito.Text), Convert.ToInt32(txtIdPedidoCred.Text), ComboBoxEstadoCredito.SelectedItem.ToString(), FechaCredito.Value);
+                GesCreditos.RegistrarCredito(Convert.ToInt32(cbxIdCredito.Text), Convert.ToInt32(cbxIdPedido.SelectedValue), ComboBoxEstadoCredito.SelectedItem.ToString(), FechaCredito.Value);
                 dataGridViewCreditos.DataSource = GesCreditos.ImprimirConsulta("SELECT * FROM credito");
             }
             else
@@ -1027,10 +1044,10 @@ namespace Proyecto4.Formularios
         private void btnGuardarAbono_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            if (!login.CamposVacios(new object[] { txtIdAbono, txtMonto, ComboTipoPago, txtNumComprobante, txtIdCredito, dateTimePickerAbono }))
+            if (!login.CamposVacios(new object[] { txtIdAbono, txtMonto, ComboTipoPago, txtNumComprobante, cbxIdCredito, dateTimePickerAbono }))
             {
                 GestionAbonos GesAbonos = new GestionAbonos();
-                GesAbonos.RegistrarAbono(Convert.ToInt32(txtIdAbono.Text), Convert.ToDouble(txtMonto.Text), ComboTipoPago.Text, txtNumComprobante.Text, Convert.ToInt32(txtIdCredito.Text), dateTimePickerAbono.Value);
+                GesAbonos.RegistrarAbono(Convert.ToInt32(txtIdAbono.Text), Convert.ToDouble(txtMonto.Text), ComboTipoPago.Text, txtNumComprobante.Text, Convert.ToInt32(cbxIdCredito.SelectedValue), dateTimePickerAbono.Value);
                 dataGridViewAbonos.DataSource = GesAbonos.ImprimirConsulta("Select * from abonos");
             }
             else
@@ -1116,14 +1133,14 @@ namespace Proyecto4.Formularios
         {
             // Verificar si los campos están vacíos
             Login login = new Login();
-            if (!login.CamposVacios(new object[] { txtIdAbono, txtMonto, ComboTipoPago, txtNumComprobante, txtIdCredito, dateTimePickerAbono }))
+            if (!login.CamposVacios(new object[] { txtIdAbono, txtMonto, ComboTipoPago, txtNumComprobante, cbxIdCredito, dateTimePickerAbono }))
             {
                 // Obtener los valores de los controles
                 int IdAbono = int.Parse(txtIdAbono.Text);
                 int Monto = int.Parse(txtMonto.Text);
                 string TipoPago = ComboTipoPago.Text;
                 string NumComprobante = txtNumComprobante.Text;
-                int IdCredito = int.Parse(txtIdCredito.Text);
+                int IdCredito = int.Parse(cbxIdCredito.SelectedValue.ToString());
                 DateTime Fecha = dateTimePickerAbono.Value;
 
                 // Instanciar la clase para gestionar abonos
@@ -1139,7 +1156,7 @@ namespace Proyecto4.Formularios
                 txtIdAbono.Clear();
                 txtMonto.Clear();
                 txtNumComprobante.Clear();
-                txtIdCredito.Clear();
+                cbxIdCredito.SelectedIndex = -1;
                 ComboTipoPago.SelectedIndex = -1; // Desseleccionar el combobox
                 dateTimePickerAbono.Value = DateTime.Now; // Resetear la fecha
 

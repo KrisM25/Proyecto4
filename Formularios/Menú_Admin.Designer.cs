@@ -88,7 +88,6 @@
             this.btnActualizarAbono = new MaterialSkin.Controls.MaterialButton();
             this.dataGridViewAbonos = new System.Windows.Forms.DataGridView();
             this.ComboTipoPago = new MaterialSkin.Controls.MaterialComboBox();
-            this.txtIdCredito = new MaterialSkin.Controls.MaterialTextBox();
             this.txtNumComprobante = new MaterialSkin.Controls.MaterialTextBox();
             this.txtMonto = new MaterialSkin.Controls.MaterialTextBox();
             this.txtIdAbono = new MaterialSkin.Controls.MaterialTextBox();
@@ -106,7 +105,6 @@
             this.btnRegistrarCredito = new MaterialSkin.Controls.MaterialButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtIdPedidoCred = new MaterialSkin.Controls.MaterialTextBox();
             this.idcredito = new MaterialSkin.Controls.MaterialTextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.materialCard3 = new MaterialSkin.Controls.MaterialCard();
@@ -124,7 +122,6 @@
             this.dataGridView2Pedidos = new System.Windows.Forms.DataGridView();
             this.btnGuardarPedido = new MaterialSkin.Controls.MaterialButton();
             this.txtNombreCliente = new MaterialSkin.Controls.MaterialTextBox();
-            this.txtIdPedidoCliente = new MaterialSkin.Controls.MaterialTextBox();
             this.txtIDPedido = new MaterialSkin.Controls.MaterialTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.materialCard2 = new MaterialSkin.Controls.MaterialCard();
@@ -182,6 +179,9 @@
             this.btnCrearUsuario = new MaterialSkin.Controls.MaterialButton();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.dataGridViewBitacora = new System.Windows.Forms.DataGridView();
+            this.cbxIdPedido = new MaterialSkin.Controls.MaterialComboBox();
+            this.cbxIdCredito = new MaterialSkin.Controls.MaterialComboBox();
+            this.cbxIdCliente = new MaterialSkin.Controls.MaterialComboBox();
             this.tabPage3.SuspendLayout();
             this.materialCard8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProveedores)).BeginInit();
@@ -1057,6 +1057,7 @@
             // materialCard5
             // 
             this.materialCard5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard5.Controls.Add(this.cbxIdCredito);
             this.materialCard5.Controls.Add(this.dateTimePickerAbono);
             this.materialCard5.Controls.Add(this.txtBuscarAbono);
             this.materialCard5.Controls.Add(this.btnBuscarAbono);
@@ -1067,7 +1068,6 @@
             this.materialCard5.Controls.Add(this.btnActualizarAbono);
             this.materialCard5.Controls.Add(this.dataGridViewAbonos);
             this.materialCard5.Controls.Add(this.ComboTipoPago);
-            this.materialCard5.Controls.Add(this.txtIdCredito);
             this.materialCard5.Controls.Add(this.txtNumComprobante);
             this.materialCard5.Controls.Add(this.txtMonto);
             this.materialCard5.Controls.Add(this.txtIdAbono);
@@ -1234,25 +1234,6 @@
             this.ComboTipoPago.StartIndex = 0;
             this.ComboTipoPago.TabIndex = 20;
             // 
-            // txtIdCredito
-            // 
-            this.txtIdCredito.AnimateReadOnly = false;
-            this.txtIdCredito.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIdCredito.Depth = 0;
-            this.txtIdCredito.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtIdCredito.Hint = "ID Crédito";
-            this.txtIdCredito.LeadingIcon = null;
-            this.txtIdCredito.Location = new System.Drawing.Point(127, 397);
-            this.txtIdCredito.MaxLength = 50;
-            this.txtIdCredito.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtIdCredito.Multiline = false;
-            this.txtIdCredito.Name = "txtIdCredito";
-            this.txtIdCredito.Size = new System.Drawing.Size(206, 50);
-            this.txtIdCredito.TabIndex = 18;
-            this.txtIdCredito.Text = "";
-            this.txtIdCredito.TrailingIcon = null;
-            this.txtIdCredito.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdCredito_KeyPress);
-            // 
             // txtNumComprobante
             // 
             this.txtNumComprobante.AnimateReadOnly = false;
@@ -1345,6 +1326,7 @@
             // materialCard4
             // 
             this.materialCard4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard4.Controls.Add(this.cbxIdPedido);
             this.materialCard4.Controls.Add(this.FechaCredito);
             this.materialCard4.Controls.Add(this.ComboBoxEstadoCredito);
             this.materialCard4.Controls.Add(this.txtBuscarCredito);
@@ -1356,7 +1338,6 @@
             this.materialCard4.Controls.Add(this.btnRegistrarCredito);
             this.materialCard4.Controls.Add(this.label7);
             this.materialCard4.Controls.Add(this.label8);
-            this.materialCard4.Controls.Add(this.txtIdPedidoCred);
             this.materialCard4.Controls.Add(this.idcredito);
             this.materialCard4.Depth = 0;
             this.materialCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -1539,26 +1520,6 @@
             this.label8.TabIndex = 15;
             this.label8.Text = "Créditos";
             // 
-            // txtIdPedidoCred
-            // 
-            this.txtIdPedidoCred.AnimateReadOnly = false;
-            this.txtIdPedidoCred.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIdPedidoCred.Depth = 0;
-            this.txtIdPedidoCred.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtIdPedidoCred.Hint = "ID Pedido";
-            this.txtIdPedidoCred.LeadingIcon = null;
-            this.txtIdPedidoCred.Location = new System.Drawing.Point(123, 260);
-            this.txtIdPedidoCred.MaxLength = 50;
-            this.txtIdPedidoCred.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtIdPedidoCred.Multiline = false;
-            this.txtIdPedidoCred.Name = "txtIdPedidoCred";
-            this.txtIdPedidoCred.Size = new System.Drawing.Size(217, 50);
-            this.txtIdPedidoCred.TabIndex = 12;
-            this.txtIdPedidoCred.Text = "";
-            this.txtIdPedidoCred.TrailingIcon = null;
-            this.txtIdPedidoCred.TextChanged += new System.EventHandler(this.txtIdPedidoCred_TextChanged);
-            this.txtIdPedidoCred.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdPedidoCred_KeyPress);
-            // 
             // idcredito
             // 
             this.idcredito.AnimateReadOnly = false;
@@ -1593,6 +1554,7 @@
             // materialCard3
             // 
             this.materialCard3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard3.Controls.Add(this.cbxIdCliente);
             this.materialCard3.Controls.Add(this.FechaPedido);
             this.materialCard3.Controls.Add(this.ComboBoxEstadoPedido);
             this.materialCard3.Controls.Add(this.txtBuscarPedido);
@@ -1607,7 +1569,6 @@
             this.materialCard3.Controls.Add(this.dataGridView2Pedidos);
             this.materialCard3.Controls.Add(this.btnGuardarPedido);
             this.materialCard3.Controls.Add(this.txtNombreCliente);
-            this.materialCard3.Controls.Add(this.txtIdPedidoCliente);
             this.materialCard3.Controls.Add(this.txtIDPedido);
             this.materialCard3.Depth = 0;
             this.materialCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -1837,25 +1798,6 @@
             this.txtNombreCliente.Text = "";
             this.txtNombreCliente.TrailingIcon = null;
             this.txtNombreCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreCliente_KeyPress);
-            // 
-            // txtIdPedidoCliente
-            // 
-            this.txtIdPedidoCliente.AnimateReadOnly = false;
-            this.txtIdPedidoCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIdPedidoCliente.Depth = 0;
-            this.txtIdPedidoCliente.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtIdPedidoCliente.Hint = "ID Cliente";
-            this.txtIdPedidoCliente.LeadingIcon = null;
-            this.txtIdPedidoCliente.Location = new System.Drawing.Point(99, 251);
-            this.txtIdPedidoCliente.MaxLength = 50;
-            this.txtIdPedidoCliente.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtIdPedidoCliente.Multiline = false;
-            this.txtIdPedidoCliente.Name = "txtIdPedidoCliente";
-            this.txtIdPedidoCliente.Size = new System.Drawing.Size(209, 50);
-            this.txtIdPedidoCliente.TabIndex = 13;
-            this.txtIdPedidoCliente.Text = "";
-            this.txtIdPedidoCliente.TrailingIcon = null;
-            this.txtIdPedidoCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdPedidoCliente_KeyPress);
             // 
             // txtIDPedido
             // 
@@ -2794,6 +2736,72 @@
             this.dataGridViewBitacora.Size = new System.Drawing.Size(996, 448);
             this.dataGridViewBitacora.TabIndex = 0;
             // 
+            // cbxIdPedido
+            // 
+            this.cbxIdPedido.AutoResize = false;
+            this.cbxIdPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbxIdPedido.Depth = 0;
+            this.cbxIdPedido.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbxIdPedido.DropDownHeight = 174;
+            this.cbxIdPedido.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxIdPedido.DropDownWidth = 121;
+            this.cbxIdPedido.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbxIdPedido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbxIdPedido.FormattingEnabled = true;
+            this.cbxIdPedido.IntegralHeight = false;
+            this.cbxIdPedido.ItemHeight = 43;
+            this.cbxIdPedido.Location = new System.Drawing.Point(123, 262);
+            this.cbxIdPedido.MaxDropDownItems = 4;
+            this.cbxIdPedido.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbxIdPedido.Name = "cbxIdPedido";
+            this.cbxIdPedido.Size = new System.Drawing.Size(217, 49);
+            this.cbxIdPedido.StartIndex = 0;
+            this.cbxIdPedido.TabIndex = 26;
+            // 
+            // cbxIdCredito
+            // 
+            this.cbxIdCredito.AutoResize = false;
+            this.cbxIdCredito.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbxIdCredito.Depth = 0;
+            this.cbxIdCredito.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbxIdCredito.DropDownHeight = 174;
+            this.cbxIdCredito.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxIdCredito.DropDownWidth = 121;
+            this.cbxIdCredito.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbxIdCredito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbxIdCredito.FormattingEnabled = true;
+            this.cbxIdCredito.IntegralHeight = false;
+            this.cbxIdCredito.ItemHeight = 43;
+            this.cbxIdCredito.Location = new System.Drawing.Point(127, 409);
+            this.cbxIdCredito.MaxDropDownItems = 4;
+            this.cbxIdCredito.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbxIdCredito.Name = "cbxIdCredito";
+            this.cbxIdCredito.Size = new System.Drawing.Size(206, 49);
+            this.cbxIdCredito.StartIndex = 0;
+            this.cbxIdCredito.TabIndex = 30;
+            // 
+            // cbxIdCliente
+            // 
+            this.cbxIdCliente.AutoResize = false;
+            this.cbxIdCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbxIdCliente.Depth = 0;
+            this.cbxIdCliente.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbxIdCliente.DropDownHeight = 174;
+            this.cbxIdCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxIdCliente.DropDownWidth = 121;
+            this.cbxIdCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbxIdCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbxIdCliente.FormattingEnabled = true;
+            this.cbxIdCliente.IntegralHeight = false;
+            this.cbxIdCliente.ItemHeight = 43;
+            this.cbxIdCliente.Location = new System.Drawing.Point(99, 251);
+            this.cbxIdCliente.MaxDropDownItems = 4;
+            this.cbxIdCliente.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbxIdCliente.Name = "cbxIdCliente";
+            this.cbxIdCliente.Size = new System.Drawing.Size(209, 49);
+            this.cbxIdCliente.StartIndex = 0;
+            this.cbxIdCliente.TabIndex = 30;
+            // 
             // Menú_Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2893,7 +2901,6 @@
         private MaterialSkin.Controls.MaterialButton btnActualizarAbono;
         private System.Windows.Forms.DataGridView dataGridViewAbonos;
         private MaterialSkin.Controls.MaterialComboBox ComboTipoPago;
-        private MaterialSkin.Controls.MaterialTextBox txtIdCredito;
         private MaterialSkin.Controls.MaterialTextBox txtNumComprobante;
         private MaterialSkin.Controls.MaterialTextBox txtMonto;
         private MaterialSkin.Controls.MaterialTextBox txtIdAbono;
@@ -2905,7 +2912,6 @@
         private MaterialSkin.Controls.MaterialButton btnRegistrarCredito;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private MaterialSkin.Controls.MaterialTextBox txtIdPedidoCred;
         private MaterialSkin.Controls.MaterialTextBox idcredito;
         private MaterialSkin.Controls.MaterialButton btnEliminarPedido;
         private MaterialSkin.Controls.MaterialButton btnActualizarPedido;
@@ -2915,7 +2921,6 @@
         private System.Windows.Forms.DataGridView dataGridView2Pedidos;
         private MaterialSkin.Controls.MaterialButton btnGuardarPedido;
         private MaterialSkin.Controls.MaterialTextBox txtNombreCliente;
-        private MaterialSkin.Controls.MaterialTextBox txtIdPedidoCliente;
         private MaterialSkin.Controls.MaterialTextBox txtIDPedido;
         private MaterialSkin.Controls.MaterialButton btnEliminarCliente;
         private MaterialSkin.Controls.MaterialButton btnActualizarCliente;
@@ -3004,5 +3009,8 @@
         private MaterialSkin.Controls.MaterialButton btnRefrescarMarcas;
         private System.Windows.Forms.TabPage tabPage11;
         private System.Windows.Forms.DataGridView dataGridViewBitacora;
+        private MaterialSkin.Controls.MaterialComboBox cbxIdCredito;
+        private MaterialSkin.Controls.MaterialComboBox cbxIdPedido;
+        private MaterialSkin.Controls.MaterialComboBox cbxIdCliente;
     }
 }

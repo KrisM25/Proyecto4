@@ -155,7 +155,13 @@ namespace Proyecto4.Formularios
             else { Console.WriteLine("1"); }
         }
 
-        
+        private void btnRefrescarDetallefactura_Click(object sender, EventArgs e)
+        {
+            GestionDetallefactura gestionDetallefact = new GestionDetallefactura();
+            dataGridViewDetallefactura.DataSource = gestionDetallefact.ListaTodasDetallesFactura();
+        }
+
+
 
         private void txtCantidadComprada_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -176,5 +182,7 @@ namespace Proyecto4.Formularios
                 e.Handled = true;
             }
         }
+
+        
     }
 }

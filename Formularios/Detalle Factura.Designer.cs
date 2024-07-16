@@ -37,6 +37,7 @@
             this.CBBXIDDetalleFactura = new MaterialSkin.Controls.MaterialComboBox();
             this.CBBXIDProducto = new MaterialSkin.Controls.MaterialComboBox();
             this.CBBXIDFactura = new MaterialSkin.Controls.MaterialComboBox();
+            this.btnRefrescarDetallefactura = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetallefactura)).BeginInit();
             this.SuspendLayout();
             // 
@@ -161,7 +162,7 @@
             this.CBBXIDDetalleFactura.DropDownHeight = 174;
             this.CBBXIDDetalleFactura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBBXIDDetalleFactura.DropDownWidth = 121;
-            this.CBBXIDDetalleFactura.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CBBXIDDetalleFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.CBBXIDDetalleFactura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.CBBXIDDetalleFactura.FormattingEnabled = true;
             this.CBBXIDDetalleFactura.Hint = "ID Datalle Factura";
@@ -184,7 +185,7 @@
             this.CBBXIDProducto.DropDownHeight = 174;
             this.CBBXIDProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBBXIDProducto.DropDownWidth = 121;
-            this.CBBXIDProducto.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CBBXIDProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.CBBXIDProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.CBBXIDProducto.FormattingEnabled = true;
             this.CBBXIDProducto.Hint = "Nombre Producto";
@@ -207,7 +208,7 @@
             this.CBBXIDFactura.DropDownHeight = 174;
             this.CBBXIDFactura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBBXIDFactura.DropDownWidth = 121;
-            this.CBBXIDFactura.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CBBXIDFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.CBBXIDFactura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.CBBXIDFactura.FormattingEnabled = true;
             this.CBBXIDFactura.Hint = "ID de Factura";
@@ -221,11 +222,32 @@
             this.CBBXIDFactura.StartIndex = 0;
             this.CBBXIDFactura.TabIndex = 43;
             // 
+            // btnRefrescarDetallefactura
+            // 
+            this.btnRefrescarDetallefactura.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnRefrescarDetallefactura.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnRefrescarDetallefactura.Depth = 0;
+            this.btnRefrescarDetallefactura.HighEmphasis = true;
+            this.btnRefrescarDetallefactura.Icon = null;
+            this.btnRefrescarDetallefactura.Location = new System.Drawing.Point(615, 702);
+            this.btnRefrescarDetallefactura.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnRefrescarDetallefactura.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnRefrescarDetallefactura.Name = "btnRefrescarDetallefactura";
+            this.btnRefrescarDetallefactura.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnRefrescarDetallefactura.Size = new System.Drawing.Size(158, 36);
+            this.btnRefrescarDetallefactura.TabIndex = 44;
+            this.btnRefrescarDetallefactura.Text = "Refrescar";
+            this.btnRefrescarDetallefactura.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnRefrescarDetallefactura.UseAccentColor = false;
+            this.btnRefrescarDetallefactura.UseVisualStyleBackColor = true;
+            this.btnRefrescarDetallefactura.Click += new System.EventHandler(this.btnRefrescarDetallefactura_Click);
+            // 
             // Detale_Factura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1306, 792);
+            this.Controls.Add(this.btnRefrescarDetallefactura);
             this.Controls.Add(this.CBBXIDFactura);
             this.Controls.Add(this.CBBXIDProducto);
             this.Controls.Add(this.CBBXIDDetalleFactura);
@@ -256,5 +278,6 @@
         private MaterialSkin.Controls.MaterialComboBox CBBXIDDetalleFactura;
         private MaterialSkin.Controls.MaterialComboBox CBBXIDProducto;
         private MaterialSkin.Controls.MaterialComboBox CBBXIDFactura;
+        private MaterialSkin.Controls.MaterialButton btnRefrescarDetallefactura;
     }
 }

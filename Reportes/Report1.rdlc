@@ -486,7 +486,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!IdFactura.Value</Value>
+                              <Value>=First(Fields!idFactura.Value, "DataSetFacturacion")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -505,6 +505,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1204,8 +1205,8 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="IdFactura">
-          <DataField>IdFactura</DataField>
+        <Field Name="idFactura">
+          <DataField>idFactura</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="idCliente">

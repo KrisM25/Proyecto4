@@ -15,14 +15,14 @@ namespace Proyecto4.GestionBD
         // Función para registrar una nueva factura
         public string RegistrarFactura(string CedulaCliente, string CodProduc, int UnidadesCompradas, string Nuevo, double DescuentoApli, int NumeroPedido,double CostaEnvio,string EstadoFact)
         {
+            string Res = "";
             using (MySqlConnection connection = EstablecerConexion())
             {
                 try
                 {
                     AbrirConexion(connection);
 
-                    using (MySqlCommand cmd = new MySqlCommand("SP_facturacion", connection))
-                    {
+                    MySqlCommand cmd = new MySqlCommand("SP_facturacion", connection);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("cedula_cliente", CedulaCliente);
                         cmd.Parameters.AddWithValue("cod_prod", CodProduc);
@@ -35,18 +35,19 @@ namespace Proyecto4.GestionBD
 
 
                         int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0 ? "Factura registrada exitosamente" : "Error al registrar la factura";
-                    }
+                        Res = rowsAffected > 0 ? "Factura registrada exitosamente" : "Error al registrar la factura";
+                    
                 }
                 catch (MySqlException err)
                 {
-                    return $"Ocurrió un error: {err.Message}";
+                    Res = $"Ocurrió un error: {err.Message}";
                 }
                 finally
                 {
                     CerrarConexion(connection);
                 }
             }
+            return Res;
         }
 
         

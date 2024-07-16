@@ -28,37 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtIDProducto = new MaterialSkin.Controls.MaterialTextBox();
             this.txtCantidadComprada = new MaterialSkin.Controls.MaterialTextBox();
-            this.txtIDFactura = new MaterialSkin.Controls.MaterialTextBox();
             this.btnGuardar = new MaterialSkin.Controls.MaterialButton();
             this.dataGridViewDetallefactura = new System.Windows.Forms.DataGridView();
             this.btnBuscarDetalleFactura = new MaterialSkin.Controls.MaterialButton();
             this.txtBuscarDetalleFactura = new MaterialSkin.Controls.MaterialTextBox();
             this.btnActualizarDetalleFactura = new MaterialSkin.Controls.MaterialButton();
-            this.txtIdDetalleFactura = new MaterialSkin.Controls.MaterialTextBox();
+            this.CBBXIDDetalleFactura = new MaterialSkin.Controls.MaterialComboBox();
+            this.CBBXIDProducto = new MaterialSkin.Controls.MaterialComboBox();
+            this.CBBXIDFactura = new MaterialSkin.Controls.MaterialComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetallefactura)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtIDProducto
-            // 
-            this.txtIDProducto.AnimateReadOnly = false;
-            this.txtIDProducto.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIDProducto.Depth = 0;
-            this.txtIDProducto.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtIDProducto.Hint = "ID Producto";
-            this.txtIDProducto.LeadingIcon = null;
-            this.txtIDProducto.Location = new System.Drawing.Point(114, 323);
-            this.txtIDProducto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtIDProducto.MaxLength = 50;
-            this.txtIDProducto.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtIDProducto.Multiline = false;
-            this.txtIDProducto.Name = "txtIDProducto";
-            this.txtIDProducto.Size = new System.Drawing.Size(298, 50);
-            this.txtIDProducto.TabIndex = 1;
-            this.txtIDProducto.Text = "";
-            this.txtIDProducto.TrailingIcon = null;
-            this.txtIDProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIDProducto_KeyPress);
             // 
             // txtCantidadComprada
             // 
@@ -79,26 +59,6 @@
             this.txtCantidadComprada.Text = "";
             this.txtCantidadComprada.TrailingIcon = null;
             this.txtCantidadComprada.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidadComprada_KeyPress);
-            // 
-            // txtIDFactura
-            // 
-            this.txtIDFactura.AnimateReadOnly = false;
-            this.txtIDFactura.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIDFactura.Depth = 0;
-            this.txtIDFactura.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtIDFactura.Hint = "ID Factura";
-            this.txtIDFactura.LeadingIcon = null;
-            this.txtIDFactura.Location = new System.Drawing.Point(114, 495);
-            this.txtIDFactura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtIDFactura.MaxLength = 50;
-            this.txtIDFactura.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtIDFactura.Multiline = false;
-            this.txtIDFactura.Name = "txtIDFactura";
-            this.txtIDFactura.Size = new System.Drawing.Size(298, 50);
-            this.txtIDFactura.TabIndex = 3;
-            this.txtIDFactura.Text = "";
-            this.txtIDFactura.TrailingIcon = null;
-            this.txtIDFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIDFactura_KeyPress);
             // 
             // btnGuardar
             // 
@@ -192,39 +152,89 @@
             this.btnActualizarDetalleFactura.UseVisualStyleBackColor = true;
             this.btnActualizarDetalleFactura.Click += new System.EventHandler(this.btnActualizarDetalleFactura_Click);
             // 
-            // txtIdDetalleFactura
+            // CBBXIDDetalleFactura
             // 
-            this.txtIdDetalleFactura.AnimateReadOnly = false;
-            this.txtIdDetalleFactura.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIdDetalleFactura.Depth = 0;
-            this.txtIdDetalleFactura.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtIdDetalleFactura.Hint = "ID Detalle Factura";
-            this.txtIdDetalleFactura.LeadingIcon = null;
-            this.txtIdDetalleFactura.Location = new System.Drawing.Point(114, 239);
-            this.txtIdDetalleFactura.MaxLength = 50;
-            this.txtIdDetalleFactura.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtIdDetalleFactura.Multiline = false;
-            this.txtIdDetalleFactura.Name = "txtIdDetalleFactura";
-            this.txtIdDetalleFactura.ReadOnly = true;
-            this.txtIdDetalleFactura.Size = new System.Drawing.Size(298, 50);
-            this.txtIdDetalleFactura.TabIndex = 40;
-            this.txtIdDetalleFactura.Text = "";
-            this.txtIdDetalleFactura.TrailingIcon = null;
+            this.CBBXIDDetalleFactura.AutoResize = false;
+            this.CBBXIDDetalleFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CBBXIDDetalleFactura.Depth = 0;
+            this.CBBXIDDetalleFactura.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CBBXIDDetalleFactura.DropDownHeight = 174;
+            this.CBBXIDDetalleFactura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBBXIDDetalleFactura.DropDownWidth = 121;
+            this.CBBXIDDetalleFactura.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CBBXIDDetalleFactura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CBBXIDDetalleFactura.FormattingEnabled = true;
+            this.CBBXIDDetalleFactura.Hint = "ID Datalle Factura";
+            this.CBBXIDDetalleFactura.IntegralHeight = false;
+            this.CBBXIDDetalleFactura.ItemHeight = 43;
+            this.CBBXIDDetalleFactura.Location = new System.Drawing.Point(114, 235);
+            this.CBBXIDDetalleFactura.MaxDropDownItems = 4;
+            this.CBBXIDDetalleFactura.MouseState = MaterialSkin.MouseState.OUT;
+            this.CBBXIDDetalleFactura.Name = "CBBXIDDetalleFactura";
+            this.CBBXIDDetalleFactura.Size = new System.Drawing.Size(298, 49);
+            this.CBBXIDDetalleFactura.StartIndex = 0;
+            this.CBBXIDDetalleFactura.TabIndex = 41;
+            // 
+            // CBBXIDProducto
+            // 
+            this.CBBXIDProducto.AutoResize = false;
+            this.CBBXIDProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CBBXIDProducto.Depth = 0;
+            this.CBBXIDProducto.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CBBXIDProducto.DropDownHeight = 174;
+            this.CBBXIDProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBBXIDProducto.DropDownWidth = 121;
+            this.CBBXIDProducto.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CBBXIDProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CBBXIDProducto.FormattingEnabled = true;
+            this.CBBXIDProducto.Hint = "Nombre Producto";
+            this.CBBXIDProducto.IntegralHeight = false;
+            this.CBBXIDProducto.ItemHeight = 43;
+            this.CBBXIDProducto.Location = new System.Drawing.Point(114, 322);
+            this.CBBXIDProducto.MaxDropDownItems = 4;
+            this.CBBXIDProducto.MouseState = MaterialSkin.MouseState.OUT;
+            this.CBBXIDProducto.Name = "CBBXIDProducto";
+            this.CBBXIDProducto.Size = new System.Drawing.Size(298, 49);
+            this.CBBXIDProducto.StartIndex = 0;
+            this.CBBXIDProducto.TabIndex = 42;
+            // 
+            // CBBXIDFactura
+            // 
+            this.CBBXIDFactura.AutoResize = false;
+            this.CBBXIDFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CBBXIDFactura.Depth = 0;
+            this.CBBXIDFactura.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CBBXIDFactura.DropDownHeight = 174;
+            this.CBBXIDFactura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBBXIDFactura.DropDownWidth = 121;
+            this.CBBXIDFactura.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CBBXIDFactura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CBBXIDFactura.FormattingEnabled = true;
+            this.CBBXIDFactura.Hint = "ID de Factura";
+            this.CBBXIDFactura.IntegralHeight = false;
+            this.CBBXIDFactura.ItemHeight = 43;
+            this.CBBXIDFactura.Location = new System.Drawing.Point(114, 499);
+            this.CBBXIDFactura.MaxDropDownItems = 4;
+            this.CBBXIDFactura.MouseState = MaterialSkin.MouseState.OUT;
+            this.CBBXIDFactura.Name = "CBBXIDFactura";
+            this.CBBXIDFactura.Size = new System.Drawing.Size(298, 49);
+            this.CBBXIDFactura.StartIndex = 0;
+            this.CBBXIDFactura.TabIndex = 43;
             // 
             // Detale_Factura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1306, 792);
-            this.Controls.Add(this.txtIdDetalleFactura);
+            this.Controls.Add(this.CBBXIDFactura);
+            this.Controls.Add(this.CBBXIDProducto);
+            this.Controls.Add(this.CBBXIDDetalleFactura);
             this.Controls.Add(this.btnActualizarDetalleFactura);
             this.Controls.Add(this.txtBuscarDetalleFactura);
             this.Controls.Add(this.btnBuscarDetalleFactura);
             this.Controls.Add(this.dataGridViewDetallefactura);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.txtIDFactura);
             this.Controls.Add(this.txtCantidadComprada);
-            this.Controls.Add(this.txtIDProducto);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Detale_Factura";
             this.Padding = new System.Windows.Forms.Padding(4, 98, 4, 5);
@@ -237,14 +247,14 @@
         }
 
         #endregion
-        private MaterialSkin.Controls.MaterialTextBox txtIDProducto;
         private MaterialSkin.Controls.MaterialTextBox txtCantidadComprada;
-        private MaterialSkin.Controls.MaterialTextBox txtIDFactura;
         private MaterialSkin.Controls.MaterialButton btnGuardar;
         private System.Windows.Forms.DataGridView dataGridViewDetallefactura;
         private MaterialSkin.Controls.MaterialButton btnBuscarDetalleFactura;
         private MaterialSkin.Controls.MaterialTextBox txtBuscarDetalleFactura;
         private MaterialSkin.Controls.MaterialButton btnActualizarDetalleFactura;
-        private MaterialSkin.Controls.MaterialTextBox txtIdDetalleFactura;
+        private MaterialSkin.Controls.MaterialComboBox CBBXIDDetalleFactura;
+        private MaterialSkin.Controls.MaterialComboBox CBBXIDProducto;
+        private MaterialSkin.Controls.MaterialComboBox CBBXIDFactura;
     }
 }

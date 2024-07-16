@@ -27,26 +27,61 @@ namespace Proyecto4.Formularios
             dataGridViewFacturacion.DataSource = gestionFactura.ListaTodasFacturas();
 
             GestionMarcas gestionmarca = new GestionMarcas();
-            dataGridViewMarcas.DataSource = gestionmarca.ListaTodasMarcas();
+            var Marcas = gestionmarca.ListaTodasMarcas();
+            dataGridViewMarcas.DataSource = Marcas;
+            CBBXIDMarca.DataSource = Marcas;
+            CBBXIDMarca.DisplayMember = "nombre_marca";
+            CBBXIDMarca.ValueMember = "id";
 
-            GestionProductos gestionproducto = new GestionProductos();
-            dataGridViewProductos.DataSource = gestionproducto.ListaTodasProductos();
+            GestionProductos gestionproducto = new GestionProductos();// Copiar lo mismo en cada lugar que ocupe un comboox
+            var Productos = gestionproducto.ListaTodasProductos();
+            dataGridViewProductos.DataSource = Productos;
+            CBBXCod_Producto.DataSource = Productos;
+            CBBXCod_Producto.DisplayMember = "nombreProducto";
+            CBBXCod_Producto.ValueMember = "id";
+
+
 
             GestionProveedores gestionproveedores = new GestionProveedores();
-            dataGridViewProveedores.DataSource = gestionproveedores.ListaTodasProveedor();
+            var Proveedores = gestionproveedores.ListaTodasProveedor();
+            dataGridViewProveedores.DataSource = Proveedores;
+            CBBXIDProveedor.DataSource = Proveedores;
+            CBBXIDProveedor.DisplayMember = "nombre_proveedor";
+            CBBXIDProveedor.ValueMember = "idProveedor";
+
+
 
             GestionCliente GesCliente = new GestionCliente();
-            dataGridViewClientes.DataSource = GesCliente.ImprimirConsulta("Select * from clientes");
+            var Clientes = GesCliente.ImprimirConsulta("Select * from clientes");
+            dataGridViewClientes.DataSource = Clientes;
+            CBBXCedulaClientes.DataSource = Clientes;
+            CBBXCedulaClientes.DisplayMember = "idCliente";
+            CBBXCedulaClientes.ValueMember = "idCliente";
+
+
+
 
             GestionPedidos GesPedidos = new GestionPedidos();
-            dataGridView2Pedidos.DataSource = GesPedidos.ImprimirConsulta("Select * from pedidos Order by estado DESC");
+            var Pedidos = GesPedidos.ImprimirConsulta("Select * from pedidos Order by estado DESC");
+            dataGridView2Pedidos.DataSource = Pedidos;
+            CBBXNumeroPedido.DataSource = Pedidos;
+            CBBXNumeroPedido.DisplayMember = "idPedido";
+            CBBXNumeroPedido.ValueMember = "idPedido";
+
+
+
 
             GestionCréditos GesCredito = new GestionCréditos();
             dataGridViewCreditos.DataSource = GesCredito.ImprimirConsulta("Select * from credito");
 
+
+
+
             // Después de llenar el DataGridView con datos
             GestionAbonos GesAbono = new GestionAbonos();
             dataGridViewAbonos.DataSource = GesAbono.ImprimirConsulta("SELECT * FROM abonos");
+
+
 
             // Imprimir nombres de columnas para depuración
             foreach (DataGridViewColumn column in dataGridViewAbonos.Columns)
@@ -74,20 +109,23 @@ namespace Proyecto4.Formularios
         private void btnGuardarFactura_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            if (!login.CamposVacios(new object[] { txtCedulaCliente, txtCod_Produc, txtUnidadesCompra, ComboBoxNuevo, txtDescuentoFactura, txtNumeroPedido }))
+            if (!login.CamposVacios(new object[] { CBBXCedulaClientes,CBBXCod_Producto,txtUnidadesCompra,ComboBoxNuevo,txtDescuentoFactura,CBBXNumeroPedido,CBBXEstadoFactura,txtCostEnvio }))
             {
                 // Obtener los valores de los controles
-                string CedulaCliente = txtCedulaCliente.Text;
-                string CodigoProduc = txtCod_Produc.Text;
+                string CedulaCliente = CBBXCedulaClientes.SelectedValue.ToString();
+                string CodigoProduc = CBBXCod_Producto.SelectedValue.ToString();
+                
                 int UnidadesCompradas = int.Parse(txtUnidadesCompra.Text);
                 string Nuevo = ComboBoxNuevo.Text;
                 double DescuentoAplicar = double.Parse(txtDescuentoFactura.Text);
-                int NumPedido = int.Parse(txtNumeroPedido.Text);
+                int NumPedido = int.Parse(CBBXNumeroPedido.SelectedValue.ToString());
+                string EstadoFact = CBBXEstadoFactura.Text.ToString();
+                double CostoEnvio = double.Parse(txtCostEnvio.Text);
 
 
                 // Crear una instancia de GestionFacturacion y llamar al método RegistrarFactura
                 GestionFactura gestionFacturacion = new GestionFactura();
-                string resultado = gestionFacturacion.RegistrarFactura(CedulaCliente, CodigoProduc, UnidadesCompradas, Nuevo, DescuentoAplicar, NumPedido);
+                string resultado = gestionFacturacion.RegistrarFactura(CedulaCliente, CodigoProduc, UnidadesCompradas, Nuevo, DescuentoAplicar, NumPedido,CostoEnvio,EstadoFact);
 
                 //Refrescamos la lista
                 GestionFactura gestionFactura = new GestionFactura();
@@ -96,11 +134,23 @@ namespace Proyecto4.Formularios
                 // Mostrar el resultado
                 MessageBox.Show(resultado, "Resultado de la Facturación", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                txtCedulaCliente.Clear();
-                txtCod_Produc.Clear();
+                CBBXCedulaClientes.SelectedItem = null;
+                CBBXCedulaClientes.Refresh();
+
+                CBBXCod_Producto.SelectedItem = null;
+                CBBXCod_Producto.Refresh();
+
                 txtUnidadesCompra.Clear();
+
                 txtDescuentoFactura.Clear();
-                txtNumeroPedido.Clear();
+
+                CBBXNumeroPedido.SelectedItem = null;
+                CBBXNumeroPedido.Refresh();
+
+                CBBXEstadoFactura.SelectedItem = null;
+                CBBXEstadoFactura.Refresh();
+
+                txtCostEnvio.Clear();
             }
             else
             {
@@ -256,15 +306,15 @@ namespace Proyecto4.Formularios
         private void btnGuardarProducto_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            if (!login.CamposVacios(new object[] { txtIdProducto, txtNombreProducto, txtIddeMarca, txtCantidadStock, txtIdProveedor, txtPrecioProducto }))
+            if (!login.CamposVacios(new object[] { txtIdProducto, txtNombreProducto, CBBXIDMarca, txtCantidadStock, CBBXIDProveedor, txtPrecioProducto }))
             {
                 // Obtener los valores de los controles
 
                 int IdProducto = int.Parse(txtIdProducto.Text);
                 string NombreProducto = txtNombreProducto.Text;
-                int IdMarca = int.Parse(txtIddeMarca.Text);
+                int IdMarca = int.Parse(CBBXIDMarca.SelectedValue.ToString());
                 double CantidadStock = double.Parse(txtCantidadStock.Text);
-                string IdProveedor = txtIdProveedor.Text;
+                string IdProveedor = CBBXIDProveedor.SelectedValue.ToString();
                 int PrecioProducto = int.Parse(txtPrecioProducto.Text);
 
 
@@ -278,9 +328,11 @@ namespace Proyecto4.Formularios
 
                 txtIdProducto.Clear();
                 txtNombreProducto.Clear();
-                txtIddeMarca.Clear();
+                CBBXIDMarca.SelectedItem = null;
+                CBBXIDMarca.Refresh();
                 txtCantidadStock.Clear();
-                txtIdProveedor.Clear();
+                CBBXIDProveedor.SelectedItem = null;
+                CBBXIDProveedor.Refresh();
                 txtPrecioProducto.Clear();
 
                 // Mostrar el resultado
@@ -292,14 +344,14 @@ namespace Proyecto4.Formularios
         private void btnActualizarProducto_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            if (!login.CamposVacios(new object[] { txtIdProducto, txtNombreProducto, txtIddeMarca, txtCantidadStock, txtIdProveedor, txtPrecioProducto }))
+            if (!login.CamposVacios(new object[] { txtIdProducto, txtNombreProducto, CBBXIDMarca, txtCantidadStock, CBBXIDProveedor, txtPrecioProducto }))
             {
                 // Obtener los valores de los controles
                 int IdProducto = int.Parse(txtIdProducto.Text);
                 string NombreProducto = txtNombreProducto.Text;
-                int IdMarca = int.Parse(txtIddeMarca.Text);
+                int IdMarca = int.Parse(CBBXIDMarca.SelectedValue.ToString());
                 double CantidadStock = double.Parse(txtCantidadStock.Text);
-                string IdProveedor = txtIdProveedor.Text;
+                string IdProveedor = CBBXIDProveedor.SelectedValue.ToString();
                 int PrecioProducto = int.Parse(txtPrecioProducto.Text);
 
 
@@ -312,9 +364,11 @@ namespace Proyecto4.Formularios
 
                 txtIdProducto.Clear();
                 txtNombreProducto.Clear();
-                txtIddeMarca.Clear();
+                CBBXIDMarca.SelectedItem = null;
+                CBBXIDMarca.Refresh();
                 txtCantidadStock.Clear();
-                txtIdProveedor.Clear();
+                CBBXIDProveedor.SelectedItem = null;
+                CBBXIDProveedor.Refresh();
                 txtPrecioProducto.Clear();
 
                 // Mostrar el resultado
@@ -360,9 +414,11 @@ namespace Proyecto4.Formularios
 
                 txtIdProducto.Clear();
                 txtNombreProducto.Clear();
-                txtIddeMarca.Clear();
+                CBBXIDMarca.SelectedItem = null;
+                CBBXIDMarca.Refresh();
                 txtCantidadStock.Clear();
-                txtIdProveedor.Clear();
+                CBBXIDProveedor.SelectedItem = null;
+                CBBXIDProveedor.Refresh();
                 txtPrecioProducto.Clear();
 
                 // Mostrar el resultado
@@ -382,9 +438,9 @@ namespace Proyecto4.Formularios
 
                 txtIdProducto.Text = row.Cells["id"].Value.ToString();
                 txtNombreProducto.Text = row.Cells["nombreProducto"].Value.ToString();
-                txtIddeMarca.Text = row.Cells["marca"].Value.ToString();
+                CBBXIDMarca.SelectedValue = row.Cells["marca"].Value.ToString();
                 txtCantidadStock.Text = row.Cells["stock"].Value.ToString();
-                txtIdProveedor.Text = row.Cells["proveedor"].Value.ToString();
+                CBBXIDProveedor.SelectedValue = row.Cells["proveedor"].Value.ToString();
                 txtPrecioProducto.Text = row.Cells["PrecioProducto"].Value.ToString();
 
 
@@ -414,7 +470,7 @@ namespace Proyecto4.Formularios
 
                 dataGridViewProveedores.DataSource = gestionproveedores.ListaTodasProveedor();
 
-                txtIdProveedor.Clear();
+                IDDEPROVEEDOR.Clear();
                 txtNombreProducto.Clear();
                 txtTelefonoProveedor.Clear();
                 txtCorreoProveedor.Clear();
@@ -428,10 +484,10 @@ namespace Proyecto4.Formularios
         private void btnActualizarProveedor_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            if (!login.CamposVacios(new object[] { txtIdProveedor, txtNombreProveedor, txtTelefonoProveedor, txtCorreoProveedor }))
+            if (!login.CamposVacios(new object[] { IDDEPROVEEDOR, txtNombreProveedor, txtTelefonoProveedor, txtCorreoProveedor }))
             {
                 // Obtener los valores de los controles
-                string IdProveedor = txtIdProducto.Text;
+                string IdProveedor = IDDEPROVEEDOR.Text;
                 string NombreProveedor = txtNombreProveedor.Text;
                 string TelefonoProveedor = txtTelefonoProveedor.Text;
                 string CorreoProveedor = txtCorreoProveedor.Text;
@@ -444,7 +500,7 @@ namespace Proyecto4.Formularios
 
                 dataGridViewProveedores.DataSource = gestionproveedores.ListaTodasProveedor();
 
-                txtIdProveedor.Clear();
+                IDDEPROVEEDOR.Clear();
                 txtNombreProveedor.Clear();
                 txtTelefonoProveedor.Clear();
                 txtCorreoProveedor.Clear();
@@ -478,10 +534,10 @@ namespace Proyecto4.Formularios
         private void btnEliminarProveedor_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            if (!login.CamposVacios(new object[] { txtIdProveedor }))
+            if (!login.CamposVacios(new object[] { IDDEPROVEEDOR }))
             {
                 // Obtener los valores de los controles
-                string idProveedor = txtIdProveedor.Text;
+                string idProveedor = IDDEPROVEEDOR.Text;
 
 
                 // Crear una instancia de GestionProveedor y llamar al método ActualizarProveedor
@@ -490,7 +546,7 @@ namespace Proyecto4.Formularios
 
                 dataGridViewProveedores.DataSource = gestionproveedores.ListaTodasProveedor();
 
-                txtIdProveedor.Clear();
+                IDDEPROVEEDOR.Clear();
                 txtNombreProducto.Clear();
                 txtTelefonoProveedor.Clear();
                 txtCorreoProveedor.Clear();
@@ -510,7 +566,7 @@ namespace Proyecto4.Formularios
             {
                 DataGridViewRow row = dataGridViewProveedores.Rows[e.RowIndex];
 
-                txtIdProveedor.Text = row.Cells["idProveedor"].Value.ToString();
+                IDDEPROVEEDOR.Text = row.Cells["idProveedor"].Value.ToString();
                 txtNombreProveedor.Text = row.Cells["nombre_proveedor"].Value.ToString();
                 txtTelefonoProveedor.Text = row.Cells["telefono"].Value.ToString();
                 txtCorreoProveedor.Text = row.Cells["correo"].Value.ToString();

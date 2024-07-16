@@ -13,7 +13,7 @@ namespace Proyecto4.GestionBD
     {
         // Función para registrar un nuevo Detalle factura
 
-        public string RegistrarDetalleFactura(int IdProducto, double CantidadComprada, int IdFactura)
+        public string RegistrarDetalleFactura(int IDDetalleFact ,int IdProducto, double CantidadComprada, int IdFactura)
         {
             using (MySqlConnection connection = EstablecerConexion())
             {
@@ -24,6 +24,7 @@ namespace Proyecto4.GestionBD
                     using (MySqlCommand cmd = new MySqlCommand("Registrar_DetalleFactura", connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_IDDetalle", IDDetalleFact);
                         cmd.Parameters.AddWithValue("p_Producto", IdProducto);
                         cmd.Parameters.AddWithValue("p_Cantidad_Comprada", CantidadComprada);
                         cmd.Parameters.AddWithValue("p_Factura_Id", IdFactura);
